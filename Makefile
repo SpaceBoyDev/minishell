@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/06/09 18:53:03 by dario            ###   ########.fr        #
+#    Updated: 2025/06/09 19:10:08 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ RM			=	rm -f
 VALFLAGS	=	--tool=helgrind --tool=drd
 
 # Libft
-LIBFT = ./libft/
-LIBFT_LIB = $(LIBFT)libft.a
+LIBFT		=	./libft/
+LIBFT_LIB	=	$(LIBFT)libft.a
 
 DIR			=	srcs/
 HDERS		=	$(DIR)minishell.h
