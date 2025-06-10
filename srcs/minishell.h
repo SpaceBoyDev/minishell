@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 21:24:21 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/10 21:57:35 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 #include "readline/history.h"
 
 // Builtins
-int	cd(char *path);
+int		cd(char *path);
+void	echo(char *str);

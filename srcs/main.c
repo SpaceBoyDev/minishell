@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 21:50:11 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/10 22:01:18 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	main(void)
 	if (!isatty(STDIN_FILENO))
 		return (0);
     rl = readline(prompt_rl());
-	cd(NULL);
+	//echo(rl);
+	cd(rl);
     rl = readline(prompt_rl());
 	free(rl);
 	return (0);
