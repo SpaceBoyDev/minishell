@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/06/10 20:39:59 by dario            ###   ########.fr        #
+#    Updated: 2025/06/10 21:06:27 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ VALFLAGS	=	--tool=helgrind --tool=drd
 # Libft
 LIBFT		=	./libft/
 LIBFT_LIB	=	$(LIBFT)libft.a
+LIBS 		=	-lreadline -lncurses -ltermcap
 
 DIR			=	srcs/
 HDERS		=	minishell.h
@@ -55,7 +56,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	@echo "$(BLUE)Compiling $(NAME)...$(RST)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) $(LIBS)
 	@echo "$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
 
 $(LIBFT_LIB):
