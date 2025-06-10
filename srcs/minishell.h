@@ -6,11 +6,11 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 20:22:16 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/10 20:32:15 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"ç
+#include "../libft/libft.h"
 #include "readline/readline.h"
 #include "readline/history.h"
 
