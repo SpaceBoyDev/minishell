@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 22:01:18 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/16 18:47:06 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(void)
 	//echo(rl);
 	cd(rl);
     rl = readline(prompt_rl());
+	pwd();
 	free(rl);
 	return (0);
 }
