@@ -52,7 +52,7 @@ all: $(NAME)
 # A rule to build the library from the .o files
 $(NAME): $(OBJS)
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo "$(BG_GREEN)LIBFT compiled!$(BG_RST)"
+	@echo -e "$(BG_GREEN)LIBFT compiled!$(BG_RST)"
 
 # A 
 %.o: %.c
@@ -61,12 +61,12 @@ $(NAME): $(OBJS)
 # A rule to remove all the .o files
 clean:
 	@$(RM) $(OBJS) $(BNS)
-	@echo "$(BG_GREEN)All LIBFT objs cleaned!$(BG_RST)"
+	@echo -e "$(BG_GREEN)All LIBFT objs cleaned!$(BG_RST)"
 
 # A rule to remove all the .o files and the library
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(BG_GREEN)LIBFT fully cleaned!$(BG_RST)"
+	@echo -e "$(BG_GREEN)LIBFT fully cleaned!$(BG_RST)"
 
 # A rule to rebuild everthing from scratch
 re: fclean all

@@ -54,9 +54,9 @@ BG_WHITE	=	\033[47m
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJS)
-	@echo "$(BLUE)Compiling $(NAME)...$(RST)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB)
-	@echo "$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
+	@echo -e "$(BLUE)Compiling $(NAME)...$(RST)"
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) -lreadline
+	@echo -e "$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
 
 $(LIBFT_LIB):
 	@make -C $(LIBFT) -f Makefile
@@ -67,36 +67,36 @@ $(LIBFT_LIB):
 clean:
 	$(RM) $(OBJS)
 	@make -C $(LIBFT) clean
-	@echo "$(BG_GREEN)$(NAME) objs cleaned$(BG_RST)"
+	@echo -e "$(BG_GREEN)$(NAME) objs cleaned$(BG_RST)"
 
 fclean: clean
 	$(RM) $(NAME)
 	@make -C $(LIBFT) fclean
-	@echo "$(BG_GREEN)$(NAME) fully cleaned$(BG_RST)"
+	@echo -e "$(BG_GREEN)$(NAME) fully cleaned$(BG_RST)"
 
 re: fclean all
 
 norme:
-	@echo "$(BG_CYAN)SOURCES$(BG_RST)"
+	@echo -e "$(BG_CYAN)SOURCES$(BG_RST)"
 	@for file in $(SRCS); do \
 		norminette $$file | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo "$(GREEN)$$file: OK!$(RST)"; \
+			echo -e "$(GREEN)$$file: OK!$(RST)"; \
 		else \
-			echo "$(RED)"; \
+			echo -e "$(RED)"; \
 			norminette $$file; \
-			echo "$(RST)"; \
+			echo -e "$(RST)"; \
 		fi \
 	done
-	@echo "$(BG_CYAN)HEADERS$(BG_RST)"
+	@echo -e "$(BG_CYAN)HEADERS$(BG_RST)"
 	@for header in $(HDERS); do \
 		norminette $$header | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo "$(GREEN)$$header: OK!$(RST)"; \
+			echo -e "$(GREEN)$$header: OK!$(RST)"; \
 		else \
-			echo "$(RED)"; \
+			echo -e "$(RED)"; \
 			norminette $$header; \
-			echo "$(RST)"; \
+			echo -e "$(RST)"; \
 		fi \
 	done
 

@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "readline/readline.h"
-#include "readline/history.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 # define RST	"\033[0m"
 # define RED	"\033[1;31m"
@@ -28,3 +28,18 @@
 # define BG_MAGENTA "\033[45m"
 # define BG_CYAN   "\033[46m"
 # define BG_WHITE  "\033[47m"
+
+typedef enum e_token_type {
+    STR,
+    PIPE,
+    IN,
+    OUT,
+    APPEND,
+    HEREDOC,
+} t_token_type;
+
+typedef struct s_token {
+    t_token_type    type;
+    char            *str;
+    struct s_token  *next;
+} t_token;
