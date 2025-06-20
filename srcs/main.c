@@ -32,7 +32,8 @@ int	main(void)
 	{
 		str = readline(PS1);
 		add_history(str);
-		tokenize(str);
+		printf("%d\n", check_quotes(str));
+		// tokenize(str);
 		// print_token(token);
 		// token = token->next;
 	}
@@ -60,7 +61,6 @@ t_token *tokenize(char *input)
 	// printf("hey\n");
 	while (str[i])
 	{
-		printf("inside loop\n");
 		// while (str[i] == ' ')
 		// 	i++;
 		token->next = create_token(&str[i], &i);
