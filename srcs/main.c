@@ -32,7 +32,11 @@ int	main(void)
 	{
 		str = readline(PS1);
 		add_history(str);
-		// printf("%d\n", check_quotes(str));
+		if (!check_quotes(str))
+		{
+			ft_putstr_fd("syntax error (quotes)\n", 2);
+			continue ;
+		}
 		token = tokenize(str);
 		if (!token)
 			ft_putstr_fd("syntax error\n", 2);
@@ -107,12 +111,17 @@ char	*token_str(char	*str, int *i)
 	}
 	else if (str[*i] == '\'')
 	{
-		printf("single quotes\n");
-		// while (str[++(*i)] != '\'')
-		// {
-		// 	len++;
-		// }
-		// val = ft_substr(str, start, len);
+		start++;
+		while (str[++(*i)] != '\'')
+		{
+			len++;
+		}
+		(*i)++;
+		val = ft_substr(str, start, len);
+		if (!val)
+			return (NULL);
+		while (str[*i] && str[*i] == ' ')
+			(*i)++;
 	}
 	else if (str[*i] == '\"')
 	{
