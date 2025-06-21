@@ -26,16 +26,21 @@ void	print_token(t_token	*token);
 int	main(void)
 {
 	char	*str;
-	// t_token *token;
+	t_token *token;
 
 	while (1)
 	{
 		str = readline(PS1);
 		add_history(str);
 		// printf("%d\n", check_quotes(str));
-		tokenize(str);
-		// print_token(token);
-		// token = token->next;
+		token = tokenize(str);
+		if (!token)
+			ft_putstr_fd("syntax error\n", 2);
+		while (token)
+		{
+			print_token(token);
+			token = token->next;
+		}
 	}
 	return (0);
 }
@@ -45,7 +50,7 @@ t_token *tokenize(char *input)
 	int		i;
 	char	*str;
 	t_token	*token;
-	// t_token	*first;
+	t_token	*first;
 
 	str = ft_strtrim(input, " ");
 	free(input);
@@ -54,28 +59,19 @@ t_token *tokenize(char *input)
 	if (str[0] == '\0')
 		return (NULL); // TODO: empty str
 	i = 0;
+	first = create_token(str, &i);
+	token = first;
 	while (str[i])
 	{
-		token = create_token(str, &i);
-		if (!token)
+		token->next = create_token(str, &i);
+		if (!token->next)
+		{
+			// TODO: free previous tokens
 			return (NULL);
-		print_token(token);
+		}
+		token = token->next;
 	}
-	// first = create_token(&str[i], &i);
-	// token = first;
-	// print_token(first);
-	// while (str[i])
-	// {
-	// 	token->next = create_token(&str[i], &i);
-	// 	print_token(token->next);
-	// 	if (!token->next)
-	// 	{
-	// 		// TODO: free previous tokens
-	// 		return (NULL);
-	// 	}
-	// 	token = token->next;
-	// }
-	return (NULL);
+	return (first);
 }
 
 
