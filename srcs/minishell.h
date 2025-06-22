@@ -47,6 +47,7 @@ typedef struct s_token {
 // utils.c
 int	check_quotes(char *str);
 void	print_token(t_token *token);
+void	print_tokens(t_token	*token);
 int	is_separator(char c);
 
 // token.c

@@ -37,11 +37,7 @@ int	main(void)
 		token = tokenize(str);
 		if (!token)
 			ft_putstr_fd("syntax error\n", 2);
-		while (token)
-		{
-			print_token(token);
-			token = token->next;
-		}
+		print_tokens(token);
 	}
 	return (0);
 }

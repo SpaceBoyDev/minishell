@@ -59,6 +59,15 @@ void	print_token(t_token	*token)
 	printf("%s\n", token->str);
 }
 
+void	print_tokens(t_token	*token)
+{
+	while (token)
+	{
+		print_token(token);
+		token = token->next;
+	}
+}
+
 int	is_separator(char c)
 {
 	if (c == '|')
