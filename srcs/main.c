@@ -11,9 +11,37 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <readline/history.h>
+
+#define PS1 "minishell> "
+
+t_token_type	token_type(char *str, int *i);
+t_token	*create_token(char	*str, int *i);
+char	*token_str(char	*str, int *i);
+t_token *tokenize(char *input);
 
 int	main(void)
 {
-	
+	char	*str;
+	t_token *token;
+
+	while (1)
+	{
+		str = readline(PS1);
+		add_history(str);
+		if (!check_quotes(str))
+		{
+			ft_putstr_fd("syntax error (quotes)\n", 2);
+			continue ;
+		}
+		token = tokenize(str);
+		if (!token)
+			ft_putstr_fd("syntax error\n", 2);
+		print_tokens(token);
+	}
 	return (0);
 }
+
+
+
+
