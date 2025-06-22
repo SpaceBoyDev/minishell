@@ -15,15 +15,10 @@
 
 #define PS1 "minishell> "
 
-t_token_type	token_type(char *str, int *i);
-t_token	*create_token(char	*str, int *i);
-char	*token_str(char	*str, int *i);
-t_token *tokenize(char *input);
-
 int	main(void)
 {
 	char	*str;
-	t_token *token;
+	t_token	*token;
 
 	while (1)
 	{
@@ -41,7 +36,3 @@ int	main(void)
 	}
 	return (0);
 }
-
-
-
-
