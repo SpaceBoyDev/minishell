@@ -61,4 +61,8 @@ t_token			*create_token(char *str, int *i);
 char			*token_str(char *str, int *i);
 t_token_type	token_type(char *str, int *i);
 
+// var_expansion.c
+char *expand(char *str);
+int	is_var_char(char c);
+
 #endif

@@ -99,10 +99,7 @@ char	*token_str(char	*str, int *i)
 			return (NULL);
 		while (str[*i] && str[*i] == ' ')
 			(*i)++;
-	printf("double quotes\n");
-		// TODO:
-		// expand $
-		// take into account this way? $(xxx)
+		// TODO: expand $
 	}
 	else
 	{

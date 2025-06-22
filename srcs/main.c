@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <readline/history.h>
 
 #define PS1 "minishell> "
 
