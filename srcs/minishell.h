@@ -43,3 +43,14 @@ typedef struct s_token {
     char            *str;
     struct s_token  *next;
 } t_token;
+
+// utils.c
+int	check_quotes(char *str);
+void	print_token(t_token *token);
+int	is_separator(char c);
+
+// token.c
+t_token *tokenize(char *input);
+t_token	*create_token(char	*str, int *i);
+char	*token_str(char	*str, int *i);
+t_token_type	token_type(char *str, int *i);

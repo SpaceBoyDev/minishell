@@ -28,9 +28,11 @@ DIR			=	srcs/
 HDERS		=	minishell.h
 SRC			=	main.c
 BUILTINS	=	cd.c echo.c env.c exit.c export.c pwd.c unset.c
+LEXER		=	utils.c token.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
-				$(addprefix srcs/builtins/, $(BUILTINS))
+				$(addprefix srcs/builtins/, $(BUILTINS)) \
+				$(addprefix srcs/lexer/, $(LEXER))
 
 OBJS		=	$(SRCS:.c=.o)
 
