@@ -77,10 +77,10 @@ typedef struct s_lst
 }					t_lst;
 
 t_lst	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_lst **lst, t_lst *new);
+void	ft_lstadd_front(t_lst **lst, t_lst *newlst);
 int		ft_lstsize(t_lst *lst);
 t_lst	*ft_lstlast(t_lst *lst);
-void	ft_lstadd_back(t_lst **lst, t_lst *new);
+void	ft_lstadd_back(t_lst **lst, t_lst *newlst);
 void	ft_lstdelone(t_lst *lst, void (*del)(void *));
 void	ft_lstclear(t_lst **lst, void (*del)(void *));
 void	ft_lstiter(t_lst *lst, void (*f)(void *));

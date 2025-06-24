@@ -6,14 +6,62 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/06/16 22:53:27 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/24 22:35:50 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "readline/readline.h"
-#include "readline/history.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
+# include "../libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define RST	"\033[0m"
+# define RED	"\033[1;31m"
+# define BLUE	"\033[1;34m"
+# define GREEN	"\033[1;32m"
+# define YELLOW	"\033[1;33m"
+
+# define BG_RST    "\033[0m"
+# define BG_RED    "\033[41m"
+# define BG_GREEN  "\033[42m"
+# define BG_YELLOW "\033[43m"
+# define BG_BLUE   "\033[44m"
+# define BG_MAGENTA "\033[45m"
+# define BG_CYAN   "\033[46m"
+# define BG_WHITE  "\033[47m"
+
+typedef enum e_token_type
+{
+	STR,
+	PIPE,
+	IN,
+	OUT,
+	APPEND,
+	HEREDOC,
+}	t_token_type;
+
+typedef struct s_token
+{
+	t_token_type	type;
+	char			*str;
+	struct s_token	*next;
+}	t_token;
+
+// utils.c
+int				check_quotes(char *str);
+void			print_token(t_token *token);
+void			print_tokens(t_token *token);
+int				is_separator(char c);
+
+// token.c
+t_token			*tokenize(char *input);
+t_token			*create_token(char *str, int *i);
+char			*token_str(char *str, int *i);
+t_token_type	token_type(char *str, int *i);
+
+#endif
 // Builtins
 int		cd(char *path);
 void	echo(char *str);

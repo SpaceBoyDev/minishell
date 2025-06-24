@@ -6,11 +6,14 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/06/16 18:47:06 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/24 22:34:59 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <readline/history.h>
+
+#define PS1 "minishell> "
 
 char	*prompt_rl(void)
 {
@@ -28,15 +31,23 @@ char	*prompt_rl(void)
 
 int	main(void)
 {
-	char	*rl;
+	char	*str;
+	t_token	*token;
 
-	if (!isatty(STDIN_FILENO))
-		return (0);
-    rl = readline(prompt_rl());
-	//echo(rl);
-	cd(rl);
-    rl = readline(prompt_rl());
-	pwd();
-	free(rl);
+	while (1)
+	{
+		str = readline(PS1);
+		add_history(str);
+		if (!check_quotes(str))
+		{
+			ft_putstr_fd("syntax error (quotes)\n", 2);
+			continue ;
+		}
+		token = tokenize(str);
+		if (!token)
+			ft_putstr_fd("syntax error\n", 2);
+		print_tokens(token);
+	}
+
 	return (0);
 }
