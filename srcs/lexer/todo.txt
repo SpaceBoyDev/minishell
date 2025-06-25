@@ -1,5 +1,11 @@
 double quotes
     variable expansion
+
+read heredoc
+
 split tokens into single process struct
+
+free general purpose function
+
 leaks
 norminette
