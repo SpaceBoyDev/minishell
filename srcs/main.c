@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/06/24 22:34:59 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/25 03:36:32 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*prompt_rl(void)
 
 	cwd = getcwd(NULL, 0);
 	path = ft_strjoin(PINK, cwd);
-	prompt = ft_strjoin(path, "$ " RST);
+	prompt = ft_strjoin(path, "\033[5m> " RST);
 	free(path);
 	free(cwd);
 	return (prompt);
@@ -36,7 +36,7 @@ int	main(void)
 
 	while (1)
 	{
-		str = readline(PS1);
+		str = readline(prompt_rl());
 		add_history(str);
 		if (!check_quotes(str))
 		{
@@ -46,6 +46,10 @@ int	main(void)
 		token = tokenize(str);
 		if (!token)
 			ft_putstr_fd("syntax error\n", 2);
+		else
+		{
+			exec_builtins(token);
+		}
 		print_tokens(token);
 	}
 

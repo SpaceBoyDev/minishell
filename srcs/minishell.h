@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/06/24 22:35:50 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/25 03:36:53 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
+# include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -61,9 +62,13 @@ t_token			*create_token(char *str, int *i);
 char			*token_str(char *str, int *i);
 t_token_type	token_type(char *str, int *i);
 
-#endif
+// Builtins Utils
+int	exec_builtins(t_token *token);
+
 // Builtins
 int		cd(char *path);
-void	echo(char *str);
+int		echo(char *str);
 int		pwd();
 // TODO: Faltan env(), exit(), export() y unset() porque hacen falta variables
+
+#endif

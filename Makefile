@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/06/24 22:35:14 by dario            ###   ########.fr        #
+#    Updated: 2025/06/25 02:47:05 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBS 		=	-lreadline -lncurses -ltermcap
 DIR			=	srcs/
 HDERS		=	minishell.h
 SRC			=	main.c
-BUILTINS	=	cd.c echo.c env.c exit.c export.c pwd.c unset.c
+BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
 LEXER		=	utils.c token.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \

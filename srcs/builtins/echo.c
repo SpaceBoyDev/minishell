@@ -6,16 +6,17 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:11 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 21:58:30 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/25 02:45:06 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	echo(char *str)
+int	echo(char *str)
 {
 	if (str)
 		printf("%s\n", str);
 	else
 		ft_putstr_fd("\n", 2);
+	return (0);
 }
