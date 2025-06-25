@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/06/25 03:36:53 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/25 19:55:19 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ char			*token_str(char *str, int *i);
 t_token_type	token_type(char *str, int *i);
 
 // Builtins Utils
-int	exec_builtins(t_token *token);
+int				exec_builtins(t_token *token);
 
 // Builtins
-int		cd(char *path);
-int		echo(char *str);
-int		pwd();
+int				cd(char *path);
+int				echo(char *str);
+int				pwd(void);
 // TODO: Faltan env(), exit(), export() y unset() porque hacen falta variables
 
 #endif

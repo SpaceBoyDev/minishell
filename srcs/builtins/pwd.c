@@ -6,13 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:20 by dario             #+#    #+#             */
-/*   Updated: 2025/06/25 02:50:18 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/25 19:55:28 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	pwd()
+int	pwd(void)
 {
 	char	*current_dir;
 
