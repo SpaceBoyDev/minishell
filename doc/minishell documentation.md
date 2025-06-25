@@ -1,0 +1,1 @@
+El proyecto me da mareos brutales, así que voy a recopilar información de distintos lugares aquí para hacerlo todo más fácil.
