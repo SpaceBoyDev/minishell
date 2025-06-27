@@ -6,15 +6,21 @@
 - [[rl_redisplay()]]
 - [[rl_replace_line()]]
 
+**ARCHIVOS/PATHS**
+- [[access()]]
+- [[open()]]
+- [[close()]]
+- [[read()]]
 
-printf
-malloc
-free
-write
-access
-open
-read
-close
+**DIRECTORIOS**
+- [[chdir()]]
+- [[closedir()]]
+- [[getcwd()]]
+- [[opendir()]]
+- [[readdir()]]
+- [[stat(), lstat(), fstat()]]
+
+
 fork
 wait
 waitpid
@@ -24,19 +30,13 @@ signal
 sigaction
 kill
 exit
-getcwd
-chdir
-stat
-lstat
-fstat
+
 unlink
 execve
 dup
 dup2
 pipe
-opendir
-readdir
-closedir
+
 strerror
 perror
 isatty
@@ -52,3 +52,9 @@ tgetnum
 tgetstr
 tgoto
 tputs
+
+**:3**
+- printf
+- malloc
+- free
+- write
