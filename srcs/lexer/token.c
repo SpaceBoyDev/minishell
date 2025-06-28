@@ -122,9 +122,9 @@ char	*token_str(char	*str, int *i)
 
 // sets type of token
 // moves i to the char after operator if not STR
-t_token_type	token_type(char *str, int *i)
+t_op	token_type(char *str, int *i)
 {
-	t_token_type	type;
+	t_op	type;
 
 	if (str[*i] == '<' && str[*i + 1] && str[*i + 1] == '<')
 		type = HEREDOC;
