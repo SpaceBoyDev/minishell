@@ -51,9 +51,12 @@ t_token	*create_token(char	*str, int *i)
 		return (NULL);
 	token->next = NULL;
 	token->type = token_type(str, i);
-	token->str = token_str(str, i);
-	if (token->str == NULL)
-		return (NULL);
+	if (token->type != PIPE)
+	{
+		token->str = token_str(str, i);
+		if (token->str == NULL)
+			return (NULL);
+	}
 	return (token);
 }
 
@@ -135,7 +138,7 @@ t_token_type	token_type(char *str, int *i)
 		type = PIPE;
 	else
 		type = STR;
-	if (type == IN || type == OUT)
+	if (type == IN || type == OUT || type == PIPE)
 		*i += 1;
 	else if (type == APPEND || type == HEREDOC)
 		*i += 2;

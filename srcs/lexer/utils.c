@@ -45,7 +45,10 @@ void	print_token(t_token	*token)
 	if (token->type == STR)
 		printf("STR: ");
 	else if (token->type == PIPE)
-		printf("PIPE: ");
+	{
+		printf("PIPE\n");
+		return ;
+	}
 	else if (token->type == IN)
 		printf("IN: ");
 	else if (token->type == OUT)
