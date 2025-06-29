@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/06/29 20:36:11 by dario            ###   ########.fr        #
+#    Updated: 2025/06/29 23:48:44 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) -lreadline
+	@printf "$(MAGENTA)All $(NAME) source files compiled ✅$(RST)\033[0K\r"
 	@echo "\n$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
 	@echo "$(MAGENTA)$$SIGNATURE$(RST)"
 

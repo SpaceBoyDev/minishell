@@ -55,6 +55,7 @@ all: $(NAME)
 # A rule to build the library from the .o files
 $(NAME): $(OBJS)
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	@printf "$(MAGENTA)All libft source files compiled ✅$(RST)\033[0K\r"
 	@echo "\n$(BG_GREEN)libft compiled!$(BG_RST)"
 
 # A 
