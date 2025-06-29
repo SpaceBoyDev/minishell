@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/06/29 20:34:54 by dario            ###   ########.fr        #
+#    Updated: 2025/06/29 20:36:11 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,6 @@ SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/lexer/, $(LEXER))
 
 OBJS		=	$(SRCS:.c=.o)
-
-info: signature
 
 define SIGNATURE
                                                          ,
