@@ -108,6 +108,8 @@ void	print_cmd(t_cmd	*cmd)
 	}
 	else
 		printf("stdout\n");
+	if (!cmd->args)
+		return ;
 	printf("cmd: ");
 	i = 0;
 	while (cmd->args[i])
