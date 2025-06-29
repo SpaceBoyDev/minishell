@@ -15,12 +15,14 @@
 
 #define PS1 "minishell> "
 
-int	main(void)
+int	main(int argc, char **argv, char **env)
 {
 	char	*str;
 	t_token	*token;
 	t_cmd	*cmd;
 
+	(void)argc;
+	(void)argv;
 	while (1)
 	{
 		str = readline(PS1);

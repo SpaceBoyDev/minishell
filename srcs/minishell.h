@@ -17,6 +17,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "lexer/lexer.h"
+# include "execute/execute.h"
 
 # define RST	"\033[0m"
 # define RED	"\033[1;31m"
