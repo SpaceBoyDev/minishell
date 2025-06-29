@@ -55,6 +55,10 @@ void	execute(t_cmd *cmd, char **env)
 	}
 }
 
+// TODO: I was working here
+// create pipes from first till last - 1
+// fork for every cmd
+// redirect input and output
 void	create_processes(t_cmd *cmd)
 {
 }
