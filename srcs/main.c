@@ -15,6 +15,20 @@
 
 #define PS1 "minishell> "
 
+char	*prompt_rl(void)
+{
+	char	*cwd;
+	char	*path;
+	char	*prompt;
+
+	cwd = getcwd(NULL, 0);
+	path = ft_strjoin(PINK, cwd);
+	prompt = ft_strjoin(path, "\033[5m> " RST);
+	free(path);
+	free(cwd);
+	return (prompt);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char	*str;
@@ -26,7 +40,7 @@ int	main(int argc, char **argv, char **env)
 	(void)env;
 	while (1)
 	{
-		str = readline(PS1);
+		str = readline(prompt_rl());
 		add_history(str);
 		if (!check_quotes(str))
 		{
