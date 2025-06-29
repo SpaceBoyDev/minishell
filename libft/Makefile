@@ -22,6 +22,9 @@ RED			=	\033[1;31m
 BLUE		=	\033[1;34m
 GREEN		=	\033[1;32m
 YELLOW		=	\033[1;33m
+MAGENTA		=	\033[1;35m
+CYAN		=	\033[1;36m
+WHITE		=	\033[1;37m
 
 # Background colors
 BG_RST		=	\033[0m
@@ -52,21 +55,20 @@ all: $(NAME)
 # A rule to build the library from the .o files
 $(NAME): $(OBJS)
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo -e "$(BG_GREEN)LIBFT compiled!$(BG_RST)"
+	@echo "\n$(BG_GREEN)libft compiled!$(BG_RST)"
 
 # A 
 %.o: %.c
-	@$(CC) $(CFLAGS) $< -o $@ -c
+	@printf "$(MAGENTA)Compiling $< ✅$(RST)\033[0K\r"; $(CC) $(CFLAGS) -c $< -o $@ -c
 
 # A rule to remove all the .o files
 clean:
 	@$(RM) $(OBJS) $(BNS)
-	@echo -e "$(BG_GREEN)All LIBFT objs cleaned!$(BG_RST)"
 
 # A rule to remove all the .o files and the library
 fclean: clean
 	@$(RM) $(NAME)
-	@echo -e "$(BG_GREEN)LIBFT fully cleaned!$(BG_RST)"
+	@echo "$(CYAN)libft fully cleaned!$(BG_RST)🧹"
 
 # A rule to rebuild everthing from scratch
 re: fclean all

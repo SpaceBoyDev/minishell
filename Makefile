@@ -6,13 +6,13 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/06/25 19:55:03 by dario            ###   ########.fr        #
+#    Updated: 2025/06/29 19:55:43 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
-MAKEFLAGS += --no-print-directory
+MAKEFLAGS	+=	--no-print-directory
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror #-g3
@@ -43,6 +43,9 @@ RED			=	\033[1;31m
 BLUE		=	\033[1;34m
 GREEN		=	\033[1;32m
 YELLOW		=	\033[1;33m
+MAGENTA		=	\033[1;35m
+CYAN		=	\033[1;36m
+WHITE		=	\033[1;37m
 
 # Background colors
 BG_RST		=	\033[0m
@@ -57,49 +60,53 @@ BG_WHITE	=	\033[47m
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJS)
-	@echo -e "$(BLUE)Compiling $(NAME)...$(RST)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) -lreadline
-	@echo -e "$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) -lreadline
+	@echo "\n$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
 
 $(LIBFT_LIB):
+	@echo "$(BG_BLUE)Compiling libft...$(RST)"
 	@make -C $(LIBFT) -f Makefile
+	@echo "$(BG_BLUE)Compiling $(NAME)...$(RST)"
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@printf "$(MAGENTA)Compiling $< ✅$(RST)\033[0K\r"; $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	@echo "$(BG_BLUE)Cleaning...$(BG_RST)"
+	@$(RM) $(OBJS)
 	@make -C $(LIBFT) clean
-	@echo -e "$(BG_GREEN)$(NAME) objs cleaned$(BG_RST)"
+	@echo "$(CYAN)libft objs cleaned!$(BG_RST)🧹"
+	@echo "$(CYAN)$(NAME) objs cleaned!$(BG_RST)🧹"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@make -C $(LIBFT) fclean
-	@echo -e "$(BG_GREEN)$(NAME) fully cleaned$(BG_RST)"
+	@echo "$(CYAN)$(NAME) fully cleaned!$(BG_RST)🧹"
+	@echo "$(BG_GREEN)All cleaned!$(BG_RST)"
 
 re: fclean all
 
 norme:
-	@echo -e "$(BG_CYAN)SOURCES$(BG_RST)"
+	@echo "$(BG_CYAN)SOURCES$(BG_RST)"
 	@for file in $(SRCS); do \
 		norminette $$file | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo -e "$(GREEN)$$file: OK!$(RST)"; \
+			echo "$(GREEN)$$file: OK!$(RST)"; \
 		else \
-			echo -e "$(RED)"; \
+			echo "$(RED)"; \
 			norminette $$file; \
-			echo -e "$(RST)"; \
+			echo "$(RST)"; \
 		fi \
 	done
-	@echo -e "$(BG_CYAN)HEADERS$(BG_RST)"
+	@echo "$(BG_CYAN)HEADERS$(BG_RST)"
 	@for header in $(HDERS); do \
 		norminette $$header | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo -e "$(GREEN)$$header: OK!$(RST)"; \
+			echo "$(GREEN)$$header: OK!$(RST)"; \
 		else \
-			echo -e "$(RED)"; \
+			echo "$(RED)"; \
 			norminette $$header; \
-			echo -e "$(RST)"; \
+			echo "$(RST)"; \
 		fi \
 	done
 
