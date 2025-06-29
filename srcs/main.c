@@ -23,6 +23,7 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	(void)env;
 	while (1)
 	{
 		str = readline(PS1);
