@@ -55,7 +55,11 @@ t_cmd	*pipeline_cmd(t_token *token)
 		while (token && token->type != PIPE)
 			token = token->next;
 		if (token)
+		{
 			token = token->next;
+			if (!token)
+				return (NULL);
+		}
 		else
 			return (first);
 		cmd->next = build_cmd(token);

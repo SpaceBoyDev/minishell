@@ -43,7 +43,7 @@ int	main(void)
 		if (!cmd)
 		{
 			ft_putstr_fd("cmd build error\n", 2);
-			return (0);
+			continue ;
 		}
 		// print_cmd(cmd);
 		print_cmds(cmd);
