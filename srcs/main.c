@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **env)
 	(void)env;
 	while (1)
 	{
-		str = readline(prompt_rl());
+		str = readline(PS1);
 		add_history(str);
 		if (!check_quotes(str))
 		{
