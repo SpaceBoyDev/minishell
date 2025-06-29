@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lexer/lexer.h"
 #include "minishell.h"
 
 #define PS1 "minishell> "
@@ -18,6 +19,7 @@ int	main(void)
 {
 	char	*str;
 	t_token	*token;
+	t_cmd	*cmd;
 
 	while (1)
 	{
@@ -25,13 +27,26 @@ int	main(void)
 		add_history(str);
 		if (!check_quotes(str))
 		{
-			ft_putstr_fd("syntax error (quotes)\n", 2);
+			ft_putstr_fd("quotation error\n", 2);
 			continue ;
 		}
 		token = tokenize(str);
 		if (!token)
-			ft_putstr_fd("syntax error\n", 2);
-		print_tokens(token);
+		{
+			ft_putstr_fd("tokenizing error\n", 2);
+			continue ;
+		}
+		// print_tokens(token);
+		// printf("--------------------------------\n");
+		// cmd = build_cmd(token);
+		cmd = pipeline_cmd(token);
+		if (!cmd)
+		{
+			ft_putstr_fd("cmd build error\n", 2);
+			return (0);
+		}
+		// print_cmd(cmd);
+		print_cmds(cmd);
 	}
 	return (0);
 }

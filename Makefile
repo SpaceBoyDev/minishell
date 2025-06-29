@@ -28,7 +28,7 @@ DIR			=	srcs/
 HDERS		=	minishell.h
 SRC			=	main.c
 BUILTINS	=	cd.c echo.c env.c exit.c export.c pwd.c unset.c
-LEXER		=	utils.c token.c
+LEXER		=	utils.c token.c cmd.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/builtins/, $(BUILTINS)) \

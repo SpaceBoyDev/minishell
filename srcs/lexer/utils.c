@@ -71,6 +71,53 @@ void	print_tokens(t_token	*token)
 	}
 }
 
+void	print_cmds(t_cmd	*cmd)
+{
+	while (cmd)
+	{
+		print_cmd(cmd);
+		cmd = cmd->next;
+		if (cmd)
+			printf("-----PIPE-----\n");
+	}
+}
+
+void	print_cmd(t_cmd	*cmd)
+{
+	int	i;
+
+	printf("infile: ");
+	if (cmd->infile)
+	{
+		printf("%s\n", cmd->infile);
+		if (cmd->in == IN)
+			printf("IN\n");
+		else
+			printf("HEREDOC\n");
+	}
+	else
+		printf("stdin\n");
+	printf("outfile: ");
+	if (cmd->outfile)
+	{
+		printf("%s\n", cmd->outfile);
+		if (cmd->out == OUT)
+			printf("OUT\n");
+		else
+			printf("APPEND\n");
+	}
+	else
+		printf("stdout\n");
+	printf("cmd: ");
+	i = 0;
+	while (cmd->args[i])
+	{
+		printf("%s ", cmd->args[i]);
+		i++;
+	}
+	printf("\n");
+}
+
 int	is_separator(char c)
 {
 	if (c == '|')
