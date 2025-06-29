@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 17:50:57 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/25 21:22:33 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **env)
 	(void)env;
 	while (1)
 	{
-		str = readline(PS1);
+		str = readline(prompt_rl());
 		add_history(str);
 		if (!check_quotes(str))
 		{
@@ -51,5 +51,6 @@ int	main(int argc, char **argv, char **env)
 		// print_cmd(cmd);
 		print_cmds(cmd);
 	}
+
 	return (0);
 }
