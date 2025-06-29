@@ -35,7 +35,9 @@ t_cmd	*build_cmd(t_token	*token)
 	cmd = init_cmd();
 	if (!cmd)
 		return (NULL);
-	args_cmd(cmd, token);
+	if (!args_cmd(cmd, token))
+		return (NULL);
+	// TODO: check returns of these fts
 	in_cmd(cmd, token);
 	out_cmd(cmd, token);
 	return (cmd);

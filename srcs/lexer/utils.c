@@ -86,28 +86,22 @@ void	print_cmd(t_cmd	*cmd)
 {
 	int	i;
 
-	printf("infile: ");
 	if (cmd->infile)
 	{
-		printf("%s\n", cmd->infile);
 		if (cmd->in == IN)
-			printf("IN\n");
+			printf("IN ");
 		else
-			printf("HEREDOC\n");
+			printf("HEREDOC ");
+		printf("%s\n", cmd->infile);
 	}
-	else
-		printf("stdin\n");
-	printf("outfile: ");
 	if (cmd->outfile)
 	{
-		printf("%s\n", cmd->outfile);
 		if (cmd->out == OUT)
-			printf("OUT\n");
+			printf("OUT ");
 		else
-			printf("APPEND\n");
+			printf("APPEND ");
+		printf("%s\n", cmd->outfile);
 	}
-	else
-		printf("stdout\n");
 	if (!cmd->args)
 		return ;
 	printf("cmd: ");
