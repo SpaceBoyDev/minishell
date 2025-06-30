@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "execute/execute.h"
 #include "lexer/lexer.h"
 #include "minishell.h"
 
@@ -64,6 +65,7 @@ int	main(int argc, char **argv, char **env)
 		}
 		// print_cmd(cmd);
 		print_cmds(cmd);
+		create_processes(cmd, env);
 	}
 
 	return (0);

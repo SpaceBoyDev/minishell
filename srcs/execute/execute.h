@@ -17,5 +17,8 @@
 
 char	**get_paths(void);
 void	execute(t_cmd *cmd, char **env);
+void	run_process(t_cmd *cmd, int *pipefd, char **env);
+void	execute(t_cmd *cmd, char **env);
+void	create_processes(t_cmd *cmd, char **env);
 
 #endif

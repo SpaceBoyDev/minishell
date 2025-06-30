@@ -36,8 +36,10 @@ typedef struct s_cmd
 	char			**args;
 	char			*infile;
 	char			*outfile;
-	t_op			in;
-	t_op			out;
+	t_op			in_op;
+	t_op			out_op;
+	int				in_fd;
+	int				out_fd;
 	struct s_cmd	*next;
 }	t_cmd;
 

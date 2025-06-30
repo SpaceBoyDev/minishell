@@ -88,7 +88,7 @@ void	print_cmd(t_cmd	*cmd)
 
 	if (cmd->infile)
 	{
-		if (cmd->in == IN)
+		if (cmd->in_op == IN)
 			printf("IN ");
 		else
 			printf("HEREDOC ");
@@ -96,7 +96,7 @@ void	print_cmd(t_cmd	*cmd)
 	}
 	if (cmd->outfile)
 	{
-		if (cmd->out == OUT)
+		if (cmd->out_op == OUT)
 			printf("OUT ");
 		else
 			printf("APPEND ");
