@@ -1,0 +1,3 @@
+errors:
+	it prints stuff it shouldn't to terminal
+	segfault when ctrl+d
