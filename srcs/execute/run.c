@@ -58,11 +58,12 @@ void	execute(t_cmd *cmd, char **env)
 	}
 }
 
-void	create_processes(t_cmd *cmd, char **env)
+int	create_processes(t_cmd *cmd, char **env)
 {
 	int		pipefd[4];
 	pid_t	pid;
 	t_cmd	*first;
+	int		status;
 
 	pipefd[0] = INT_MAX;
 	pipefd[1] = INT_MAX;
@@ -81,6 +82,7 @@ void	create_processes(t_cmd *cmd, char **env)
 		pid = fork(); // TODO: check return?
 		if (pid == 0)
 			run_process(cmd, pipefd, env);
+		cmd->pid = pid;
 		cmd = cmd->next;
 		if (pipefd[0] != INT_MAX)
 			close(pipefd[0]);
@@ -91,9 +93,11 @@ void	create_processes(t_cmd *cmd, char **env)
 	}
 	while (first)
 	{
-		wait(NULL);
+		// wait(NULL);
+		waitpid(cmd->pid, &status, 0);
 		first = first->next;
 	}
+	return (WEXITSTATUS(status));
 }
 
 void	run_process(t_cmd *cmd, int *pipefd, char **env)
