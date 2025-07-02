@@ -58,28 +58,22 @@ void	execute(t_cmd *cmd, char **env)
 	}
 }
 
-// TODO: I was working here
-// create pipes from first till last - 1
-// fork for every cmd
-// redirect input and output
 void	create_processes(t_cmd *cmd, char **env)
 {
 	int		pipefd[4];
 	pid_t	pid;
 	t_cmd	*first;
 
-	// for first cmd
 	pipefd[0] = INT_MAX;
 	pipefd[1] = INT_MAX;
 	pipefd[2] = INT_MAX;
 	pipefd[3] = INT_MAX;
-	(void)first;
 	first = cmd;
 	while (cmd)
 	{
 		if (cmd->next)
 			pipe(&pipefd[2]); // TODO: check return?
-		else // last cmd
+		else
 		{
 			pipefd[2] = INT_MAX;
 			pipefd[3] = INT_MAX;
@@ -113,7 +107,7 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		dup2(pipefd[0], 0);
 		close(pipefd[0]);
 	}
-	if (pipefd[3] == INT_MAX)
+	if (pipefd[3] != INT_MAX)
 	{
 		dup2(pipefd[3], 1);
 		close(pipefd[3]);

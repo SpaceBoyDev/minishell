@@ -64,7 +64,7 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		}
 		// print_cmd(cmd);
-		print_cmds(cmd);
+		// print_cmds(cmd);
 		create_processes(cmd, env);
 	}
 
