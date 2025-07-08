@@ -132,5 +132,12 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		dup2(cmd->out_fd, 1);
 		close(cmd->out_fd);
 	}
+	else if (cmd->outfile && cmd->out_op == APPEND)
+	{
+		close(pipefd[3]);
+		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		dup2(cmd->out_fd, 1);
+		close(cmd->out_fd);
+	}
 	execute(cmd, env);
 }
