@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:39:55 by dario             #+#    #+#             */
-/*   Updated: 2025/07/08 18:41:48 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 00:15:50 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 /** Prints in yellow the error message given below a red ERROR square
  * @param error_message Error message that's going to be displayed
 */
-static void	error_msg(const char *error_message)
+void	error_msg(const char *error_message, bool simple)
 {
-	printf(RED"╔═══════╗\n║ ERROR ║\n╚═══════╝\n");
+	if (simple)
+		printf(RED"ERROR: "RST);
+	else
+		printf(RED"╔═══════╗\n║ ERROR ║\n╚═══════╝\n");
 	if (error_message)
 		printf(YELLOW"%s\n"RST, error_message);
 }
@@ -27,6 +30,6 @@ static void	error_msg(const char *error_message)
  */
 void	error_exit(const char *error_message)
 {
-	error_msg(error_message);
+	error_msg(error_message, false);
 	exit(EXIT_FAILURE);
 }

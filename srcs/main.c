@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/08 19:07:59 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 01:01:45 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ int	main(int argc, char **argv, char **env)
 	{
 		start_minishell();
 		str = readline(prompt_rl());
+		if (!str)
+		{
+			printf("Leaving minishell...\n");
+			break ;
+		}
 		add_history(str);
 		if (!check_quotes(str))
 		{

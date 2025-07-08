@@ -6,28 +6,18 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:33:49 by dario             #+#    #+#             */
-/*   Updated: 2025/07/08 18:45:29 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 00:56:15 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 
-void	signal_kill(pid_t pid, int signo)
+void	sigint_handler_default(int sig)
 {
-	if (kill(pid, signo) < 0)
-		error_exit("Signal kill failed");
-}
-
-void	create_signal(int signo, void *handler, bool siginfo)
-{
-	struct sigaction	sa;
-
-	sa.sa_sigaction = handler;
-	if (siginfo)
-		sa.sa_flags = SA_SIGINFO;
-	sigemptyset(&sa.sa_mask);
-	sigaddset(&sa.sa_mask, SIGUSR1);
-	sigaddset(&sa.sa_mask, SIGUSR2);
-	if (sigaction(signo, &sa, NULL) < 0)
-		error_exit("Sigaction failed");
+	if (sig != SIGINT)
+		return;
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
