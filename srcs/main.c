@@ -14,6 +14,8 @@
 #include "heredoc/heredoc.h"
 #include "lexer/lexer.h"
 #include "minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define PS1 "minishell> "
 
@@ -43,6 +45,12 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		str = readline(prompt_rl());
+		if (!str)
+			exit(EXIT_SUCCESS);
+		else if (!str[0])
+		{
+			continue;
+		}
 		add_history(str);
 		if (!check_quotes(str))
 		{
