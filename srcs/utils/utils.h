@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 13:52:30 by marcolop          #+#    #+#             */
-/*   Updated: 2025/07/02 13:52:30 by marcolop         ###   ########.fr       */
+/*   Created: 2025/07/08 18:40:03 by dario             #+#    #+#             */
+/*   Updated: 2025/07/09 01:11:10 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#ifndef UTILS_H
+# define UTILS_H
 
 # include "../minishell.h"
 
-void	heredoc(char	*delimeter);
-char	*heredoc_rl(char *delimeter);
-int		ft_strcmp(char *s1, char *s2);
+// Main Utils
+void		start_minishell(void);
+
+// Error Handling
+void		error_msg(const char *error_message, bool simple);
+void		error_exit(const char *error_message);
 
 #endif
