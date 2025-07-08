@@ -6,13 +6,14 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/06/25 21:22:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/08 19:07:59 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute/execute.h"
 #include "heredoc/heredoc.h"
 #include "lexer/lexer.h"
+#include "utils/utils.h"
 #include "minishell.h"
 
 #define PS1 "minishell> "
@@ -42,6 +43,7 @@ int	main(int argc, char **argv, char **env)
 	(void)env;
 	while (1)
 	{
+		start_minishell();
 		str = readline(prompt_rl());
 		add_history(str);
 		if (!check_quotes(str))
