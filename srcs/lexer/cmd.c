@@ -122,7 +122,7 @@ int	in_cmd(t_cmd *cmd, t_token *token)
 	}
 	if (!key)
 		return (1);
-	cmd->in = key->type;
+	cmd->in_op = key->type;
 	cmd->infile = ft_strdup(key->str);
 	if (!cmd->infile)
 		return (0);
@@ -142,7 +142,7 @@ int	out_cmd(t_cmd *cmd, t_token *token)
 	}
 	if (!key)
 		return (1);
-	cmd->out = key->type;
+	cmd->out_op = key->type;
 	cmd->outfile = ft_strdup(key->str);
 	if (!cmd->outfile)
 		return (0);
