@@ -12,6 +12,10 @@
 
 #include "../minishell.h"
 
+int	cd(char *path);
+int	echo(char *str);
+int	pwd(void);
+
 static bool	is_builtin(char *str)
 {
 	size_t	len;

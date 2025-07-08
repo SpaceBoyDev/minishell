@@ -28,8 +28,8 @@ LIBS 		=	-lreadline -lncurses -ltermcap
 DIR			=	srcs/
 HDERS		=	srcs/minishell.h
 SRC			=	main.c
+LEXER		=	utils.c token.c cmd.c
 BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
-LEXER		=	utils.c token.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/builtins/, $(BUILTINS)) \
@@ -50,10 +50,10 @@ define SIGNATURE
       _             |_   _|            |_|  _  ______  | '_ ` _ \| | '_ \| / __| '_ \ / _ \ | |
      | |              |_|              | | (_)|______| | | | | | | | | | | \__ \ | | |  __/ | |
    __| | __ _ _ __ _ __ ___   __ _ _ __| |_ _          |_| |_| |_|_|_| |_|_|___/_| |_|\___|_|_|
-  / _` |/ _` | '__| '_ ` _ \ / _` | '__| __| |                         ╱|、                                   
- | (_| | (_| | |  | | | | | | (_| | |  | |_| |                        (`O -  7                                             
-  \__,_|\__,_|_|  |_| |_| |_|\__,_|_|   \__|_|                          |、⁻〵   
-                                                                        じしˍ,)ノ   
+  / _` |/ _` | '__| '_ ` _ \ / _` | '__| __| |                                                                
+ | (_| | (_| | |  | | | | | | (_| | |  | |_| |                                                                             
+  \__,_|\__,_|_|  |_| |_| |_|\__,_|_|   \__|_|                                   
+                                                                                    
 endef
 export SIGNATURE
 
@@ -82,53 +82,53 @@ all: $(NAME)
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) -lreadline
 	@printf "$(MAGENTA)All $(NAME) source files compiled ✅$(RST)\033[0K\r"
-	@echo "\n$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
-	@echo "$(MAGENTA)$$SIGNATURE$(RST)"
+	@echo -e "\n$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
+	@echo -e "$(MAGENTA)$$SIGNATURE$(RST)"
 
 $(LIBFT_LIB):
-	@echo "$(BG_BLUE)Compiling libft...$(RST)"
+	@echo -e "$(BG_BLUE)Compiling libft...$(RST)"
 	@make -C $(LIBFT) -f Makefile
-	@echo "$(BG_BLUE)Compiling $(NAME)...$(RST)"
+	@echo -e "$(BG_BLUE)Compiling $(NAME)...$(RST)"
 
 %.o: %.c
 	@printf "$(MAGENTA)Compiling $< ✅$(RST)\033[0K\r"; $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "$(BG_BLUE)Cleaning...$(BG_RST)"
+	@echo -e "$(BG_BLUE)Cleaning...$(BG_RST)"
 	@$(RM) $(OBJS)
 	@make -C $(LIBFT) clean
-	@echo "$(CYAN)libft objs cleaned!$(BG_RST)🧹"
-	@echo "$(CYAN)$(NAME) objs cleaned!$(BG_RST)🧹"
+	@echo -e "$(CYAN)libft objs cleaned!$(BG_RST)🧹"
+	@echo -e "$(CYAN)$(NAME) objs cleaned!$(BG_RST)🧹"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@make -C $(LIBFT) fclean
-	@echo "$(CYAN)$(NAME) fully cleaned!$(BG_RST)🧹"
-	@echo "$(BG_GREEN)All cleaned!$(BG_RST)"
+	@echo -e "$(CYAN)$(NAME) fully cleaned!$(BG_RST)🧹"
+	@echo -e "$(BG_GREEN)All cleaned!$(BG_RST)"
 
 re: fclean all
 
 norme:
-	@echo "$(BG_CYAN)SOURCES$(BG_RST)"
+	@echo -e "$(BG_CYAN)SOURCES$(BG_RST)"
 	@for file in $(SRCS); do \
 		norminette $$file | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo "$(GREEN)$$file: OK!$(RST)"; \
+			echo -e "$(GREEN)$$file: OK!$(RST)"; \
 		else \
-			echo "$(RED)"; \
+			echo -e "$(RED)"; \
 			norminette $$file; \
-			echo "$(RST)"; \
+			echo -e "$(RST)"; \
 		fi \
 	done
-	@echo "$(BG_CYAN)HEADERS$(BG_RST)"
+	@echo -e "$(BG_CYAN)HEADERS$(BG_RST)"
 	@for header in $(HDERS); do \
 		norminette $$header | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo "$(GREEN)$$header: OK!$(RST)"; \
+			echo -e "$(GREEN)$$header: OK!$(RST)"; \
 		else \
-			echo "$(RED)"; \
+			echo -e "$(RED)"; \
 			norminette $$header; \
-			echo "$(RST)"; \
+			echo -e "$(RST)"; \
 		fi \
 	done
 

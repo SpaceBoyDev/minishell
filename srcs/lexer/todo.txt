@@ -1,5 +1,12 @@
 double quotes
     variable expansion
+
+read heredoc
+
 split tokens into single process struct
+    duplicate strings so you can free up all memory after building struct
+
+free general purpose function
+
 leaks
 norminette

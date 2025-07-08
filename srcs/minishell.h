@@ -17,6 +17,8 @@
 # include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "lexer/lexer.h"
+# include "execute/execute.h"
 
 # define RST	"\033[0m"
 # define RED	"\033[1;31m"
@@ -32,43 +34,5 @@
 # define BG_MAGENTA "\033[45m"
 # define BG_CYAN   "\033[46m"
 # define BG_WHITE  "\033[47m"
-
-typedef enum e_token_type
-{
-	STR,
-	PIPE,
-	IN,
-	OUT,
-	APPEND,
-	HEREDOC,
-}	t_token_type;
-
-typedef struct s_token
-{
-	t_token_type	type;
-	char			*str;
-	struct s_token	*next;
-}	t_token;
-
-// utils.c
-int				check_quotes(char *str);
-void			print_token(t_token *token);
-void			print_tokens(t_token *token);
-int				is_separator(char c);
-
-// token.c
-t_token			*tokenize(char *input);
-t_token			*create_token(char *str, int *i);
-char			*token_str(char *str, int *i);
-t_token_type	token_type(char *str, int *i);
-
-// Builtins Utils
-int				exec_builtins(t_token *token);
-
-// Builtins
-int				cd(char *path);
-int				echo(char *str);
-int				pwd(void);
-// TODO: Faltan env(), exit(), export() y unset() porque hacen falta variables
 
 #endif
