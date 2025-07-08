@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 01:17:11 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 01:17:54 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int	main(int argc, char **argv, char **env)
 		start_minishell();
 		str = readline(prompt_rl());
 		if (!str)
-			exit(EXIT_SUCCESS);
+		{
+			printf("Leaving minishell...\n");
+			break ;
+		}
 		else if (!str[0])
 		{
 			continue;
