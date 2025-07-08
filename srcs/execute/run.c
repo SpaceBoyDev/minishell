@@ -17,6 +17,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <limits.h>
+#include "../heredoc/heredoc.h"
 
 char	**get_paths(void)
 {
@@ -100,12 +101,31 @@ int	create_processes(t_cmd *cmd, char **env)
 	return (WEXITSTATUS(status));
 }
 
+
+// TODO: heredoc and append
 void	run_process(t_cmd *cmd, int *pipefd, char **env)
 {
 	if (pipefd[1] != INT_MAX)
 		close(pipefd[1]);
 	if (pipefd[2] != INT_MAX)
 		close(pipefd[2]);
+
+
+	if (cmd->infile && cmd->in_op == IN)
+	{
+		close(pipefd[0]);
+		cmd->in_fd = open(cmd->infile, O_RDONLY);
+		dup2(cmd->in_fd, 0);
+		close(cmd->in_fd);
+	}
+	else if (cmd->infile && cmd->in_op == HEREDOC)
+	{
+		close(pipefd[0]);
+		heredoc_rl(cmd->infile);
+	}
+
+
+
 	if (pipefd[0] != INT_MAX)
 	{
 		dup2(pipefd[0], 0);
@@ -116,13 +136,17 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		dup2(pipefd[3], 1);
 		close(pipefd[3]);
 	}
-	if (cmd->infile)
+	if (cmd->infile && cmd->in_op == IN)
 	{
 		cmd->in_fd = open(cmd->infile, O_RDONLY);
 		dup2(cmd->in_fd, 0);
 		close(cmd->in_fd);
 	}
-	if (cmd->outfile)
+	else if (cmd->infile && cmd->in_op == HEREDOC)
+	{
+
+	}
+	if (cmd->outfile && cmd->out_op == OUT)
 	{
 		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dup2(cmd->out_fd, 1);

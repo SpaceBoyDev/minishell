@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "execute/execute.h"
+#include "heredoc/heredoc.h"
 #include "lexer/lexer.h"
 #include "minishell.h"
 

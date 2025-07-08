@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   heredoc.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 19:16:52 by darmarti          #+#    #+#             */
-/*   Updated: 2024/09/24 20:27:33 by dario            ###   ########.fr       */
+/*   Created: 2025/07/02 13:52:30 by marcolop          #+#    #+#             */
+/*   Updated: 2025/07/02 13:52:30 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef HEREDOC_H
+# define HEREDOC_H
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
+# include "../minishell.h"
 
-	if (!s)
-		return (-1);
-	len = 0;
-	while (s[len] != '\0')
-		++len;
-	return (len);
-}
+char	*heredoc_rl(char *delimeter);
+int		ft_strcmp(char *s1, char *s2);
+
+#endif
