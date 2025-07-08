@@ -1,8 +1,6 @@
 double quotes
     variable expansion
 
-read heredoc
-
 free general purpose function
 
 leaks
