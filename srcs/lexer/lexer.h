@@ -13,6 +13,7 @@
 #ifndef LEXER_H
 # define LEXER_H
 
+#include <sys/types.h>
 typedef enum e_op
 {
 	STR,
@@ -36,8 +37,11 @@ typedef struct s_cmd
 	char			**args;
 	char			*infile;
 	char			*outfile;
-	t_op			in;
-	t_op			out;
+	t_op			in_op;
+	t_op			out_op;
+	int				in_fd;
+	int				out_fd;
+	pid_t			pid;
 	struct s_cmd	*next;
 }	t_cmd;
 

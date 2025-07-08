@@ -29,11 +29,15 @@ DIR			=	srcs/
 HDERS		=	srcs/minishell.h
 SRC			=	main.c
 LEXER		=	utils.c token.c cmd.c
+EXECUTE		=	run.c
+HEREDOC		=	heredoc.c
 BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/builtins/, $(BUILTINS)) \
-				$(addprefix srcs/lexer/, $(LEXER))
+				$(addprefix srcs/lexer/, $(LEXER)) \
+				$(addprefix srcs/execute/, $(EXECUTE)) \
+				$(addprefix srcs/heredoc/, $(HEREDOC))
 
 OBJS		=	$(SRCS:.c=.o)
 

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "execute/execute.h"
+#include "heredoc/heredoc.h"
 #include "lexer/lexer.h"
 #include "minishell.h"
 
@@ -63,7 +65,8 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		}
 		// print_cmd(cmd);
-		print_cmds(cmd);
+		// print_cmds(cmd);
+		create_processes(cmd, env);
 	}
 
 	return (0);

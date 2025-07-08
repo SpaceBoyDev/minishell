@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.h                                          :+:      :+:    :+:   */
+/*   heredoc.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/06/29 14:28:18 by marcolop         ###   ########.fr       */
+/*   Created: 2025/07/02 13:52:30 by marcolop          #+#    #+#             */
+/*   Updated: 2025/07/02 13:52:30 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_H
-# define EXECUTE_H
+#ifndef HEREDOC_H
+# define HEREDOC_H
 
-# include "../lexer/lexer.h"
+# include "../minishell.h"
 
-char	**get_paths(void);
-void	execute(t_cmd *cmd, char **env);
-void	run_process(t_cmd *cmd, int *pipefd, char **env);
-void	execute(t_cmd *cmd, char **env);
-int		create_processes(t_cmd *cmd, char **env);
+char	*heredoc_rl(char *delimeter);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif
