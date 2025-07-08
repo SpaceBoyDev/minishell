@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/07/08 18:02:34 by dario            ###   ########.fr        #
+#    Updated: 2025/07/08 19:08:10 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,16 +28,20 @@ LIBS 		=	-lreadline -lncurses -ltermcap
 DIR			=	srcs/
 HDERS		=	srcs/minishell.h
 SRC			=	main.c
+BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
 LEXER		=	utils.c token.c cmd.c
 EXECUTE		=	run.c
 HEREDOC		=	heredoc.c
-BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
+SIGNALS		=	signal_handling.c
+UTILS		=	main_utils.c error_handling.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/builtins/, $(BUILTINS)) \
 				$(addprefix srcs/lexer/, $(LEXER)) \
 				$(addprefix srcs/execute/, $(EXECUTE)) \
-				$(addprefix srcs/heredoc/, $(HEREDOC))
+				$(addprefix srcs/heredoc/, $(HEREDOC)) \
+				$(addprefix srcs/signals/, $(SIGNALS)) \
+				$(addprefix srcs/utils/, $(UTILS))
 
 OBJS		=	$(SRCS:.c=.o)
 
