@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 01:01:45 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 01:17:11 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "lexer/lexer.h"
 #include "utils/utils.h"
 #include "minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define PS1 "minishell> "
 
@@ -46,9 +48,10 @@ int	main(int argc, char **argv, char **env)
 		start_minishell();
 		str = readline(prompt_rl());
 		if (!str)
+			exit(EXIT_SUCCESS);
+		else if (!str[0])
 		{
-			printf("Leaving minishell...\n");
-			break ;
+			continue;
 		}
 		add_history(str);
 		if (!check_quotes(str))
