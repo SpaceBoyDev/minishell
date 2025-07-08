@@ -15,6 +15,7 @@
 
 # include "../minishell.h"
 
+void	heredoc(char	*delimeter);
 char	*heredoc_rl(char *delimeter);
 int		ft_strcmp(char *s1, char *s2);
 

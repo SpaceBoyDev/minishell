@@ -13,6 +13,7 @@
 #include "../minishell.h"
 #include "execute.h"
 #include <fcntl.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -57,6 +58,7 @@ void	execute(t_cmd *cmd, char **env)
 		free(str);
 		i++;
 	}
+	exit(EXIT_FAILURE);
 }
 
 int	create_processes(t_cmd *cmd, char **env)
@@ -95,7 +97,7 @@ int	create_processes(t_cmd *cmd, char **env)
 	while (first)
 	{
 		// wait(NULL);
-		waitpid(cmd->pid, &status, 0);
+		waitpid(first->pid, &status, 0);
 		first = first->next;
 	}
 	return (WEXITSTATUS(status));
@@ -121,33 +123,11 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 	else if (cmd->infile && cmd->in_op == HEREDOC)
 	{
 		close(pipefd[0]);
-		heredoc_rl(cmd->infile);
-	}
-
-
-
-	if (pipefd[0] != INT_MAX)
-	{
-		dup2(pipefd[0], 0);
-		close(pipefd[0]);
-	}
-	if (pipefd[3] != INT_MAX)
-	{
-		dup2(pipefd[3], 1);
-		close(pipefd[3]);
-	}
-	if (cmd->infile && cmd->in_op == IN)
-	{
-		cmd->in_fd = open(cmd->infile, O_RDONLY);
-		dup2(cmd->in_fd, 0);
-		close(cmd->in_fd);
-	}
-	else if (cmd->infile && cmd->in_op == HEREDOC)
-	{
-
+		heredoc(cmd->infile);
 	}
 	if (cmd->outfile && cmd->out_op == OUT)
 	{
+		close(pipefd[3]);
 		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dup2(cmd->out_fd, 1);
 		close(cmd->out_fd);
