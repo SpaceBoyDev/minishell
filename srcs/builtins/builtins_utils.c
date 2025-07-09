@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/06/25 03:36:45 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 20:48:12 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static bool	is_builtin(char *str)
 
 int	exec_builtins(t_token *token)
 {
-	char *next_str;
+	char	*next_str;
+
 	if (!is_builtin(token->str))
 		return (1);
 	if (!token->next || !token->next->str)
