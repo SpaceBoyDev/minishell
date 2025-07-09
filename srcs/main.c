@@ -16,6 +16,7 @@
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define PS1 "minishell> "
 
@@ -33,49 +34,65 @@ char	*prompt_rl(void)
 	return (prompt);
 }
 
+// int	main(int argc, char **argv, char **env)
+// {
+// 	char	*str;
+// 	t_token	*token;
+// 	t_cmd	*cmd;
+//
+// 	(void)argc;
+// 	(void)argv;
+// 	(void)env;
+// 	while (1)
+// 	{
+// 		str = readline(prompt_rl());
+// 		if (!str)
+// 			exit(EXIT_SUCCESS);
+// 		else if (!str[0])
+// 		{
+// 			continue;
+// 		}
+// 		add_history(str);
+// 		if (!check_quotes(str))
+// 		{
+// 			ft_putstr_fd("quotation error\n", 2);
+// 			continue ;
+// 		}
+// 		token = tokenize(str);
+// 		if (!token)
+// 		{
+// 			ft_putstr_fd("tokenizing error\n", 2);
+// 			continue ;
+// 		}
+// 		// print_tokens(token);
+// 		// printf("--------------------------------\n");
+// 		// cmd = build_cmd(token);
+// 		cmd = pipeline_cmd(token);
+// 		if (!cmd)
+// 		{
+// 			ft_putstr_fd("cmd build error\n", 2);
+// 			continue ;
+// 		}
+// 		// print_cmd(cmd);
+// 		// print_cmds(cmd);
+// 		create_processes(cmd, env);
+// 	}
+//
+// 	return (0);
+// }
+
 int	main(int argc, char **argv, char **env)
 {
-	char	*str;
-	t_token	*token;
-	t_cmd	*cmd;
-
 	(void)argc;
 	(void)argv;
 	(void)env;
-	while (1)
-	{
-		str = readline(prompt_rl());
-		if (!str)
-			exit(EXIT_SUCCESS);
-		else if (!str[0])
-		{
-			continue;
-		}
-		add_history(str);
-		if (!check_quotes(str))
-		{
-			ft_putstr_fd("quotation error\n", 2);
-			continue ;
-		}
-		token = tokenize(str);
-		if (!token)
-		{
-			ft_putstr_fd("tokenizing error\n", 2);
-			continue ;
-		}
-		// print_tokens(token);
-		// printf("--------------------------------\n");
-		// cmd = build_cmd(token);
-		cmd = pipeline_cmd(token);
-		if (!cmd)
-		{
-			ft_putstr_fd("cmd build error\n", 2);
-			continue ;
-		}
-		// print_cmd(cmd);
-		// print_cmds(cmd);
-		create_processes(cmd, env);
-	}
-
-	return (0);
+	printf("%s\n", expand("$SHELL"));
+	printf("%s\n", expand("$undefined"));
+	printf("%s\n", expand("$undefined   "));
+	printf("%s\n", expand("    $undefined   "));
+	printf("%s\n", expand("$$$$   $$ $$$"));
+	printf("%s\n", expand("hola$"));
+	printf("%s\n", expand("You are in $PWD"));
+	printf("%s\n", expand("$SHELL"));
+	printf("%s\n", expand("$SHELL"));
 }

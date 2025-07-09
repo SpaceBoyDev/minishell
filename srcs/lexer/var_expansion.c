@@ -11,13 +11,78 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "lexer.h"
+#include <stdlib.h>
 
-// TODO: maybe using a linked list and then joining them?
-// or maybe just keep joining the "expanded" str
-char *expand(char *str)
+char	*expand(char *str)
 {
+	int		i;
+	int		s;
+	char	*ret;
+	char	*sub;
+	char	*tmp;
+
+	ret = NULL;
+	i = 0;
+	while (str[i])
+	{
+		s = i;
+		while (str[i] && str[i] != '$')
+			i++;
+		sub = ft_substr(str, s, i - s);
+		tmp = ret;
+		ret = ft_strjoin(tmp, sub);
+		free(tmp);
+		free(sub);
+		if (!str[i])
+			return (ret);
+		sub = get_env_val(get_var_name(&str[i + 1]));
+		tmp = ret;
+		ret = ft_strjoin(tmp, sub);
+		free(tmp);
+		i = skip_var_name(str, i + 1);
+	}
+	return (ret);
 }
 
-int	is_var_char(char c)
+char	*get_var_name(char *str)
 {
+	int	i;
+
+	if (!(str[0] && (ft_isalpha(str[0]) || str[0] == '_')))
+		return (NULL);
+	i = 1;
+	while (str[i])
+	{
+		if (!(ft_isalnum(str[i]) || str[i] == '_'))
+			break ;
+		i++;
+	}
+	return (ft_substr(str, 0, i));
+}
+
+char	*get_env_val(char *var_name)
+{
+	char	*env_val;
+
+	if (!var_name)
+		return (NULL);
+	env_val = getenv(var_name);
+	free(var_name);
+	return (env_val);
+}
+
+int	skip_var_name(char *str, int i)
+{
+
+	if (!(str[i] && (ft_isalpha(str[i]) || str[i] == '_')))
+		return (i);
+	i++;
+	while (str[i])
+	{
+		if (!(ft_isalnum(str[i]) || str[i] == '_'))
+			break ;
+		i++;
+	}
+	return (i);
 }

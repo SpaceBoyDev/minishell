@@ -61,7 +61,9 @@ t_op			token_type(char *str, int *i);
 
 // var_expansion.c
 char			*expand(char *str);
-int				is_var_char(char c);
+char			*get_var_name(char *str);
+char			*get_env_val(char *var_name);
+int				skip_var_name(char  *str, int i);
 
 // cmd.c
 t_cmd			*init_cmd(void);
