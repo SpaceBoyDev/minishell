@@ -6,33 +6,20 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 01:17:54 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 20:47:21 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "execute/execute.h"
 #include "heredoc/heredoc.h"
 #include "lexer/lexer.h"
 #include "utils/utils.h"
 #include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 #define PS1 "minishell> "
-
-char	*prompt_rl(void)
-{
-	char	*cwd;
-	char	*path;
-	char	*prompt;
-
-	cwd = getcwd(NULL, 0);
-	path = ft_strjoin(PINK, cwd);
-	prompt = ft_strjoin(path, "\033[5m> " RST);
-	free(path);
-	free(cwd);
-	return (prompt);
-}
 
 int	main(int argc, char **argv, char **env)
 {
