@@ -6,13 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:08 by dario             #+#    #+#             */
-/*   Updated: 2025/06/25 19:54:29 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 01:39:40 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	cd(char *path)
+int	ft_cd(char *path)
 {
 	char	*home;
 

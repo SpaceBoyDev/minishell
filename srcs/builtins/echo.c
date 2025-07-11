@@ -6,13 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:11 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:47:52 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 01:39:46 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	echo(char *str)
+int	ft_echo(char *str)
 {
 	if (str)
 		printf("%s\n", str);

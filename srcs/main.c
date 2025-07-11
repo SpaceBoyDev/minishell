@@ -6,17 +6,16 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 00:38:43 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 01:45:22 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "execute/execute.h"
 #include "heredoc/heredoc.h"
-#include "lexer/lexer.h"
 #include "utils/utils.h"
+#include "builtins/builtins.h"
 #include "minishell.h"
 
 #define PS1 "minishell> "
@@ -30,6 +29,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
+
 	if (argc != 1)
 	{
 		token = NULL;

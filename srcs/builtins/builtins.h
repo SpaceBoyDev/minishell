@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 20:27:15 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 01:43:05 by dario            ###   ########.fr       */
+/*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
+/*   Updated: 2025/07/12 01:41:02 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-int	ft_env(char **env)
-{
-	int	i;
+int	ft_cd(char *path);
+int	ft_echo(char *str);
+int	ft_env(char **env);
+int	ft_pwd(void);
 
-	i = 0;
-	while (env[i])
-	{
-		printf("%s\n", env[i]);
-		++i;
-	}
-	return (0);
-}
+#endif

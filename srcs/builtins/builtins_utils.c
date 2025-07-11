@@ -6,15 +6,15 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:48:12 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 01:39:58 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	cd(char *path);
-int	echo(char *str);
-int	pwd(void);
+int	ft_cd(char *path);
+int	ft_echo(char *str);
+int	ft_pwd(void);
 
 static bool	is_builtin(char *str)
 {
@@ -43,10 +43,10 @@ int	exec_builtins(t_token *token)
 	else
 		next_str = token->next->str;
 	if (ft_strncmp(token->str, "cd", ft_strlen(token->str)) == 0)
-		return (cd(next_str));
+		return (ft_cd(next_str));
 	else if (ft_strncmp(token->str, "echo", ft_strlen(token->str)) == 0)
-		return (echo(next_str));
+		return (ft_echo(next_str));
 	else if (ft_strncmp(token->str, "pwd", ft_strlen(token->str)) == 0)
-		return (pwd());
+		return (ft_pwd());
 	return (1);
 }

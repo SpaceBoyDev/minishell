@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 00:39:41 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 01:29:57 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,14 @@ int	run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (!check_quotes(line))
+			error_exit("quotation error");
 		token = tokenize(line);
 		if (!token)
-		{
-			ft_putstr_fd("tokenizing error\n", 2);
-			return (1);
-		}
+			error_exit("tokenizing error");
 		cmd = pipeline_cmd(token);
 		if (!cmd)
-		{
-			ft_putstr_fd("cmd build error\n", 2);
-			return (1);
-		}
-
+			error_exit("cmd build error");
 		create_processes(cmd, env);
 		free(line);
 		line = get_next_line(fd);
