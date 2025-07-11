@@ -17,5 +17,6 @@
 
 void	run_tests(void);
 void	test_var_expansion(void);
+void	test_nbr_to_str(void);
 
 #endif

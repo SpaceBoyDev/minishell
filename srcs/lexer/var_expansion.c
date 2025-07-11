@@ -14,7 +14,7 @@
 #include "lexer.h"
 #include <stdlib.h>
 
-char	*expand(char *str)
+char	*expand(char *str, int last_cmd)
 {
 	int		i;
 	int		s;
@@ -36,6 +36,15 @@ char	*expand(char *str)
 		free(sub);
 		if (!str[i])
 			return (ret);
+		else if (str[i] == '?')
+		{
+			sub = nbr_to_str();
+		}
+		else
+		{
+			// TODO: see below statements
+			// keep in mind the skip change since '?'
+		}
 		sub = get_env_val(get_var_name(&str[i + 1]));
 		tmp = ret;
 		ret = ft_strjoin(tmp, sub);
@@ -49,7 +58,7 @@ char	*get_var_name(char *str)
 {
 	int	i;
 
-	if (!(str[0] && (ft_isalpha(str[0]) || str[0] == '_')))
+	if (!str[0] || !(ft_isalpha(str[0]) || str[0] == '_'))
 		return (NULL);
 	i = 1;
 	while (str[i])

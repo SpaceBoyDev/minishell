@@ -45,6 +45,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)env;
 	run_tests();
+	return (0);
 	while (1)
 	{
 		str = readline(prompt_rl());

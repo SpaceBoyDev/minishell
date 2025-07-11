@@ -73,4 +73,7 @@ int				in_cmd(t_cmd *cmd, t_token *token);
 int				out_cmd(t_cmd *cmd, t_token *token);
 t_cmd			*pipeline_cmd(t_token *token);
 
+// nbr_to_str.c
+char			*nbr_to_str(int n);
+
 #endif
