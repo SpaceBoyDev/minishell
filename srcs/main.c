@@ -14,6 +14,7 @@
 #include "heredoc/heredoc.h"
 #include "lexer/lexer.h"
 #include "minishell.h"
+#include "tester/test.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,6 +44,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
+	run_tests();
 	while (1)
 	{
 		str = readline(prompt_rl());
@@ -80,19 +82,3 @@ int	main(int argc, char **argv, char **env)
 
 	return (0);
 }
-
-// int	main(int argc, char **argv, char **env)
-// {
-// 	(void)argc;
-// 	(void)argv;
-// 	(void)env;
-// 	printf("%s\n", expand("$SHELL"));
-// 	printf("%s\n", expand("$undefined"));
-// 	printf("%s\n", expand("$undefined   "));
-// 	printf("%s\n", expand("    $undefined   "));
-// 	printf("%s\n", expand("$$$$   $$ $$$"));
-// 	printf("%s\n", expand("hola$"));
-// 	printf("%s\n", expand("You are in $PWD"));
-// 	printf("%s\n", expand("$SHELL and $SHELL and $HOME$SHELL"));
-// 	printf("%s\n", expand("$SHELL"));
-// }

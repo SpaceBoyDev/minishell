@@ -32,12 +32,14 @@ LEXER		=	utils.c token.c cmd.c var_expansion.c
 EXECUTE		=	run.c
 HEREDOC		=	heredoc.c
 BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
+TESTS		=	test.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/builtins/, $(BUILTINS)) \
 				$(addprefix srcs/lexer/, $(LEXER)) \
 				$(addprefix srcs/execute/, $(EXECUTE)) \
-				$(addprefix srcs/heredoc/, $(HEREDOC))
+				$(addprefix srcs/heredoc/, $(HEREDOC)) \
+				$(addprefix srcs/tester/, $(TESTS))
 
 OBJS		=	$(SRCS:.c=.o)
 
