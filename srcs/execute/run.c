@@ -41,6 +41,8 @@ void	execute(t_cmd *cmd, char **env)
 	char	*tmp;
 	char	*str;
 
+	// TODO: what about this? check todo.txt
+	execve(cmd->cmd, cmd->args, env);
 	paths = get_paths();
 	if (!paths)
 		return ;

@@ -1,7 +1,13 @@
-expand '$?'
-	'$?' = 127 if cmd not found
+run local binaries like ./a.out
+	./a.out should execute it if it has permissions
+	a.out should not execute unless . in $PATH
 
-run local binaries? ./exe?
+error messages
+	cmd not found
+	no permissions
+	etc
+
+---
 run minishell inside minishell?
 replace $var in heredoc line?
 replace shell lvl env var?
