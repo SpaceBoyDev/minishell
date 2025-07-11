@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:45:23 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 00:39:41 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,36 @@ void	start_minishell(void)
 	sa.sa_handler = &sigint_handler_default;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
 		error_msg("Sigaction failed", true);
+}
+
+int	run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (1);
+	line = get_next_line(fd);
+	while (line)
+	{
+		token = tokenize(line);
+		if (!token)
+		{
+			ft_putstr_fd("tokenizing error\n", 2);
+			return (1);
+		}
+		cmd = pipeline_cmd(token);
+		if (!cmd)
+		{
+			ft_putstr_fd("cmd build error\n", 2);
+			return (1);
+		}
+
+		create_processes(cmd, env);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (0);
 }

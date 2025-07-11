@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:47:21 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 00:38:43 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
+	if (argc != 1)
+	{
+		token = NULL;
+		cmd = NULL;
+		return (run_non_interactive(argv[1], token, cmd, env));
+	}
 	while (1)
 	{
 		start_minishell();
