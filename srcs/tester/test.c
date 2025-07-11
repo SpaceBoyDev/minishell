@@ -15,28 +15,30 @@
 void	run_tests(void)
 {
 	printf("running tests...\n");
-	printf("-----\n");
+	// test_nbr_to_str();
 	test_var_expansion();
-	test_nbr_to_str();
-	printf("finished\n");
-	printf("-----\n\n\n");
+	printf("done\n");
+	printf("\n\n\n");
 }
 
 void	test_var_expansion(void)
 {
-	printf("%s\n", expand("$SHELL"));
-	printf("%s\n", expand("$undefined"));
-	printf("%s\n", expand("$undefined   "));
-	printf("%s\n", expand("    $undefined   "));
-	printf("%s\n", expand("$$$$   $$ $$$"));
-	printf("%s\n", expand("hola$"));
-	printf("%s\n", expand("You are in $PWD"));
-	printf("%s\n", expand("$SHELL and $SHELL and $HOME$SHELL"));
-	printf("%s\n", expand("$SHELL"));
+	printf("-----\n");
+	// printf("%s\n", expand("$SHELL", 0));
+	// printf("%s\n", expand("$undefined", 0));
+	// printf("%s\n", expand("$undefined   ", 0));
+	// printf("%s\n", expand("    $undefined   ", 0));
+	// printf("%s\n", expand("$$$$   $$ $$$", 0));
+	// printf("%s\n", expand("hola$", 0));
+	// printf("%s\n", expand("You are in $PWD", 0));
+	// printf("%s\n", expand("$SHELL and $SHELL and $HOME$SHELL", 0));
+	printf("%s\n", expand("$HOME $? $PWD", -127));
+	printf("-----\n");
 }
 
 void	test_nbr_to_str(void)
 {
+	printf("-----\n");
 	printf("%s\n", nbr_to_str(0));
 	printf("%s\n", nbr_to_str(-0));
 	printf("%s\n", nbr_to_str(-1));
@@ -47,4 +49,5 @@ void	test_nbr_to_str(void)
 	printf("%s\n", nbr_to_str(-10424));
 	printf("%s\n", nbr_to_str(2147483647));
 	printf("%s\n", nbr_to_str(-2147483648));
+	printf("-----\n");
 }

@@ -14,7 +14,7 @@
 #include "lexer.h"
 #include <stdlib.h>
 
-char	*expand(char *str, int last_cmd)
+char	*expand(char *str, int last_status)
 {
 	int		i;
 	int		s;
@@ -34,22 +34,23 @@ char	*expand(char *str, int last_cmd)
 		ret = ft_strjoin(tmp, sub);
 		free(tmp);
 		free(sub);
-		if (!str[i])
+		if (!str[i++])
 			return (ret);
 		else if (str[i] == '?')
 		{
-			sub = nbr_to_str();
+			sub = nbr_to_str(last_status);
+			i++;
 		}
 		else
 		{
 			// TODO: see below statements
 			// keep in mind the skip change since '?'
+			sub = get_env_val(get_var_name(&str[i]));
+			i = skip_var_name(str, i);
 		}
-		sub = get_env_val(get_var_name(&str[i + 1]));
 		tmp = ret;
 		ret = ft_strjoin(tmp, sub);
 		free(tmp);
-		i = skip_var_name(str, i + 1);
 	}
 	return (ret);
 }

@@ -1,4 +1,5 @@
 expand '$?'
+	'$?' = 127 if cmd not found
 
 run local binaries? ./exe?
 run minishell inside minishell?

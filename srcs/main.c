@@ -40,12 +40,14 @@ int	main(int argc, char **argv, char **env)
 	char	*str;
 	t_token	*token;
 	t_cmd	*cmd;
+	int		last_status;
 
 	(void)argc;
 	(void)argv;
 	(void)env;
-	run_tests();
-	return (0);
+	// run_tests();
+	// return (0);
+	last_status = 0;
 	while (1)
 	{
 		str = readline(prompt_rl());
@@ -61,7 +63,7 @@ int	main(int argc, char **argv, char **env)
 			ft_putstr_fd("quotation error\n", 2);
 			continue ;
 		}
-		token = tokenize(str);
+		token = tokenize(str, last_status);
 		if (!token)
 		{
 			ft_putstr_fd("tokenizing error\n", 2);
@@ -78,7 +80,7 @@ int	main(int argc, char **argv, char **env)
 		}
 		// print_cmd(cmd);
 		// print_cmds(cmd);
-		create_processes(cmd, env);
+		last_status = create_processes(cmd, env);
 	}
 
 	return (0);

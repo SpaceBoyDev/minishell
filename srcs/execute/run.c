@@ -58,7 +58,7 @@ void	execute(t_cmd *cmd, char **env)
 		free(str);
 		i++;
 	}
-	exit(EXIT_FAILURE);
+	exit(CMD_NOT_FOUND);
 }
 
 int	create_processes(t_cmd *cmd, char **env)
