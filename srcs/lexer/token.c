@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "lexer.h"
 
 t_token *tokenize(char *input)
 {
@@ -65,6 +66,7 @@ char	*token_str(char	*str, int *i)
 	int		len;
 	int		start;
 	char	*val;
+	char	*tmp;
 
 	while (str[*i] && str[*i] == ' ')
 		(*i)++;
@@ -102,6 +104,9 @@ char	*token_str(char	*str, int *i)
 			return (NULL);
 		while (str[*i] && str[*i] == ' ')
 			(*i)++;
+		tmp = val;
+		val = expand(tmp);
+		free(tmp);
 		// TODO: expand $
 	}
 	else
