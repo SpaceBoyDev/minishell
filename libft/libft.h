@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:29:51 by darmarti          #+#    #+#             */
-/*   Updated: 2025/06/10 21:04:04 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 23:38:53 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 # define RST	"\033[0m"
 # define RED	"\033[1;31m"
-# define PINK   "\033[1;35m"
-# define BLUE	"\033[1;34m"
 # define GREEN	"\033[1;32m"
 # define YELLOW	"\033[1;33m"
+# define BLUE	"\033[1;34m"
+# define PINK   "\033[1;35m"
 
 # define BG_RST    "\033[0m"
 # define BG_RED    "\033[41m"
