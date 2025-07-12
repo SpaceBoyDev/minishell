@@ -7,6 +7,8 @@ error messages
 	no permissions
 	etc
 
+edit SHLVL var in env?
+
 ---
 run minishell inside minishell?
 replace $var in heredoc line?
