@@ -1,3 +1,7 @@
+refactor in malloc()
+	substitute for new_xxx()
+	create destroy fts too
+
 run local binaries like ./a.out
 	./a.out should execute it if it has permissions
 	a.out should not execute unless . in $PATH
