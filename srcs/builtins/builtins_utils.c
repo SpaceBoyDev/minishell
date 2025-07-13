@@ -6,17 +6,14 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 01:39:58 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/13 02:53:09 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "builtins.h"
 
-int	ft_cd(char *path);
-int	ft_echo(char *str);
-int	ft_pwd(void);
-
-static bool	is_builtin(char *str)
+static bool	is_builtin(const char *str)
 {
 	size_t	len;
 
@@ -32,21 +29,15 @@ static bool	is_builtin(char *str)
 	return (false);
 }
 
-int	exec_builtins(t_token *token)
+int	exec_builtins(char *path, char **args, char **env)
 {
-	char	*next_str;
-
-	if (!is_builtin(token->str))
+	if (!is_builtin(path))
 		return (1);
-	if (!token->next || !token->next->str)
-		next_str = NULL;
-	else
-		next_str = token->next->str;
-	if (ft_strncmp(token->str, "cd", ft_strlen(token->str)) == 0)
-		return (ft_cd(next_str));
-	else if (ft_strncmp(token->str, "echo", ft_strlen(token->str)) == 0)
-		return (ft_echo(next_str));
-	else if (ft_strncmp(token->str, "pwd", ft_strlen(token->str)) == 0)
+	if (ft_strncmp(path, "cd", ft_strlen(path)) == 0)
+		return (ft_cd(args[1]));
+	else if (ft_strncmp(path, "echo", ft_strlen(path)) == 0)
+		return (ft_echo(args[1]));
+	else if (ft_strncmp(path, "pwd", ft_strlen(path)) == 0)
 		return (ft_pwd());
 	return (1);
 }

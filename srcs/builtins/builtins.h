@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 23:47:45 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/13 00:00:03 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@ int	ft_env(char **env);
 int	ft_export(t_cmd *cmd);
 int	ft_pwd(void);
 // TODO: unset
+
+// Builtins Utils
+int	exec_builtins(char *path, char **args, char **env);
 
 #endif

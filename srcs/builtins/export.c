@@ -6,13 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 23:49:51 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 23:59:08 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	print_export(char **env)
+void	print_export(char **env)
 {
 	int	i;
 
@@ -28,5 +28,6 @@ int	ft_export(t_cmd *cmd, char **env)
 {
 	if (!cmd->args[1])
 		print_export(env);
+	return (0);
 
 }
