@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/07/13 02:53:09 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/16 19:26:07 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,23 @@ static bool	is_builtin(const char *str)
 	return (false);
 }
 
-int	exec_builtins(char *path, char **args, char **env)
+int	exec_builtins(t_cmd *cmd, char **env)
 {
-	if (!is_builtin(path))
+	(void)env;
+	// printf("cmd->cmd -> %s\n", cmd->cmd);
+	// printf("cmd->arg -> %s\n", cmd->args[1]);
+	// printf("cmd->arg -> %s\n", cmd->args[2]);
+	if (!is_builtin(cmd->cmd))
 		return (1);
-	if (ft_strncmp(path, "cd", ft_strlen(path)) == 0)
-		return (ft_cd(args[1]));
-	else if (ft_strncmp(path, "echo", ft_strlen(path)) == 0)
-		return (ft_echo(args[1]));
-	else if (ft_strncmp(path, "pwd", ft_strlen(path)) == 0)
+	if (ft_strncmp(cmd->cmd, "cd", ft_strlen(cmd->cmd)) == 0)
+		return (ft_cd(cmd->args[1]));
+	else if (ft_strncmp(cmd->cmd, "echo", ft_strlen(cmd->cmd)) == 0)
+		return (ft_echo(cmd->args));
+	else if (ft_strncmp(cmd->cmd, "env", ft_strlen(cmd->cmd)) == 0)
+		return (ft_env(env));
+	else if (ft_strncmp(cmd->cmd, "export", ft_strlen(cmd->cmd)) == 0)
+		return (ft_export(cmd, env));
+	else if (ft_strncmp(cmd->cmd, "pwd", ft_strlen(cmd->cmd)) == 0)
 		return (ft_pwd());
 	return (1);
 }

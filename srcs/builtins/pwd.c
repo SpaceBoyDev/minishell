@@ -6,11 +6,11 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:20 by dario             #+#    #+#             */
-/*   Updated: 2025/07/13 03:06:15 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/16 19:23:43 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "builtins.h"
 
 int	ft_pwd(void)
 {
