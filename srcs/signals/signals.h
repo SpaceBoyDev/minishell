@@ -1,13 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 20:27:23 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:48:26 by dario            ###   ########.fr       */
+/*   Created: 2025/07/08 18:34:00 by dario             #+#    #+#             */
+/*   Updated: 2025/07/09 20:42:49 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#ifndef SIGNALS_H
+# define SIGNALS_H
+
+# include <signal.h>
+# include "../utils/utils.h"
+# include "../minishell.h"
+
+void	sigint_handler_default(int sigint);
+
+#endif

@@ -6,13 +6,17 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/06/25 21:22:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/09 20:47:21 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "execute/execute.h"
 #include "heredoc/heredoc.h"
 #include "lexer/lexer.h"
+#include "utils/utils.h"
 #include "minishell.h"
 #include "tester/test.h"
 #include <stdio.h>
@@ -20,20 +24,6 @@
 #include <string.h>
 
 #define PS1 "minishell> "
-
-char	*prompt_rl(void)
-{
-	char	*cwd;
-	char	*path;
-	char	*prompt;
-
-	cwd = getcwd(NULL, 0);
-	path = ft_strjoin(PINK, cwd);
-	prompt = ft_strjoin(path, "\033[5m> " RST);
-	free(path);
-	free(cwd);
-	return (prompt);
-}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -50,9 +40,13 @@ int	main(int argc, char **argv, char **env)
 	last_status = 0;
 	while (1)
 	{
+		start_minishell();
 		str = readline(prompt_rl());
 		if (!str)
-			exit(EXIT_SUCCESS);
+		{
+			printf("Leaving minishell...\n");
+			break ;
+		}
 		else if (!str[0])
 		{
 			continue;

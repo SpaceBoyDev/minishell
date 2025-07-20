@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/06/29 20:36:11 by dario            ###   ########.fr        #
+#    Updated: 2025/07/08 19:08:10 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,25 +28,30 @@ LIBS 		=	-lreadline -lncurses -ltermcap
 DIR			=	srcs/
 HDERS		=	srcs/minishell.h
 SRC			=	main.c
-LEXER		=	utils.c token.c cmd.c var_expansion.c nbr_to_str.c
+
+BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
 EXECUTE		=	run.c
 HEREDOC		=	heredoc.c
-BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
+LEXER		=	utils.c token.c cmd.c var_expansion.c nbr_to_str.c
+SIGNALS		=	signal_handling.c
 TESTS		=	test.c
+UTILS		=	main_utils.c error_handling.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/builtins/, $(BUILTINS)) \
-				$(addprefix srcs/lexer/, $(LEXER)) \
 				$(addprefix srcs/execute/, $(EXECUTE)) \
 				$(addprefix srcs/heredoc/, $(HEREDOC)) \
-				$(addprefix srcs/tester/, $(TESTS))
+				$(addprefix srcs/lexer/, $(LEXER)) \
+				$(addprefix srcs/signals/, $(SIGNALS)) \
+				$(addprefix srcs/tester/, $(TESTS)) \
+				$(addprefix srcs/utils/, $(UTILS))
 
 OBJS		=	$(SRCS:.c=.o)
 
 define SIGNATURE
-                                                         ,
+                                                      ,
                                                       \  :  /
-                                                   `. __/ \__ .'
+                                _                  `. __/ \__ .'
                                | |                 _ _\     /_ _                                         
   _ __ ___   __ _ _ __ ___ ___ | | ___  _ __          /_   _\                                    
  | '_ ` _ \ / _` | '__/ __/ _ \| |/ _ \| '_ \       .'  \ /  `.                                              
@@ -56,10 +61,10 @@ define SIGNATURE
       _             |_   _|            |_|  _  ______  | '_ ` _ \| | '_ \| / __| '_ \ / _ \ | |
      | |              |_|              | | (_)|______| | | | | | | | | | | \__ \ | | |  __/ | |
    __| | __ _ _ __ _ __ ___   __ _ _ __| |_ _          |_| |_| |_|_|_| |_|_|___/_| |_|\___|_|_|
-  / _` |/ _` | '__| '_ ` _ \ / _` | '__| __| |                         ╱|、                                   
- | (_| | (_| | |  | | | | | | (_| | |  | |_| |                        (`O -  7                                             
-  \__,_|\__,_|_|  |_| |_| |_|\__,_|_|   \__|_|                          |、⁻〵   
-                                                                        じしˍ,)ノ   
+  / _` |/ _` | '__| '_ ` _ \ / _` | '__| __| |                                                                
+ | (_| | (_| | |  | | | | | | (_| | |  | |_| |                                                                             
+  \__,_|\__,_|_|  |_| |_| |_|\__,_|_|   \__|_|                                   
+                                                                                    
 endef
 export SIGNATURE
 
@@ -87,6 +92,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) -lreadline
+	@printf "$(MAGENTA)All $(NAME) source files compiled ✅$(RST)\033[0K\r"
 	@echo -e "\n$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
 	@echo -e "$(MAGENTA)$$SIGNATURE$(RST)"
 
