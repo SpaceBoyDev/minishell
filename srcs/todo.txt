@@ -1,3 +1,8 @@
+signals
+	sigemptyset() not allowed
+	do not use signal(), prefer sigaction()
+		make a wrapper of sigaction to use it as signal()?
+
 refactor in malloc()
 	substitute for new_xxx()
 	create destroy fts too
@@ -12,6 +17,11 @@ error messages
 	etc
 
 edit SHLVL var in env?
+
+use "minishell> " as prompt
+	just to avoid potential bugs related to removing current directory etc
+
+delete current directory?
 
 ---
 run minishell inside minishell?
