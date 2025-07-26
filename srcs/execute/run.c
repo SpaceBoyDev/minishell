@@ -86,7 +86,11 @@ int	create_processes(t_cmd *cmd, char **env)
 		}
 		pid = fork(); // TODO: check return?
 		if (pid == 0)
+		{
+			// TODO: signal??
+			// signal(SIGINT, SIG_DFL);
 			run_process(cmd, pipefd, env);
+		}
 		cmd->pid = pid;
 		cmd = cmd->next;
 		if (pipefd[0] != INT_MAX)

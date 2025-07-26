@@ -25,6 +25,8 @@
 
 #define PS1 "minishell> "
 
+volatile sig_atomic_t int_flag = 0;
+
 int	main(int argc, char **argv, char **env)
 {
 	char	*str;
@@ -40,7 +42,7 @@ int	main(int argc, char **argv, char **env)
 	last_status = 0;
 	while (1)
 	{
-		start_minishell();
+		setup_signal_handler();
 		str = readline(prompt_rl());
 		if (!str)
 		{

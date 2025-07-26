@@ -17,6 +17,6 @@
 # include "../utils/utils.h"
 # include "../minishell.h"
 
-void	sigint_handler_default(int sigint);
+void	handler(int sig);
 
 #endif

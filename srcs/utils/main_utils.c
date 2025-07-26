@@ -27,15 +27,11 @@ char	*prompt_rl(void)
 	return (prompt);
 }
 
-void	start_minishell(void)
+void	setup_signal_handler(void)
 {
 	struct sigaction	sa;
 
-	signal(SIGTERM, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sa.sa_handler = &sigint_handler_default;
-	if (sigaction(SIGINT, &sa, NULL) == -1)
-		error_msg("Sigaction failed", true);
+	sa.sa_flags = SA_RESTART;
+	sa.sa_handler = &handler;
+	sigaction(SIGINT, &sa, NULL);
 }

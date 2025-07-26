@@ -12,12 +12,16 @@
 
 #include "signals.h"
 
-void	sigint_handler_default(int sig)
+extern volatile sig_atomic_t int_flag;
+
+void	handler(int sig)
 {
-	if (sig != SIGINT)
-		return ;
+	(void)sig;
+	int_flag = 1;
 	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	// TODO: make it work properly
+	// it should work with nested minishells
+	// rl_replace_line("", 0);
+	// rl_on_new_line();
+	// rl_redisplay();
 }

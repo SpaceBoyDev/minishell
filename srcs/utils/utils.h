@@ -17,7 +17,7 @@
 
 // Main Utils
 char	*prompt_rl(void);
-void	start_minishell(void);
+void	setup_signal_handler(void);
 
 // Error Handling
 void	error_msg(const char *error_message, bool simple);
