@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/07/20 20:05:29 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/26 21:42:52 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,20 @@ void	print_env(char **env)
 		printf("%s\n", env[i]);
 }
 
-void	replace_existing_var(char *var, char *new_var)
+static char	*replace_existing_var(char **env, char *new_var, int count)
 {
-	int	i;
+	char	*old_var;
 
-	i = -1;
-	while (var[++i] && var[i] != '=' && new_var[i] != '=')
+	old_var = env[count];
+	if (ft_strncmp(old_var, new_var, ft_strchr(new_var, '=') - new_var) == 0
+		&& old_var[ft_strchr(new_var, '=') - new_var] == '=')
 	{
-		if (var[i] != new_var[i])
-			return ;
+		printf(BLUE"REEMPLAZANDO\n"RST);
+		free(env[count]);
+		env[count] = ft_strdup(new_var);
+		return (env[count]);
 	}
-	printf("Son iguales\n");
+	return (NULL);
 }
 
 static char	**set_env_var(char *new_var, char **old_env)
@@ -66,7 +69,8 @@ static char	**set_env_var(char *new_var, char **old_env)
 		return (old_env);
 	while (old_env[env_count])
 	{
-		replace_existing_var(old_env[env_count], new_var);
+		if (replace_existing_var(old_env, new_var, env_count))
+			return (old_env);
 		++env_count;
 	}
 	new_env = malloc((env_count + 2) * sizeof(char *));
@@ -77,7 +81,6 @@ static char	**set_env_var(char *new_var, char **old_env)
 		new_env[env_count] = ft_strdup(old_env[env_count]);
 	new_env[env_count] = ft_strdup(new_var);
 	new_env[env_count + 1] = NULL;
-	print_env(new_env);
 	return (new_env);
 }
 
@@ -95,6 +98,52 @@ int	ft_export(t_cmd *cmd, char **env)
 		env = set_env_var(cmd->args[i], old_env);
 		++i;
 	}
-
 	return (0);
 }
+
+// int	main(int argc, char **argv, char **env)
+// {
+// 	char	**old_env;
+// 	printf(YELLOW"___________________________________\n"RST);
+// 	print_env(env);
+// 	printf(YELLOW"___________________________________\n"RST);
+// 	old_env = env;
+// 	env = set_env_var("hola=1", old_env);
+// 	printf(YELLOW"___________________________________\n"RST);
+	
+// 	print_env(env);
+// 	printf(YELLOW"___________________________________\n"RST);
+	
+// 	old_env = env;
+// 	env = set_env_var("hola=2", old_env);
+// 	printf(YELLOW"___________________________________\n"RST);
+	
+// 	print_env(env);
+// 	printf(YELLOW"___________________________________\n"RST);
+// 		old_env = env;
+// 	env = set_env_var("holaf=1", old_env);
+// 	printf(YELLOW"___________________________________\n"RST);
+	
+// 	print_env(env);
+// 	printf(YELLOW"___________________________________\n"RST);
+// 		old_env = env;
+// 	env = set_env_var("holaf=2", old_env);
+// 	printf(YELLOW"___________________________________\n"RST);
+	
+// 	print_env(env);
+// 	printf(YELLOW"___________________________________\n"RST);
+
+// 	int env_len = 0;
+// 	while (env[env_len])
+// 		++env_len;
+// 	printf("env len -> %i\n", env_len);
+
+// 	old_env = env;
+// 	env = unset_var(old_env, "hola", 85, 86);
+// 	printf(YELLOW"___________________________________\n"RST);
+	
+// 	print_env(env);
+// 	printf(YELLOW"___________________________________\n"RST);
+	
+// 	//replace_existing_var("hola=1", "hola=2");
+// }

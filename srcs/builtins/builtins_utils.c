@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/07/16 19:26:07 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/26 21:13:49 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ static bool	is_builtin(const char *str)
 
 int	exec_builtins(t_cmd *cmd, char **env)
 {
-	(void)env;
-	// printf("cmd->cmd -> %s\n", cmd->cmd);
-	// printf("cmd->arg -> %s\n", cmd->args[1]);
-	// printf("cmd->arg -> %s\n", cmd->args[2]);
 	if (!is_builtin(cmd->cmd))
 		return (1);
 	if (ft_strncmp(cmd->cmd, "cd", ft_strlen(cmd->cmd)) == 0)
