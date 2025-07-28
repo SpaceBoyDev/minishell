@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:23 by dario             #+#    #+#             */
-/*   Updated: 2025/07/26 21:42:38 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/28 20:59:34 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_unset(t_cmd *cmd, char **env)
 	while (cmd->args[i])
 	{
 		old_env = env;
-		env = unset_var(old_env, cmd->args[i], i, env_len);
+		env = unset_var(cmd->args[i], i, old_env, env_len);
 		++i;
 	}
 	return (0);

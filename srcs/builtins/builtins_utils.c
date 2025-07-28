@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/07/26 21:13:49 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/28 21:01:16 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,10 @@ int	exec_builtins(t_cmd *cmd, char **env)
 		return (ft_export(cmd, env));
 	else if (ft_strncmp(cmd->cmd, "pwd", ft_strlen(cmd->cmd)) == 0)
 		return (ft_pwd());
+	else if (ft_strncmp(cmd->cmd, "exit", ft_strlen(cmd->cmd)) == 0)
+	{
+		ft_exit();
+		return (0);
+	}
 	return (1);
 }
