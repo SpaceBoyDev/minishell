@@ -25,7 +25,7 @@
 
 #define PS1 "minishell> "
 
-volatile sig_atomic_t int_flag = 0;
+volatile sig_atomic_t g_running_cmd = 0;
 
 int	main(int argc, char **argv, char **env)
 {
@@ -76,7 +76,9 @@ int	main(int argc, char **argv, char **env)
 		}
 		// print_cmd(cmd);
 		// print_cmds(cmd);
+		g_running_cmd = 1;
 		last_status = create_processes(cmd, env);
+		g_running_cmd = 0;
 	}
 
 	return (0);

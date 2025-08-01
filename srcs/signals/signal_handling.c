@@ -12,16 +12,21 @@
 
 #include "signals.h"
 
-extern volatile sig_atomic_t int_flag;
+extern volatile sig_atomic_t g_running_cmd;
 
+// TODO: too many \n when nested minishells
 void	handler(int sig)
 {
 	(void)sig;
-	int_flag = 1;
 	write(1, "\n", 1);
-	// TODO: make it work properly
-	// it should work with nested minishells
-	// rl_replace_line("", 0);
-	// rl_on_new_line();
-	// rl_redisplay();
+	if (g_running_cmd)
+	{
+		return ;
+	}
+	else
+	{
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
