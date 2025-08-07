@@ -1,7 +1,0 @@
-double quotes
-    variable expansion
-
-free general purpose function
-
-leaks
-norminette
