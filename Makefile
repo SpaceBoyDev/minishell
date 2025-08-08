@@ -93,53 +93,53 @@ all: $(NAME)
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB) -lreadline
 	@printf "$(MAGENTA)All $(NAME) source files compiled ✅$(RST)\033[0K\r"
-	@echo -e "\n$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
-	@echo -e "$(MAGENTA)$$SIGNATURE$(RST)"
+	@echo "\n$(BG_GREEN)$(NAME) compiled!$(BG_RST)"
+	@echo "$(MAGENTA)$$SIGNATURE$(RST)"
 
 $(LIBFT_LIB):
-	@echo -e "$(BG_BLUE)Compiling libft...$(RST)"
+	@echo "$(BG_BLUE)Compiling libft...$(RST)"
 	@make -C $(LIBFT) -f Makefile
-	@echo -e "$(BG_BLUE)Compiling $(NAME)...$(RST)"
+	@echo "$(BG_BLUE)Compiling $(NAME)...$(RST)"
 
 %.o: %.c
 	@printf "$(MAGENTA)Compiling $< ✅$(RST)\033[0K\r"; $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo -e "$(BG_BLUE)Cleaning...$(BG_RST)"
+	@echo "$(BG_BLUE)Cleaning...$(BG_RST)"
 	@$(RM) $(OBJS)
 	@make -C $(LIBFT) clean
-	@echo -e "$(CYAN)libft objs cleaned!$(BG_RST)🧹"
-	@echo -e "$(CYAN)$(NAME) objs cleaned!$(BG_RST)🧹"
+	@echo "$(CYAN)libft objs cleaned!$(BG_RST)🧹"
+	@echo "$(CYAN)$(NAME) objs cleaned!$(BG_RST)🧹"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@make -C $(LIBFT) fclean
-	@echo -e "$(CYAN)$(NAME) fully cleaned!$(BG_RST)🧹"
-	@echo -e "$(BG_GREEN)All cleaned!$(BG_RST)"
+	@echo "$(CYAN)$(NAME) fully cleaned!$(BG_RST)🧹"
+	@echo "$(BG_GREEN)All cleaned!$(BG_RST)"
 
 re: fclean all
 
 norme:
-	@echo -e "$(BG_CYAN)SOURCES$(BG_RST)"
+	@echo "$(BG_CYAN)SOURCES$(BG_RST)"
 	@for file in $(SRCS); do \
 		norminette $$file | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo -e "$(GREEN)$$file: OK!$(RST)"; \
+			echo "$(GREEN)$$file: OK!$(RST)"; \
 		else \
-			echo -e "$(RED)"; \
+			echo "$(RED)"; \
 			norminette $$file; \
-			echo -e "$(RST)"; \
+			echo "$(RST)"; \
 		fi \
 	done
-	@echo -e "$(BG_CYAN)HEADERS$(BG_RST)"
+	@echo "$(BG_CYAN)HEADERS$(BG_RST)"
 	@for header in $(HDERS); do \
 		norminette $$header | grep "OK!" > /dev/null; \
 		if [ $$? -eq 0 ]; then \
-			echo -e "$(GREEN)$$header: OK!$(RST)"; \
+			echo "$(GREEN)$$header: OK!$(RST)"; \
 		else \
-			echo -e "$(RED)"; \
+			echo "$(RED)"; \
 			norminette $$header; \
-			echo -e "$(RST)"; \
+			echo "$(RST)"; \
 		fi \
 	done
 
