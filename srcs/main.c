@@ -43,7 +43,7 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		setup_signal_handler();
-		str = readline(prompt_rl());
+		str = readline(PS1);
 		if (!str)
 		{
 			printf("Leaving minishell...\n");
@@ -79,6 +79,9 @@ int	main(int argc, char **argv, char **env)
 		g_running_cmd = 1;
 		last_status = create_processes(cmd, env);
 		g_running_cmd = 0;
+		free(str);
+		token_free(token);
+		cmd_free(cmd);
 	}
 
 	return (0);
