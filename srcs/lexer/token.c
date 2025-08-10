@@ -39,6 +39,7 @@ t_token *tokenize(char *input, int last_status)
 		}
 		token = token->next;
 	}
+	free(str);
 	return (first);
 }
 

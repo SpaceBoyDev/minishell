@@ -43,6 +43,8 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		setup_signal_handler();
+		// str = (char *)malloc(100);
+		// ft_strlcpy(str, "echo hello world", 100);
 		str = readline(PS1);
 		if (!str)
 		{
@@ -56,12 +58,14 @@ int	main(int argc, char **argv, char **env)
 		add_history(str);
 		if (!check_quotes(str))
 		{
+			free(str);
 			ft_putstr_fd("quotation error\n", 2);
 			continue ;
 		}
 		token = tokenize(str, last_status);
 		if (!token)
 		{
+			free(str);
 			ft_putstr_fd("tokenizing error\n", 2);
 			continue ;
 		}
@@ -71,6 +75,8 @@ int	main(int argc, char **argv, char **env)
 		cmd = pipeline_cmd(token);
 		if (!cmd)
 		{
+			free(str);
+			token_free(token);
 			ft_putstr_fd("cmd build error\n", 2);
 			continue ;
 		}
@@ -83,6 +89,6 @@ int	main(int argc, char **argv, char **env)
 		token_free(token);
 		cmd_free(cmd);
 	}
-
+	rl_clear_history();
 	return (0);
 }

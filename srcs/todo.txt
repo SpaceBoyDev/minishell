@@ -1,17 +1,15 @@
-refactor in malloc()
-	substitute for new_xxx()
-	create destroy fts too
-
 run local binaries like ./a.out
 	./a.out should execute it if it has permissions
 	a.out should not execute unless . in $PATH
 
-error messages
+builtins
+
+error messages (not in subject)
 	cmd not found
 	no permissions
 	etc
 
-edit SHLVL var in env?
+edit SHLVL var in env? (not in subject)
 
 use "minishell> " as prompt?
 	just to avoid potential bugs related to removing current directory etc
