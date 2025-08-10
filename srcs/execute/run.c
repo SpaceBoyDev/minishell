@@ -55,7 +55,6 @@ void	execute(t_cmd *cmd, char **env)
 		free(tmp);
 		if (!str)
 			return ;
-		printf("%s\n", str);
 		execve(str, cmd->args, env);
 		free(str);
 		i++;
