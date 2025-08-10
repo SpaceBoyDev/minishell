@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/08/10 16:30:11 by dario            ###   ########.fr       */
+/*   Updated: 2025/08/10 16:34:28 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		token = NULL;
 		cmd = NULL;
-		return (run_non_interactive(argv[1], token, cmd, env));
+		return (run_non_interactive(argv[1], token, cmd, env, last_status));
 	}
 	while (1)
 	{
