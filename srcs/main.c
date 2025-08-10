@@ -43,8 +43,6 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		setup_signal_handler();
-		// str = (char *)malloc(100);
-		// ft_strlcpy(str, "echo hello world", 100);
 		str = readline(PS1);
 		if (!str)
 		{
