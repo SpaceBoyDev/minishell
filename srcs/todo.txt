@@ -1,7 +1,3 @@
-run local binaries like ./a.out
-	./a.out should execute it if it has permissions
-	a.out should not execute unless . in $PATH
-
 builtins
 
 error messages (not in subject)
