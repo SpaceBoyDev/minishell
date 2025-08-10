@@ -21,7 +21,7 @@ t_token *tokenize(char *input, int last_status)
 	t_token	*first;
 
 	str = ft_strtrim(input, " ");
-	free(input);
+	// free(input);
 	if (!str)
 		return (NULL);
 	if (str[0] == '\0')
@@ -39,6 +39,7 @@ t_token *tokenize(char *input, int last_status)
 		}
 		token = token->next;
 	}
+	free(str);
 	return (first);
 }
 
@@ -147,4 +148,18 @@ t_op	token_type(char *str, int *i)
 	else if (type == APPEND || type == HEREDOC)
 		*i += 2;
 	return (type);
+}
+
+void	token_free(t_token *token)
+{
+	t_token	*tmp;
+
+	while (token)
+	{
+		if (token->type != PIPE)
+			free(token->str);
+		tmp = token;
+		token = token->next;
+		free(tmp);
+	}
 }

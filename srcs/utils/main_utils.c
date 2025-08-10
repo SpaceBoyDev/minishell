@@ -31,6 +31,7 @@ void	setup_signal_handler(void)
 {
 	struct sigaction	sa;
 
+	ft_memset(&sa, 0, sizeof(sa));
 	sa.sa_flags = SA_RESTART;
 	sa.sa_handler = &handler;
 	sigaction(SIGINT, &sa, NULL);
