@@ -6,17 +6,16 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:47:21 by dario            ###   ########.fr       */
+/*   Updated: 2025/08/10 16:30:11 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "execute/execute.h"
 #include "heredoc/heredoc.h"
-#include "lexer/lexer.h"
 #include "utils/utils.h"
+#include "builtins/builtins.h"
 #include "minishell.h"
 #include "tester/test.h"
 #include <stdio.h>
@@ -40,6 +39,13 @@ int	main(int argc, char **argv, char **env)
 	// run_tests();
 	// return (0);
 	last_status = 0;
+
+	if (argc != 1)
+	{
+		token = NULL;
+		cmd = NULL;
+		return (run_non_interactive(argv[1], token, cmd, env));
+	}
 	while (1)
 	{
 		setup_signal_handler();

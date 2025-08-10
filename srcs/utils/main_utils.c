@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:45:23 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/12 01:29:57 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,31 @@ void	setup_signal_handler(void)
 	sa.sa_flags = SA_RESTART;
 	sa.sa_handler = &handler;
 	sigaction(SIGINT, &sa, NULL);
+}
+
+int	run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (1);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!check_quotes(line))
+			error_exit("quotation error");
+		token = tokenize(line);
+		if (!token)
+			error_exit("tokenizing error");
+		cmd = pipeline_cmd(token);
+		if (!cmd)
+			error_exit("cmd build error");
+		create_processes(cmd, env);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (0);
 }

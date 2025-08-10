@@ -6,8 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:17 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 20:45:47 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/28 20:55:33 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "builtins.h"
+
+void	ft_exit()
+{
+	exit(0);
+}

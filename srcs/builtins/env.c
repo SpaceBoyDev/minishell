@@ -6,8 +6,21 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:15 by dario             #+#    #+#             */
-/*   Updated: 2025/06/10 20:45:45 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/16 19:23:35 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "builtins.h"
+
+int	ft_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		printf("%s\n", env[i]);
+		++i;
+	}
+	return (0);
+}

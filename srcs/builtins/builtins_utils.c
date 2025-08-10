@@ -6,17 +6,14 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:48:12 by dario            ###   ########.fr       */
+/*   Updated: 2025/07/28 21:01:16 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "builtins.h"
 
-int	cd(char *path);
-int	echo(char *str);
-int	pwd(void);
-
-static bool	is_builtin(char *str)
+static bool	is_builtin(const char *str)
 {
 	size_t	len;
 
@@ -32,21 +29,24 @@ static bool	is_builtin(char *str)
 	return (false);
 }
 
-int	exec_builtins(t_token *token)
+int	exec_builtins(t_cmd *cmd, char **env)
 {
-	char	*next_str;
-
-	if (!is_builtin(token->str))
+	if (!is_builtin(cmd->cmd))
 		return (1);
-	if (!token->next || !token->next->str)
-		next_str = NULL;
-	else
-		next_str = token->next->str;
-	if (ft_strncmp(token->str, "cd", ft_strlen(token->str)) == 0)
-		return (cd(next_str));
-	else if (ft_strncmp(token->str, "echo", ft_strlen(token->str)) == 0)
-		return (echo(next_str));
-	else if (ft_strncmp(token->str, "pwd", ft_strlen(token->str)) == 0)
-		return (pwd());
+	if (ft_strncmp(cmd->cmd, "cd", ft_strlen(cmd->cmd)) == 0)
+		return (ft_cd(cmd->args[1]));
+	else if (ft_strncmp(cmd->cmd, "echo", ft_strlen(cmd->cmd)) == 0)
+		return (ft_echo(cmd->args));
+	else if (ft_strncmp(cmd->cmd, "env", ft_strlen(cmd->cmd)) == 0)
+		return (ft_env(env));
+	else if (ft_strncmp(cmd->cmd, "export", ft_strlen(cmd->cmd)) == 0)
+		return (ft_export(cmd, env));
+	else if (ft_strncmp(cmd->cmd, "pwd", ft_strlen(cmd->cmd)) == 0)
+		return (ft_pwd());
+	else if (ft_strncmp(cmd->cmd, "exit", ft_strlen(cmd->cmd)) == 0)
+	{
+		ft_exit();
+		return (0);
+	}
 	return (1);
 }
