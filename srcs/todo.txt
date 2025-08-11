@@ -1,5 +1,7 @@
 builtins
 
+non_interactive
+
 error messages (not in subject)
 	cmd not found
 	no permissions

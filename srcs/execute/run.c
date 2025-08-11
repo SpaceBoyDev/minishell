@@ -19,6 +19,7 @@
 #include <unistd.h>
 #include <limits.h>
 #include "../heredoc/heredoc.h"
+#include "../builtins/builtins.h"
 
 char	**get_paths(void)
 {
@@ -41,6 +42,9 @@ void	execute(t_cmd *cmd, char **env)
 	char	*tmp;
 	char	*str;
 
+	i = exec_builtins(cmd, env);
+	if (i != 1)
+		exit(i);
 	execve(cmd->cmd, cmd->args, env);
 	paths = get_paths();
 	if (!paths)
@@ -83,6 +87,7 @@ int	create_processes(t_cmd *cmd, char **env)
 			pipefd[2] = INT_MAX;
 			pipefd[3] = INT_MAX;
 		}
+		// TODO: no fork() if builtin?
 		pid = fork(); // TODO: check return?
 		if (pid == 0)
 		{
