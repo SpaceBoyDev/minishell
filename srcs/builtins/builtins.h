@@ -16,6 +16,7 @@
 # include "../minishell.h"
 
 // Builtins Utils
+bool	is_builtin(const char *str);
 int		exec_builtins(t_cmd *cmd, char **env);
 
 int		ft_cd(char *path);

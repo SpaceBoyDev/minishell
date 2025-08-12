@@ -1,3 +1,5 @@
+git bisect to find out why `cat Makefile | wc` stopped working
+
 builtins
 
 non_interactive

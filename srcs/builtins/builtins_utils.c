@@ -13,18 +13,25 @@
 #include "../minishell.h"
 #include "builtins.h"
 
-static bool	is_builtin(const char *str)
+static int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+bool	is_builtin(const char *str)
 {
 	size_t	len;
 
 	len = ft_strlen(str);
-	if (ft_strncmp(str, "echo", len) == 0
-		|| ft_strncmp(str, "cd", len) == 0
-		|| ft_strncmp(str, "pwd", len) == 0
-		|| ft_strncmp(str, "export", len) == 0
-		|| ft_strncmp(str, "unset", len) == 0
-		|| ft_strncmp(str, "env", len) == 0
-		|| ft_strncmp(str, "exit", len) == 0)
+	if (ft_strncmp(str, "echo", max(len, 4)) == 0
+		|| ft_strncmp(str, "cd", max(len, 2)) == 0
+		|| ft_strncmp(str, "pwd", max(len, 3)) == 0
+		|| ft_strncmp(str, "export", max(len, 6)) == 0
+		|| ft_strncmp(str, "unset", max(len, 5)) == 0
+		|| ft_strncmp(str, "env", max(len, 3)) == 0
+		|| ft_strncmp(str, "exit", max(len, 4)) == 0)
 		return (true);
 	return (false);
 }

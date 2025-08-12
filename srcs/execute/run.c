@@ -35,16 +35,13 @@ char	**get_paths(void)
 	return (paths);
 }
 
-void	execute(t_cmd *cmd, char **env)
+void	ft_exec(t_cmd *cmd, char **env)
 {
 	char	**paths;
 	int		i;
 	char	*tmp;
 	char	*str;
 
-	i = exec_builtins(cmd, env);
-	if (i != 1)
-		exit(i);
 	execve(cmd->cmd, cmd->args, env);
 	paths = get_paths();
 	if (!paths)
@@ -88,14 +85,20 @@ int	create_processes(t_cmd *cmd, char **env)
 			pipefd[3] = INT_MAX;
 		}
 		// TODO: no fork() if builtin?
-		pid = fork(); // TODO: check return?
-		if (pid == 0)
+		setup_process(cmd, pipefd, env);
+		status = is_builtin(cmd->cmd);
+		if (status == 1) // is builtin
 		{
-			// TODO: signal??
-			// signal(SIGINT, SIG_DFL);
-			run_process(cmd, pipefd, env);
+			exec_builtins(cmd, env);
+			cmd->pid = 1;
 		}
-		cmd->pid = pid;
+		else
+		{
+			pid = fork(); // TODO: check return?
+			if (pid == 0)
+				ft_exec(cmd, env);
+			cmd->pid = pid;
+		}
 		cmd = cmd->next;
 		if (pipefd[0] != INT_MAX)
 			close(pipefd[0]);
@@ -106,8 +109,8 @@ int	create_processes(t_cmd *cmd, char **env)
 	}
 	while (first)
 	{
-		// wait(NULL);
-		waitpid(first->pid, &status, 0);
+		if (first->pid != 1)
+			waitpid(first->pid, &status, 0);
 		first = first->next;
 	}
 	return (WEXITSTATUS(status));
@@ -115,8 +118,9 @@ int	create_processes(t_cmd *cmd, char **env)
 
 
 // TODO: heredoc and append
-void	run_process(t_cmd *cmd, int *pipefd, char **env)
+void	setup_process(t_cmd *cmd, int *pipefd, char **env)
 {
+	(void)env;
 	if (pipefd[1] != INT_MAX)
 		close(pipefd[1]);
 	if (pipefd[2] != INT_MAX)
@@ -149,5 +153,4 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		dup2(cmd->out_fd, 1);
 		close(cmd->out_fd);
 	}
-	execute(cmd, env);
 }
