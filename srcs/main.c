@@ -6,7 +6,7 @@
 /*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/08/29 13:38:11 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:04:52 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 
 volatile sig_atomic_t g_running_cmd = 0;
 
-void	run_interactive(char *str, t_data *data)
+void	run_interactive(t_data *data)
 {
+	char	*str;
+
 	while (1)
 	{
 		setup_signal_handler();
@@ -70,38 +72,57 @@ void	run_interactive(char *str, t_data *data)
 	}
 }
 
-void	copy_env(char **src, char **dst)
+void	print_envx(char **env)
+{
+	int		i;
+	int		x;
+
+	i = 0;
+	while (env[i])
+	{
+		x = 0;
+		write(1, "declare -x ", 12);
+		while (env[i][x])
+		{
+			write(1, &env[i][x], 1);
+			if (env[i][x] == '=')
+				write(1, "\"", 1);
+			++x;
+		}
+		write(1, "\"\n", 2);
+		++i;
+	}
+}
+void	init_data_env(char **src, t_data *data)
 {
 	int	env_count;
-
 	env_count = 0;
 	while (src[env_count])
 		++env_count;
-	dst = malloc((env_count + 1) * sizeof(char *));
-	if (!dst)
+	data->env = malloc((env_count + 1) * sizeof(char *));
+	if (!data->env)
 		return ;
 	env_count = -1;
 	while (src[++env_count])
-		dst[env_count] = ft_strdup(src[env_count]);
+		data->env[env_count] = ft_strdup(src[env_count]);
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	//char	*str;
 	t_data	data;
 
 	(void)argc;
 	(void)argv;
 	(void)env;
 
-	copy_env(env, data.env);
+	init_data_env(env, &data);
 	if (argc != 1)
 	{
 		data.token = NULL;
 		data.cmd = NULL;
 		return (run_non_interactive(argv[1], &data));
 	}
-	
+	run_interactive(&data);
 	
 	rl_clear_history();
 	return (0);
