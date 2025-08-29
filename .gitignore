@@ -3,3 +3,5 @@
 minishell
 in
 out
+.cache/
+compile_commands.json

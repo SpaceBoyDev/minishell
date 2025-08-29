@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 01:29:57 by dario            ###   ########.fr       */
+/*   Updated: 2025/08/10 16:32:56 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,17 @@ char	*prompt_rl(void)
 	return (prompt);
 }
 
-void	start_minishell(void)
+void	setup_signal_handler(void)
 {
 	struct sigaction	sa;
 
-	signal(SIGTERM, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sa.sa_handler = &sigint_handler_default;
-	if (sigaction(SIGINT, &sa, NULL) == -1)
-		error_msg("Sigaction failed", true);
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_flags = SA_RESTART;
+	sa.sa_handler = &handler;
+	sigaction(SIGINT, &sa, NULL);
 }
 
-int	run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env)
+int	run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env, int last_status)
 {
 	int		fd;
 	char	*line;
@@ -53,7 +50,7 @@ int	run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env)
 	{
 		if (!check_quotes(line))
 			error_exit("quotation error");
-		token = tokenize(line);
+		token = tokenize(line, last_status);
 		if (!token)
 			error_exit("tokenizing error");
 		cmd = pipeline_cmd(token);

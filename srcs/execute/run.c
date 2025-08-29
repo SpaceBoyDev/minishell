@@ -41,6 +41,7 @@ void	execute(t_cmd *cmd, char **env)
 	char	*tmp;
 	char	*str;
 
+	execve(cmd->cmd, cmd->args, env);
 	paths = get_paths();
 	if (!paths)
 		return ;
@@ -58,7 +59,7 @@ void	execute(t_cmd *cmd, char **env)
 		free(str);
 		i++;
 	}
-	exit(EXIT_FAILURE);
+	exit(CMD_NOT_FOUND);
 }
 
 int	create_processes(t_cmd *cmd, char **env)
@@ -84,7 +85,11 @@ int	create_processes(t_cmd *cmd, char **env)
 		}
 		pid = fork(); // TODO: check return?
 		if (pid == 0)
+		{
+			// TODO: signal??
+			// signal(SIGINT, SIG_DFL);
 			run_process(cmd, pipefd, env);
+		}
 		cmd->pid = pid;
 		cmd = cmd->next;
 		if (pipefd[0] != INT_MAX)
@@ -125,6 +130,11 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		close(pipefd[0]);
 		heredoc(cmd->infile);
 	}
+	else if (pipefd[0] != INT_MAX)
+	{
+		dup2(pipefd[0], 0);
+		close(pipefd[0]);
+	}
 	if (cmd->outfile && cmd->out_op == OUT)
 	{
 		close(pipefd[3]);
@@ -138,6 +148,11 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		dup2(cmd->out_fd, 1);
 		close(cmd->out_fd);
+	}
+	else if (pipefd[3] != INT_MAX)
+	{
+		dup2(pipefd[3], 1);
+		close(pipefd[3]);
 	}
 	execute(cmd, env);
 }

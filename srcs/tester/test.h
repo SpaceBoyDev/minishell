@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 18:34:00 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:42:49 by dario            ###   ########.fr       */
+/*   Created: 2025/07/11 12:59:27 by marcolop          #+#    #+#             */
+/*   Updated: 2025/07/11 12:59:27 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
+#ifndef TEST_H
+# define TEST_H
 
-# include <signal.h>
-# include "../utils/utils.h"
-# include "../minishell.h"
+#include "../minishell.h"
 
-void	handler(int sig);
+void	run_tests(void);
+void	test_var_expansion(void);
+void	test_nbr_to_str(void);
 
 #endif

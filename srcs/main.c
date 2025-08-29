@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 01:45:22 by dario            ###   ########.fr       */
+/*   Updated: 2025/08/10 16:34:28 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,39 @@
 #include "utils/utils.h"
 #include "builtins/builtins.h"
 #include "minishell.h"
+#include "tester/test.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define PS1 "minishell> "
+
+volatile sig_atomic_t g_running_cmd = 0;
 
 int	main(int argc, char **argv, char **env)
 {
 	char	*str;
 	t_token	*token;
 	t_cmd	*cmd;
+	int		last_status;
 
 	(void)argc;
 	(void)argv;
 	(void)env;
+	// run_tests();
+	// return (0);
+	last_status = 0;
 
 	if (argc != 1)
 	{
 		token = NULL;
 		cmd = NULL;
-		return (run_non_interactive(argv[1], token, cmd, env));
+		return (run_non_interactive(argv[1], token, cmd, env, last_status));
 	}
 	while (1)
 	{
-		start_minishell();
-		str = readline(prompt_rl());
+		setup_signal_handler();
+		str = readline(PS1);
 		if (!str)
 		{
 			printf("Leaving minishell...\n");
@@ -52,12 +62,14 @@ int	main(int argc, char **argv, char **env)
 		add_history(str);
 		if (!check_quotes(str))
 		{
+			free(str);
 			ft_putstr_fd("quotation error\n", 2);
 			continue ;
 		}
-		token = tokenize(str);
+		token = tokenize(str, last_status);
 		if (!token)
 		{
+			free(str);
 			ft_putstr_fd("tokenizing error\n", 2);
 			continue ;
 		}
@@ -67,13 +79,20 @@ int	main(int argc, char **argv, char **env)
 		cmd = pipeline_cmd(token);
 		if (!cmd)
 		{
+			free(str);
+			token_free(token);
 			ft_putstr_fd("cmd build error\n", 2);
 			continue ;
 		}
 		// print_cmd(cmd);
 		// print_cmds(cmd);
-		create_processes(cmd, env);
+		g_running_cmd = 1;
+		last_status = create_processes(cmd, env);
+		g_running_cmd = 0;
+		free(str);
+		token_free(token);
+		cmd_free(cmd);
 	}
-
+	rl_clear_history();
 	return (0);
 }

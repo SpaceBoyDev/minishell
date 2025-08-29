@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "lexer.h"
 
-t_token *tokenize(char *input)
+t_token *tokenize(char *input, int last_status)
 {
 	int		i;
 	char	*str;
@@ -20,17 +21,17 @@ t_token *tokenize(char *input)
 	t_token	*first;
 
 	str = ft_strtrim(input, " ");
-	free(input);
+	// free(input);
 	if (!str)
 		return (NULL);
 	if (str[0] == '\0')
 		return (NULL); // TODO: empty str
 	i = 0;
-	first = create_token(str, &i);
+	first = create_token(str, &i, last_status);
 	token = first;
 	while (str[i])
 	{
-		token->next = create_token(str, &i);
+		token->next = create_token(str, &i, last_status);
 		if (!token->next)
 		{
 			// TODO: free previous tokens
@@ -38,11 +39,12 @@ t_token *tokenize(char *input)
 		}
 		token = token->next;
 	}
+	free(str);
 	return (first);
 }
 
 
-t_token	*create_token(char	*str, int *i)
+t_token	*create_token(char	*str, int *i, int last_status)
 {
 	t_token	*token;
 
@@ -53,18 +55,19 @@ t_token	*create_token(char	*str, int *i)
 	token->type = token_type(str, i);
 	if (token->type != PIPE)
 	{
-		token->str = token_str(str, i);
+		token->str = token_str(str, i, last_status);
 		if (token->str == NULL)
 			return (NULL);
 	}
 	return (token);
 }
 
-char	*token_str(char	*str, int *i)
+char	*token_str(char	*str, int *i, int last_status)
 {
 	int		len;
 	int		start;
 	char	*val;
+	char	*tmp;
 
 	while (str[*i] && str[*i] == ' ')
 		(*i)++;
@@ -102,7 +105,9 @@ char	*token_str(char	*str, int *i)
 			return (NULL);
 		while (str[*i] && str[*i] == ' ')
 			(*i)++;
-		// TODO: expand $
+		tmp = val;
+		val = expand(tmp, last_status);
+		free(tmp);
 	}
 	else
 	{
@@ -143,4 +148,18 @@ t_op	token_type(char *str, int *i)
 	else if (type == APPEND || type == HEREDOC)
 		*i += 2;
 	return (type);
+}
+
+void	token_free(t_token *token)
+{
+	t_token	*tmp;
+
+	while (token)
+	{
+		if (token->type != PIPE)
+			free(token->str);
+		tmp = token;
+		token = token->next;
+		free(tmp);
+	}
 }

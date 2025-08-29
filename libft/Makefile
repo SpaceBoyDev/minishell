@@ -56,7 +56,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 	@printf "$(MAGENTA)All libft source files compiled ✅$(RST)\033[0K\r"
-	@echo -e "\n$(BG_GREEN)libft compiled!$(BG_RST)"
+	@echo "\n$(BG_GREEN)libft compiled!$(BG_RST)"
 
 # A 
 %.o: %.c
@@ -69,7 +69,7 @@ clean:
 # A rule to remove all the .o files and the library
 fclean: clean
 	@$(RM) $(NAME)
-	@echo -e "$(CYAN)libft fully cleaned!$(BG_RST)🧹"
+	@echo "$(CYAN)libft fully cleaned!$(BG_RST)🧹"
 
 # A rule to rebuild everthing from scratch
 re: fclean all

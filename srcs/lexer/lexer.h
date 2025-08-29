@@ -54,14 +54,17 @@ void			print_cmd(t_cmd	*cmd);
 void			print_cmds(t_cmd	*cmd);
 
 // token.c
-t_token			*tokenize(char *input);
-t_token			*create_token(char *str, int *i);
-char			*token_str(char *str, int *i);
+t_token			*tokenize(char *input, int last_status);
+t_token			*create_token(char *str, int *i, int last_status);
+char			*token_str(char *str, int *i, int last_status);
 t_op			token_type(char *str, int *i);
+void			token_free(t_token *token);
 
 // var_expansion.c
-char			*expand(char *str);
-int				is_var_char(char c);
+char			*expand(char *str, int last_status);
+char			*get_var_name(char *str);
+char			*get_env_val(char *var_name);
+int				skip_var_name(char  *str, int i);
 
 // cmd.c
 t_cmd			*init_cmd(void);
@@ -70,5 +73,10 @@ int				args_cmd(t_cmd *cmd, t_token *token);
 int				in_cmd(t_cmd *cmd, t_token *token);
 int				out_cmd(t_cmd *cmd, t_token *token);
 t_cmd			*pipeline_cmd(t_token *token);
+void			cmd_free(t_cmd *cmd);
+void			table_free(char **table);
+
+// nbr_to_str.c
+char			*nbr_to_str(int n);
 
 #endif

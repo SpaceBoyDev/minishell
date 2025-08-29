@@ -21,6 +21,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1)
 		return (ft_strdup(s2));
+	else if (!s2)
+		return (ft_strdup(s1));
 	i = 0;
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);

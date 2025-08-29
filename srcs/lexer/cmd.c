@@ -148,3 +148,33 @@ int	out_cmd(t_cmd *cmd, t_token *token)
 		return (0);
 	return (1);
 }
+
+void	table_free(char **table)
+{
+	int	i;
+
+	i = 0;
+	while (table[i])
+	{
+		free(table[i]);
+		i++;
+	}
+	free(table);
+}
+
+void	cmd_free(t_cmd *cmd)
+{
+	t_cmd	*tmp;
+
+	while (cmd)
+	{
+		if (cmd->infile)
+			free(cmd->infile);
+		if (cmd->outfile)
+			free(cmd->outfile);
+		table_free(cmd->args);
+		tmp = cmd;
+		cmd = cmd->next;
+		free(tmp);
+	}
+}

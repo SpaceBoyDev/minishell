@@ -15,6 +15,8 @@
 
 # include "../lexer/lexer.h"
 
+# define CMD_NOT_FOUND 127
+
 char	**get_paths(void);
 void	execute(t_cmd *cmd, char **env);
 void	run_process(t_cmd *cmd, int *pipefd, char **env);
