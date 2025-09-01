@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 15:07:32 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 15:14:11 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,25 @@ t_token	*create_token(char	*str, int *i, int last_status)
 	return (token);
 }
 
+char	*str_no_quotes_opt(char *str, int *i, int start)
+{
+	int		len;
+	char	*val;
+
+	len = 0;
+	while (!is_separator(str[*i]))
+	{
+		(*i)++;
+		len++;
+	}
+	val = ft_substr(str, start, len);
+	if (!val)
+		return (NULL); // TODO: check null ft who called
+	while (str[*i] && str[*i] == ' ')
+		(*i)++;
+	return (val);
+}
+
 char	*str_quotes_opt(char *str, int *i, int start)
 {
 	char	c;
@@ -83,21 +102,20 @@ char	*str_quotes_opt(char *str, int *i, int start)
 
 char	*build_val(char *str, int *i, int last_status)
 {
-	int		len;
 	char	*val;
 	int		start;
 	char	*tmp;
+	char	tmp_char;
 
 	start = *i;
-	len = 0;
 	val = NULL;
 	if (str[*i] == '<' || str[*i] == '>' || str[*i] == '|')
 		return (NULL);
 	else if (str[*i] == '\'' || str[*i] == '\"')
 	{
+		tmp_char = str[*i];
 		val = str_quotes_opt(str, i, start);
-		printf("val -> %s\n", val);
-		if (str[*i] == '\"')
+		if (tmp_char == '\"')
 		{
 			tmp = val;
 			val = expand(tmp, last_status);
@@ -105,18 +123,7 @@ char	*build_val(char *str, int *i, int last_status)
 		}
 	}
 	else
-	{
-		while (!is_separator(str[*i]))
-		{
-			(*i)++;
-			len++;
-		}
-		val = ft_substr(str, start, len);
-		if (!val)
-			return (NULL); // TODO: check null ft who called
-		while (str[*i] && str[*i] == ' ')
-			(*i)++;
-	}
+		val = str_no_quotes_opt(str, i, start);
 	return (val);
 }
 
