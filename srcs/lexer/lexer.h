@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 14:02:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/28 15:46:48 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,10 @@ int				skip_var_name(char  *str, int i);
 // cmd.c
 t_cmd			*init_cmd(void);
 t_cmd			*build_cmd(t_token	*token);
-t_cmd			*pipeline_cmd(t_token *token);
 int				args_cmd(t_cmd *cmd, t_token *token);
-
-// cmd_utils.c
 int				in_cmd(t_cmd *cmd, t_token *token);
 int				out_cmd(t_cmd *cmd, t_token *token);
+t_cmd			*pipeline_cmd(t_token *token);
 void			cmd_free(t_cmd *cmd);
 void			table_free(char **table);
 

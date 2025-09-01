@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 14:12:12 by dario            ###   ########.fr       */
+/*   Updated: 2025/06/22 14:15:22 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
 
-t_token	*tokenize(char *input, int last_status)
+t_token *tokenize(char *input, int last_status)
 {
 	int		i;
 	char	*str;
