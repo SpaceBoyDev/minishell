@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 14:02:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 15:21:26 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@ typedef struct s_cmd
 int				check_quotes(char *str);
 void			print_token(t_token *token);
 void			print_tokens(t_token *token);
-int				is_separator(char c);
 void			print_cmd(t_cmd	*cmd);
 void			print_cmds(t_cmd	*cmd);
 
 // token.c
 t_token			*tokenize(char *input, int last_status);
 t_token			*create_token(char *str, int *i, int last_status);
-char			*token_str(char *str, int *i, int last_status);
 t_op			token_type(char *str, int *i);
 void			token_free(t_token *token);
 
@@ -77,6 +75,10 @@ int				in_cmd(t_cmd *cmd, t_token *token);
 int				out_cmd(t_cmd *cmd, t_token *token);
 void			cmd_free(t_cmd *cmd);
 void			table_free(char **table);
+
+// token_str.c
+char			*token_str(char *str, int *i, int last_status);
+
 
 // nbr_to_str.c
 char			*nbr_to_str(int n);

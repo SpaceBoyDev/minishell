@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/09/01 14:09:40 by dario            ###   ########.fr        #
+#    Updated: 2025/09/01 15:16:45 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC			=	main.c
 BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
 EXECUTE		=	run.c
 HEREDOC		=	heredoc.c
-LEXER		=	utils.c token.c cmd.c cmd_utils.c var_expansion.c nbr_to_str.c
+LEXER		=	utils.c token.c cmd.c cmd_utils.c token_str.c var_expansion.c nbr_to_str.c
 SIGNALS		=	signal_handling.c
 TESTS		=	test.c
 UTILS		=	main_utils.c error_handling.c
