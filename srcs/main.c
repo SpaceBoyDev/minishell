@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/08/10 16:34:28 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 13:49:30 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv, char **env)
 		// print_cmd(cmd);
 		// print_cmds(cmd);
 		g_running_cmd = 1;
-		last_status = create_processes(cmd, env);
+		last_status = pipeline(cmd, env);
 		g_running_cmd = 0;
 		free(str);
 		token_free(token);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
+#    By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/07/08 19:08:10 by dario            ###   ########.fr        #
+#    Updated: 2025/09/01 13:50:00 by marcolop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ HDERS		=	srcs/minishell.h
 SRC			=	main.c
 
 BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
-EXECUTE		=	run.c
+EXECUTE		=	exec.c pipeline.c run.c
 HEREDOC		=	heredoc.c
 LEXER		=	utils.c token.c cmd.c var_expansion.c nbr_to_str.c
 SIGNALS		=	signal_handling.c
