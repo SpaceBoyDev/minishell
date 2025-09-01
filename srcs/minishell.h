@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/08/29 13:24:10 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/01 13:12:51 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define BG_CYAN	"\033[46m"
 # define BG_WHITE	"\033[47m"
 
-#define PS1 "minishell> "
+# define PS1 "minishell> "
 
 typedef struct s_data
 {
@@ -46,6 +46,5 @@ typedef struct s_data
 	char	**env;
 	int		last_status;
 }	t_data;
-
 
 #endif

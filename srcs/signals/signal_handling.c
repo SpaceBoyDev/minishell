@@ -6,13 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:33:49 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 01:10:45 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 13:14:11 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 
-extern volatile sig_atomic_t g_running_cmd;
+extern volatile sig_atomic_t	g_running_cmd;
 
 // TODO: too many \n when nested minishells
 void	handler(int sig)
