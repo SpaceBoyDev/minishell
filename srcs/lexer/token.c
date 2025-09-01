@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 14:12:12 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 15:07:32 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_token	*tokenize(char *input, int last_status)
 	return (first);
 }
 
-
 t_token	*create_token(char	*str, int *i, int last_status)
 {
 	t_token	*token;
@@ -62,52 +61,48 @@ t_token	*create_token(char	*str, int *i, int last_status)
 	return (token);
 }
 
-char	*token_str(char	*str, int *i, int last_status)
+char	*str_quotes_opt(char *str, int *i, int start)
 {
+	char	c;
 	int		len;
-	int		start;
 	char	*val;
-	char	*tmp;
 
+	len = 0;
+	c = str[*i];
+	start++;
+	while (str[++(*i)] != c)
+		len++;
+	(*i)++;
+	val = ft_substr(str, start, len);
+	if (!val)
+		return (NULL);
 	while (str[*i] && str[*i] == ' ')
 		(*i)++;
-	if (!str[*i])
-		return (NULL);
-	len = 0;
+	return (val);
+}
+
+char	*build_val(char *str, int *i, int last_status)
+{
+	int		len;
+	char	*val;
+	int		start;
+	char	*tmp;
+
 	start = *i;
-	if (str[*i] == '<' || str[*i] == '>' || str[*i] == '|') {
+	len = 0;
+	val = NULL;
+	if (str[*i] == '<' || str[*i] == '>' || str[*i] == '|')
 		return (NULL);
-	}
-	else if (str[*i] == '\'')
+	else if (str[*i] == '\'' || str[*i] == '\"')
 	{
-		start++;
-		while (str[++(*i)] != '\'')
+		val = str_quotes_opt(str, i, start);
+		printf("val -> %s\n", val);
+		if (str[*i] == '\"')
 		{
-			len++;
+			tmp = val;
+			val = expand(tmp, last_status);
+			free(tmp);
 		}
-		(*i)++;
-		val = ft_substr(str, start, len);
-		if (!val)
-			return (NULL);
-		while (str[*i] && str[*i] == ' ')
-			(*i)++;
-	}
-	else if (str[*i] == '\"')
-	{
-		start++;
-		while (str[++(*i)] != '\"')
-		{
-			len++;
-		}
-		(*i)++;
-		val = ft_substr(str, start, len);
-		if (!val)
-			return (NULL);
-		while (str[*i] && str[*i] == ' ')
-			(*i)++;
-		tmp = val;
-		val = expand(tmp, last_status);
-		free(tmp);
 	}
 	else
 	{
@@ -122,6 +117,18 @@ char	*token_str(char	*str, int *i, int last_status)
 		while (str[*i] && str[*i] == ' ')
 			(*i)++;
 	}
+	return (val);
+}
+
+char	*token_str(char	*str, int *i, int last_status)
+{
+	char	*val;
+
+	while (str[*i] && str[*i] == ' ')
+		(*i)++;
+	if (!str[*i])
+		return (NULL);
+	val = build_val(str, i, last_status);
 	return (val);
 }
 
