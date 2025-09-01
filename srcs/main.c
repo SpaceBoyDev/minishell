@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/08/29 14:04:52 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/01 13:04:25 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-volatile sig_atomic_t g_running_cmd = 0;
+volatile sig_atomic_t	g_running_cmd = 0;
 
 void	execute_input(char *str, t_data *data)
 {
@@ -74,7 +74,7 @@ void	run_interactive(t_data *data)
 			break ;
 		}
 		else if (!str[0])
-			continue;
+			continue ;
 		add_history(str);
 		if (tokenize_input(str, data) == 1)
 			continue ;
@@ -82,30 +82,10 @@ void	run_interactive(t_data *data)
 	}
 }
 
-void	print_envx(char **env)
-{
-	int		i;
-	int		x;
-
-	i = 0;
-	while (env[i])
-	{
-		x = 0;
-		write(1, "declare -x ", 12);
-		while (env[i][x])
-		{
-			write(1, &env[i][x], 1);
-			if (env[i][x] == '=')
-				write(1, "\"", 1);
-			++x;
-		}
-		write(1, "\"\n", 2);
-		++i;
-	}
-}
 void	init_data_env(char **src, t_data *data)
 {
 	int	env_count;
+
 	env_count = 0;
 	while (src[env_count])
 		++env_count;
@@ -124,7 +104,6 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
-
 	init_data_env(env, &data);
 	if (argc != 1)
 	{
@@ -133,7 +112,6 @@ int	main(int argc, char **argv, char **env)
 		return (run_non_interactive(argv[1], &data));
 	}
 	run_interactive(&data);
-	
 	rl_clear_history();
 	return (0);
 }

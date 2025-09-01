@@ -6,13 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:11 by dario             #+#    #+#             */
-/*   Updated: 2025/07/16 19:25:21 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 13:04:52 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	ft_echo(char **args) //TODO: fix printing of normal message when multiple args
+int	ft_echo(char **args) //TODO: fix printing when multiple args
 {
 	int		i;
 	bool	nl;

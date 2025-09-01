@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/07/26 21:42:52 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 13:05:50 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,50 +100,3 @@ int	ft_export(t_cmd *cmd, char **env)
 	}
 	return (0);
 }
-
-// int	main(int argc, char **argv, char **env)
-// {
-// 	char	**old_env;
-// 	printf(YELLOW"___________________________________\n"RST);
-// 	print_env(env);
-// 	printf(YELLOW"___________________________________\n"RST);
-// 	old_env = env;
-// 	env = set_env_var("hola=1", old_env);
-// 	printf(YELLOW"___________________________________\n"RST);
-	
-// 	print_env(env);
-// 	printf(YELLOW"___________________________________\n"RST);
-	
-// 	old_env = env;
-// 	env = set_env_var("hola=2", old_env);
-// 	printf(YELLOW"___________________________________\n"RST);
-	
-// 	print_env(env);
-// 	printf(YELLOW"___________________________________\n"RST);
-// 		old_env = env;
-// 	env = set_env_var("holaf=1", old_env);
-// 	printf(YELLOW"___________________________________\n"RST);
-	
-// 	print_env(env);
-// 	printf(YELLOW"___________________________________\n"RST);
-// 		old_env = env;
-// 	env = set_env_var("holaf=2", old_env);
-// 	printf(YELLOW"___________________________________\n"RST);
-	
-// 	print_env(env);
-// 	printf(YELLOW"___________________________________\n"RST);
-
-// 	int env_len = 0;
-// 	while (env[env_len])
-// 		++env_len;
-// 	printf("env len -> %i\n", env_len);
-
-// 	old_env = env;
-// 	env = unset_var(old_env, "hola", 85, 86);
-// 	printf(YELLOW"___________________________________\n"RST);
-	
-// 	print_env(env);
-// 	printf(YELLOW"___________________________________\n"RST);
-	
-// 	//replace_existing_var("hola=1", "hola=2");
-// }
