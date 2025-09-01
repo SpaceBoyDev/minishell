@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 15:21:26 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 15:47:35 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_cmd			*pipeline_cmd(t_token *token);
 int				args_cmd(t_cmd *cmd, t_token *token);
 
 // cmd_utils.c
+int				len_until_char(char *str, int i, char character);
 int				in_cmd(t_cmd *cmd, t_token *token);
 int				out_cmd(t_cmd *cmd, t_token *token);
 void			cmd_free(t_cmd *cmd);

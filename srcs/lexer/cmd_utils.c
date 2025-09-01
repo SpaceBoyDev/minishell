@@ -6,12 +6,19 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 14:01:16 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 14:01:53 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 15:47:26 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
+
+int		len_until_char(char *str, int i, char character)
+{
+	while (str[i] && str[i] != character)
+		i++;
+	return (i);
+}
 
 int	in_cmd(t_cmd *cmd, t_token *token)
 {
