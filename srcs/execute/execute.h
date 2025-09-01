@@ -18,9 +18,8 @@
 # define CMD_NOT_FOUND 127
 
 char	**get_paths(void);
-void	execute(t_cmd *cmd, char **env);
-void	run_process(t_cmd *cmd, int *pipefd, char **env);
-void	execute(t_cmd *cmd, char **env);
+void	setup_process(t_cmd *cmd, int *pipefd, char **env);
+void	ft_exec(t_cmd *cmd, char **env);
 int		create_processes(t_cmd *cmd, char **env);
 
 #endif

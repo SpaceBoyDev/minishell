@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/08/29 13:15:40 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/01 14:13:46 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <unistd.h>
 #include <limits.h>
 #include "../heredoc/heredoc.h"
+#include "../builtins/builtins.h"
 
 char	**get_paths(void)
 {
@@ -34,7 +35,7 @@ char	**get_paths(void)
 	return (paths);
 }
 
-void	execute(t_cmd *cmd, char **env)
+void	ft_exec(t_cmd *cmd, char **env)
 {
 	char	**paths;
 	int		i;
@@ -83,14 +84,21 @@ int	create_processes(t_cmd *cmd, char **env)
 			pipefd[2] = INT_MAX;
 			pipefd[3] = INT_MAX;
 		}
-		pid = fork(); // TODO: check return?
-		if (pid == 0)
+		// TODO: no fork() if builtin?
+		setup_process(cmd, pipefd, env);
+		status = is_builtin(cmd->cmd);
+		if (status == 1) // is builtin
 		{
-			// TODO: signal??
-			// signal(SIGINT, SIG_DFL);
-			run_process(cmd, pipefd, env);
+			exec_builtins(cmd, env);
+			cmd->pid = 1;
 		}
-		cmd->pid = pid;
+		else
+		{
+			pid = fork(); // TODO: check return?
+			if (pid == 0)
+				ft_exec(cmd, env);
+			cmd->pid = pid;
+		}
 		cmd = cmd->next;
 		if (pipefd[0] != INT_MAX)
 			close(pipefd[0]);
@@ -101,8 +109,8 @@ int	create_processes(t_cmd *cmd, char **env)
 	}
 	while (first)
 	{
-		// wait(NULL);
-		waitpid(first->pid, &status, 0);
+		if (first->pid != 1)
+			waitpid(first->pid, &status, 0);
 		first = first->next;
 	}
 	return (WEXITSTATUS(status));
@@ -110,8 +118,9 @@ int	create_processes(t_cmd *cmd, char **env)
 
 
 // TODO: heredoc and append
-void	run_process(t_cmd *cmd, int *pipefd, char **env)
+void	setup_process(t_cmd *cmd, int *pipefd, char **env)
 {
+	(void)env;
 	if (pipefd[1] != INT_MAX)
 		close(pipefd[1]);
 	if (pipefd[2] != INT_MAX)
@@ -148,10 +157,4 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		dup2(cmd->out_fd, 1);
 		close(cmd->out_fd);
 	}
-	else if (pipefd[3] != INT_MAX)
-	{
-		dup2(pipefd[3], 1);
-		close(pipefd[3]);
-	}
-	execute(cmd, env);
 }
