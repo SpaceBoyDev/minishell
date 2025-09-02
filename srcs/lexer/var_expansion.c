@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variable_expansion.c                               :+:      :+:    :+:   */
+/*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 17:51:01 by marcolop          #+#    #+#             */
-/*   Updated: 2025/06/22 17:51:01 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/01 15:47:09 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
 #include <stdlib.h>
+
+char	*expand_aux(char *str, int *i, int last_status)
+{
+	char	*sub;
+
+	if (!str[(*i)++])
+		return (NULL);
+	else if (str[(*i)] == '?')
+	{
+		sub = nbr_to_str(last_status);
+		(*i)++;
+	}
+	else
+	{
+		// TODO: see below statements
+		// keep in mind the skip change since '?'
+		sub = get_env_val(get_var_name(&str[(*i)]));
+		(*i) = skip_var_name(str, (*i));
+	}
+	return (sub);
+}
 
 char	*expand(char *str, int last_status)
 {
@@ -27,27 +48,15 @@ char	*expand(char *str, int last_status)
 	while (str[i])
 	{
 		s = i;
-		while (str[i] && str[i] != '$')
-			i++;
+		i = len_until_char(str, i, '$');
 		sub = ft_substr(str, s, i - s);
 		tmp = ret;
 		ret = ft_strjoin(tmp, sub);
 		free(tmp);
 		free(sub);
-		if (!str[i++])
+		sub = expand_aux(str, &i, last_status);
+		if (sub == NULL)
 			return (ret);
-		else if (str[i] == '?')
-		{
-			sub = nbr_to_str(last_status);
-			i++;
-		}
-		else
-		{
-			// TODO: see below statements
-			// keep in mind the skip change since '?'
-			sub = get_env_val(get_var_name(&str[i]));
-			i = skip_var_name(str, i);
-		}
 		tmp = ret;
 		ret = ft_strjoin(tmp, sub);
 		free(tmp);

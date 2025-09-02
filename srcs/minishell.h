@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/07/12 01:41:32 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/01 13:12:51 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,29 @@
 # include "lexer/lexer.h"
 # include "execute/execute.h"
 
-# define RST	"\033[0m"
-# define RED	"\033[1;31m"
-# define BLUE	"\033[1;34m"
-# define GREEN	"\033[1;32m"
-# define YELLOW	"\033[1;33m"
+# define RST		"\033[0m"
+# define RED		"\033[1;31m"
+# define BLUE		"\033[1;34m"
+# define GREEN		"\033[1;32m"
+# define YELLOW		"\033[1;33m"
 
-# define BG_RST    "\033[0m"
-# define BG_RED    "\033[41m"
-# define BG_GREEN  "\033[42m"
-# define BG_YELLOW "\033[43m"
-# define BG_BLUE   "\033[44m"
-# define BG_MAGENTA "\033[45m"
-# define BG_CYAN   "\033[46m"
-# define BG_WHITE  "\033[47m"
+# define BG_RST		"\033[0m"
+# define BG_RED		"\033[41m"
+# define BG_GREEN	"\033[42m"
+# define BG_YELLOW	"\033[43m"
+# define BG_BLUE	"\033[44m"
+# define BG_MAGENTA	"\033[45m"
+# define BG_CYAN	"\033[46m"
+# define BG_WHITE	"\033[47m"
+
+# define PS1 "minishell> "
+
+typedef struct s_data
+{
+	t_token	*token;
+	t_cmd	*cmd;
+	char	**env;
+	int		last_status;
+}	t_data;
 
 #endif

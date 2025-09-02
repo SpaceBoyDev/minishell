@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:40:03 by dario             #+#    #+#             */
-/*   Updated: 2025/08/10 16:33:27 by dario            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:37:27 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@
 
 // Main Utils
 char	*prompt_rl(void);
-void	start_minishell(void);
+// void	start_minishell(void);
 void	setup_signal_handler(void);
-int		run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env,
-		int last_status);
+int		run_non_interactive(char *file, t_data *data);
 
 // Error Handling
 void	error_msg(const char *error_message, bool simple);

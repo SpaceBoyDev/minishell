@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/06/29 14:38:45 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:15:40 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		close(pipefd[1]);
 	if (pipefd[2] != INT_MAX)
 		close(pipefd[2]);
-
 
 	if (cmd->infile && cmd->in_op == IN)
 	{

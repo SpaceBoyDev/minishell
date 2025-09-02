@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 08:42:42 by marcolop          #+#    #+#             */
-/*   Updated: 2025/06/29 08:42:42 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/01 14:07:01 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,24 @@ t_cmd	*pipeline_cmd(t_token *token)
 	return (first);
 }
 
+int	args_ret(t_token *token, t_cmd *cmd, char **args, int cnt)
+{
+	while (token && token->type != PIPE)
+	{
+		if (token->type == STR)
+		{
+			args[cnt] = ft_strdup(token->str);
+			if (!args[cnt])
+				return (0);
+			cnt++;
+		}
+		token = token->next;
+	}
+	cmd->args = args;
+	cmd->cmd = args[0];
+	return (1);
+}
+
 int	args_cmd(t_cmd *cmd, t_token *token)
 {
 	int		cnt;
@@ -93,88 +111,5 @@ int	args_cmd(t_cmd *cmd, t_token *token)
 		return (0);
 	args[cnt] = NULL;
 	cnt = 0;
-	while (token && token->type != PIPE)
-	{
-		if (token->type == STR)
-		{
-			args[cnt] = ft_strdup(token->str);
-			if (!args[cnt])
-				return (0);
-			cnt++;
-		}
-		token = token->next;
-	}
-	cmd->args = args;
-	cmd->cmd = args[0];
-	return (1);
-}
-
-int	in_cmd(t_cmd *cmd, t_token *token)
-{
-	t_token	*key;
-
-	key = NULL;
-	while (token && token->type != PIPE)
-	{
-		if (token->type == IN || token->type == HEREDOC)
-			key = token;
-		token = token->next;
-	}
-	if (!key)
-		return (1);
-	cmd->in_op = key->type;
-	cmd->infile = ft_strdup(key->str);
-	if (!cmd->infile)
-		return (0);
-	return (1);
-}
-
-int	out_cmd(t_cmd *cmd, t_token *token)
-{
-	t_token	*key;
-
-	key = NULL;
-	while (token && token->type != PIPE)
-	{
-		if (token->type == OUT || token->type == APPEND)
-			key = token;
-		token = token->next;
-	}
-	if (!key)
-		return (1);
-	cmd->out_op = key->type;
-	cmd->outfile = ft_strdup(key->str);
-	if (!cmd->outfile)
-		return (0);
-	return (1);
-}
-
-void	table_free(char **table)
-{
-	int	i;
-
-	i = 0;
-	while (table[i])
-	{
-		free(table[i]);
-		i++;
-	}
-	free(table);
-}
-
-void	cmd_free(t_cmd *cmd)
-{
-	t_cmd	*tmp;
-
-	while (cmd)
-	{
-		if (cmd->infile)
-			free(cmd->infile);
-		if (cmd->outfile)
-			free(cmd->outfile);
-		table_free(cmd->args);
-		tmp = cmd;
-		cmd = cmd->next;
-		free(tmp);
-	}
+	return (args_ret(token, cmd, args, cnt));
 }

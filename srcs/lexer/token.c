@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/06/22 14:15:22 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/01 15:16:21 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
 
-t_token *tokenize(char *input, int last_status)
+t_token	*tokenize(char *input, int last_status)
 {
 	int		i;
 	char	*str;
@@ -43,7 +43,6 @@ t_token *tokenize(char *input, int last_status)
 	return (first);
 }
 
-
 t_token	*create_token(char	*str, int *i, int last_status)
 {
 	t_token	*token;
@@ -60,69 +59,6 @@ t_token	*create_token(char	*str, int *i, int last_status)
 			return (NULL);
 	}
 	return (token);
-}
-
-char	*token_str(char	*str, int *i, int last_status)
-{
-	int		len;
-	int		start;
-	char	*val;
-	char	*tmp;
-
-	while (str[*i] && str[*i] == ' ')
-		(*i)++;
-	if (!str[*i])
-		return (NULL);
-	len = 0;
-	start = *i;
-	if (str[*i] == '<' || str[*i] == '>' || str[*i] == '|') {
-		return (NULL);
-	}
-	else if (str[*i] == '\'')
-	{
-		start++;
-		while (str[++(*i)] != '\'')
-		{
-			len++;
-		}
-		(*i)++;
-		val = ft_substr(str, start, len);
-		if (!val)
-			return (NULL);
-		while (str[*i] && str[*i] == ' ')
-			(*i)++;
-	}
-	else if (str[*i] == '\"')
-	{
-		start++;
-		while (str[++(*i)] != '\"')
-		{
-			len++;
-		}
-		(*i)++;
-		val = ft_substr(str, start, len);
-		if (!val)
-			return (NULL);
-		while (str[*i] && str[*i] == ' ')
-			(*i)++;
-		tmp = val;
-		val = expand(tmp, last_status);
-		free(tmp);
-	}
-	else
-	{
-		while (!is_separator(str[*i]))
-		{
-			(*i)++;
-			len++;
-		}
-		val = ft_substr(str, start, len);
-		if (!val)
-			return (NULL); // TODO: check null ft who called
-		while (str[*i] && str[*i] == ' ')
-			(*i)++;
-	}
-	return (val);
 }
 
 // sets type of token
