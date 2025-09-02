@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/06/28 15:46:48 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:21:32 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_cmd
 	t_op			out_op;
 	int				in_fd;
 	int				out_fd;
+	int				in_std;
+	int				out_std;
 	pid_t			pid;
 	struct s_cmd	*next;
 }	t_cmd;
