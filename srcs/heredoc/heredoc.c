@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/07/02 13:52:33 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:13:30 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-void	heredoc(char	*delimeter)
+int	heredoc(char	*delimeter)
 {
 	pid_t	pid;
 	char	*input;
@@ -35,9 +35,10 @@ void	heredoc(char	*delimeter)
 		exit(EXIT_SUCCESS);
 	}
 	close(pipefd[1]);
-	dup2(pipefd[0], 0);
-	close(pipefd[0]);
-	wait(NULL);
+	// dup2(pipefd[0], 0);
+	// close(pipefd[0]);
+	waitpid(pid, NULL, 0);
+	return (pipefd[0]);
 }
 
 char	*heredoc_rl(char *delimeter)
