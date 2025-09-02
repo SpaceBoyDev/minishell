@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include "../builtins/builtins.h"
 
 int open_pipe(t_cmd *left, t_cmd *right)
 {
@@ -62,10 +63,17 @@ int	pipeline(t_cmd *cmd, char **env)
 	{
 		open_pipe(cmd, cmd->next);
 		set_io(cmd);
-		pid = fork();
-		if (pid == 0)
+		if (is_builtin(cmd->cmd))
 		{
-			execute(cmd, env);
+			exec_builtins(cmd, env);
+		}
+		else
+		{
+			pid = fork();
+			if (pid == 0)
+			{
+				execute(cmd, env);
+			}
 		}
 		restore_io(cmd);
 		cmd = cmd->next;

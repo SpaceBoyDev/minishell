@@ -6,28 +6,16 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/02 19:10:07 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/02 19:24:19 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "builtins.h"
+#include "../heredoc/heredoc.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	is_builtin(char *str)
 {
-	while (*s1 && *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
-}
-
-static bool	is_builtin(const char *str)
-{
-	size_t	len;
-
-	len = ft_strlen(str);
 	if (ft_strcmp(str, "echo") == 0
 		|| ft_strcmp(str, "cd") == 0
 		|| ft_strcmp(str, "pwd") == 0
@@ -35,14 +23,12 @@ static bool	is_builtin(const char *str)
 		|| ft_strcmp(str, "unset") == 0
 		|| ft_strcmp(str, "env") == 0
 		|| ft_strcmp(str, "exit") == 0)
-		return (true);
-	return (false);
+		return (1);
+	return (0);
 }
 
 int	exec_builtins(t_cmd *cmd, char **env)
 {
-	if (!is_builtin(cmd->cmd))
-		return (1);
 	if (ft_strcmp(cmd->cmd, "cd") == 0)
 		return (ft_cd(cmd->args[1]));
 	else if (ft_strcmp(cmd->cmd, "echo") == 0)
