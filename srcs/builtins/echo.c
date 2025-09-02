@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:11 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:04:52 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/02 20:33:59 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_echo(char **args) //TODO: fix printing when multiple args
 	{
 		printf("%s", args[i]);
 		++i;
+		if (args[i])
+			printf(" ");
 	}
 	if (nl)
 		printf("\n");
