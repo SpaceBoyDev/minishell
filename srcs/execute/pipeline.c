@@ -102,7 +102,7 @@ int	pipeline(t_cmd *cmd, char **env)
 			pid = fork();
 			if (pid == 0)
 			{
-				execute(cmd, env);
+				ft_exec(cmd, env);
 			}
 		}
 		restore_io(cmd);

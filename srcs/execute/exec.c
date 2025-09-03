@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 12:08:36 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:32:43 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**get_paths(void)
 	return (paths);
 }
 
-void	execute(t_cmd *cmd, char **env)
+void	ft_exec(t_cmd *cmd, char **env)
 {
 	char	**paths;
 	int		i;

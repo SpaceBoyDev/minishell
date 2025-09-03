@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/02 19:21:39 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/03 11:32:43 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # define CMD_NOT_FOUND 127
 
 char	**get_paths(void);
-void	execute(t_cmd *cmd, char **env);
+void	ft_exec(t_cmd *cmd, char **env);
 void	run_process(t_cmd *cmd, int *pipefd, char **env);
-void	execute(t_cmd *cmd, char **env);
+void	ft_exec(t_cmd *cmd, char **env);
 int		create_processes(t_cmd *cmd, char **env);
 
 int open_pipe(t_cmd *left, t_cmd *right);

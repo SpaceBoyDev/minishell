@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 13:50:21 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:32:43 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,5 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 		dup2(pipefd[3], 1);
 		close(pipefd[3]);
 	}
-	execute(cmd, env);
+	ft_exec(cmd, env);
 }
