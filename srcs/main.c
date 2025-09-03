@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:49:30 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/03 19:43:29 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ volatile sig_atomic_t	g_running_cmd = 0;
 void	execute_input(char *str, t_data *data)
 {
 	g_running_cmd = 1;
-	data->last_status = create_processes(data->cmd, data->env);
+	data->last_status = pipeline(data->cmd, data->env);
 	g_running_cmd = 0;
 	free(str);
 	token_free(data->token);
