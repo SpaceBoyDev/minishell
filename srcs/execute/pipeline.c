@@ -55,27 +55,25 @@ int	restore_io(t_cmd *cmd)
 
 int	io_set(t_cmd *cmd)
 {
-	if (cmd->in_op == IN)
+	if (cmd-> infile && cmd->in_op == IN)
 	{
 		cmd->in_fd = open(cmd->infile, O_RDONLY);
 		dup2(cmd->in_fd, 0);
 		close(cmd->in_fd);
 	}
-	else if (cmd->in_op == HEREDOC)
+	else if (cmd->infile && cmd->in_op == HEREDOC)
 	{
-		// TODO: heredoc behaves bad
-		// cat << eof > file
 		cmd->in_fd = heredoc(cmd->infile);
 		dup2(cmd->in_fd, 0);
 		close(cmd->in_fd);
 	}
-	if (cmd->out_op == OUT)
+	if (cmd->outfile && cmd->out_op == OUT)
 	{
 		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dup2(cmd->out_fd, 1);
 		close(cmd->out_fd);
 	}
-	else if (cmd->out_op == APPEND)
+	else if (cmd->outfile && cmd->out_op == APPEND)
 	{
 		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		dup2(cmd->out_fd, 1);
@@ -86,7 +84,6 @@ int	io_set(t_cmd *cmd)
 
 int	pipeline(t_cmd *cmd, char **env)
 {
-	(void)env;
 	pid_t	pid;
 	t_cmd	*first;
 
