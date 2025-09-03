@@ -75,7 +75,6 @@ void	run_process(t_cmd *cmd, int *pipefd, char **env)
 	if (pipefd[2] != INT_MAX)
 		close(pipefd[2]);
 
-
 	if (cmd->infile && cmd->in_op == IN)
 	{
 		close(pipefd[0]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nbr_to_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:25:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/07/11 13:25:45 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/01 13:23:10 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char	*nbr_to_str(int n)
+char	*build_str(int len, int neg, int pow, int nbr)
 {
-	long	nbr;
-	long	pow;
-	int		neg;
-	int		len;
-	int		i;
 	char	*str;
+	int		i;
 
-	(void)neg;
-	nbr = n;
-	pow = 1;
-	neg = 0;
-	len = 1;
 	i = 0;
-	if (nbr < 0)
-	{
-		nbr *= -1;
-		neg = 1;
-	}
-	while (nbr / (pow * 10) > 0)
-	{
-		pow *= 10;
-		len++;
-	}
 	str = (char *)malloc((len + neg) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -49,7 +30,6 @@ char	*nbr_to_str(int n)
 	}
 	while (pow)
 	{
-		// printf("%ld ", nbr / pow);
 		str[i] = (nbr / pow) + '0';
 		nbr = nbr % pow;
 		pow /= 10;
@@ -57,4 +37,29 @@ char	*nbr_to_str(int n)
 	}
 	str[i] = '\0';
 	return (str);
+}
+
+char	*nbr_to_str(int n)
+{
+	long	nbr;
+	long	pow;
+	int		neg;
+	int		len;
+
+	(void)neg;
+	nbr = n;
+	pow = 1;
+	neg = 0;
+	len = 1;
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		neg = 1;
+	}
+	while (nbr / (pow * 10) > 0)
+	{
+		pow *= 10;
+		len++;
+	}
+	return (build_str(len, neg, pow, nbr));
 }

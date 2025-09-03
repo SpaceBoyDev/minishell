@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:27 by marcolop          #+#    #+#             */
-/*   Updated: 2025/06/22 14:07:27 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/01 15:20:08 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	print_cmds(t_cmd	*cmd)
 	}
 }
 
+// DEBUG FUNCTION we don't care
 void	print_cmd(t_cmd	*cmd)
 {
 	int	i;
@@ -114,21 +115,3 @@ void	print_cmd(t_cmd	*cmd)
 	printf("\n");
 }
 
-int	is_separator(char c)
-{
-	if (c == '|')
-		return (1);
-	if (c == '<')
-		return (1);
-	if (c == '>')
-		return (1);
-	if (c == '\"')
-		return (1);
-	if (c == '\'')
-		return (1);
-	if (c == ' ')
-		return (1);
-	if (c == '\0')
-		return (1);
-	return (0);
-}

@@ -52,14 +52,12 @@ typedef struct s_cmd
 int				check_quotes(char *str);
 void			print_token(t_token *token);
 void			print_tokens(t_token *token);
-int				is_separator(char c);
 void			print_cmd(t_cmd	*cmd);
 void			print_cmds(t_cmd	*cmd);
 
 // token.c
 t_token			*tokenize(char *input, int last_status);
 t_token			*create_token(char *str, int *i, int last_status);
-char			*token_str(char *str, int *i, int last_status);
 t_op			token_type(char *str, int *i);
 void			token_free(t_token *token);
 
@@ -72,12 +70,19 @@ int				skip_var_name(char  *str, int i);
 // cmd.c
 t_cmd			*init_cmd(void);
 t_cmd			*build_cmd(t_token	*token);
+t_cmd			*pipeline_cmd(t_token *token);
 int				args_cmd(t_cmd *cmd, t_token *token);
+
+// cmd_utils.c
+int				len_until_char(char *str, int i, char character);
 int				in_cmd(t_cmd *cmd, t_token *token);
 int				out_cmd(t_cmd *cmd, t_token *token);
-t_cmd			*pipeline_cmd(t_token *token);
 void			cmd_free(t_cmd *cmd);
 void			table_free(char **table);
+
+// token_str.c
+char			*token_str(char *str, int *i, int last_status);
+
 
 // nbr_to_str.c
 char			*nbr_to_str(int n);

@@ -18,10 +18,9 @@
 
 // Main Utils
 char	*prompt_rl(void);
-void	start_minishell(void);
+// void	start_minishell(void);
 void	setup_signal_handler(void);
-int		run_non_interactive(char *file, t_token *token, t_cmd *cmd, char **env,
-		int last_status);
+int		run_non_interactive(char *file, t_data *data);
 
 // Error Handling
 void	error_msg(const char *error_message, bool simple);
