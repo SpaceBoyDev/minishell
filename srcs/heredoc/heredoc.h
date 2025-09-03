@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:30 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/02 19:52:56 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/03 11:27:56 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../minishell.h"
 
 int		heredoc(char	*delimeter);
-char	*heredoc_rl(char *delimeter);
 int		ft_strcmp(char *s1, char *s2);
 
 #endif
