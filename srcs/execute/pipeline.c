@@ -6,7 +6,7 @@
 #include "../builtins/builtins.h"
 #include "../heredoc/heredoc.h"
 
-int open_pipe(t_cmd *left, t_cmd *right)
+int	open_pipe(t_cmd *left, t_cmd *right)
 {
 	int	pipefd[2];
 
@@ -24,7 +24,6 @@ int	io_pipes(t_cmd *cmd)
 {
 	cmd->in_std = dup(0);
 	cmd->out_std = dup(1);
-
 	if (cmd->in_fd != -1)
 	{
 		dup2(cmd->in_fd, 0);
@@ -85,9 +84,10 @@ int	io_set(t_cmd *cmd)
 int	pipeline(t_cmd *cmd, char **env)
 {
 	pid_t	pid;
-	t_cmd	*first;
+	t_cmd	*cmd_cpy;
+	int		status;
 
-	first = cmd;
+	cmd_cpy = cmd;
 	while (cmd)
 	{
 		open_pipe(cmd, cmd->next);
@@ -95,7 +95,7 @@ int	pipeline(t_cmd *cmd, char **env)
 		io_set(cmd);
 		if (is_builtin(cmd->cmd))
 		{
-			exec_builtins(cmd, env);
+			cmd->ret = exec_builtins(cmd, env);
 		}
 		else
 		{
@@ -104,14 +104,23 @@ int	pipeline(t_cmd *cmd, char **env)
 			{
 				ft_exec(cmd, env);
 			}
+			cmd->pid = pid;
 		}
 		restore_io(cmd);
 		cmd = cmd->next;
 	}
-	while (first)
+	while (cmd_cpy)
 	{
-		wait(NULL);
-		first = first->next;
+		if (!is_builtin(cmd_cpy->cmd))
+		{
+			waitpid(cmd_cpy->pid, &status, 0);
+			status = WEXITSTATUS(status);
+		}
+		else
+		{
+			status = cmd_cpy->ret;
+		}
+		cmd_cpy = cmd_cpy->next;
 	}
-	return (0);
+	return (status);
 }
