@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:40:03 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:49:36 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/04 02:04:56 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@
 # include "../minishell.h"
 
 // Main Utils
-char	*prompt_rl(void);
-// void	start_minishell(void);
 void	setup_signal_handler(void);
+void	run_interactive(t_data *data);
 int		run_non_interactive(char *file, t_data *data);
+void	execute_input(char *str, t_data *data);
+int		tokenize_input(char *str, t_data *data);
+
+// Shell Utils
+char	*prompt_rl(void);
+void	init_data_env(char **src, t_data *data);
 
 // Error Handling
 void	error_msg(const char *error_message, bool simple);

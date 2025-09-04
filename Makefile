@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+         #
+#    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/09/01 13:50:00 by marcolop         ###   ########.fr        #
+#    Updated: 2025/09/04 02:05:17 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ HEREDOC		=	heredoc.c
 LEXER		=	utils.c token.c cmd.c cmd_utils.c token_str.c var_expansion.c nbr_to_str.c
 SIGNALS		=	signal_handling.c
 TESTS		=	test.c
-UTILS		=	main_utils.c error_handling.c
+UTILS		=	main_utils.c shell_utils.c error_handling.c
 
 SRCS		=	$(addprefix srcs/, $(SRC)) \
 				$(addprefix srcs/builtins/, $(BUILTINS)) \
