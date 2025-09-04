@@ -1,8 +1,9 @@
-builtins
+checkear builtins
 
 error messages (not in subject)
 	cmd not found
 	no permissions
+	file not found
 	etc
 
 edit SHLVL var in env? (not in subject)
