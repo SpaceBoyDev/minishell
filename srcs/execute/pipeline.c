@@ -52,8 +52,7 @@ int	restore_io(t_cmd *cmd)
 	return (0);
 }
 
-// TODO: must check open() return value
-int	io_set(t_cmd *cmd)
+int	in_set(t_cmd *cmd)
 {
 	if (cmd->infile && cmd->in_op == IN)
 	{
@@ -74,10 +73,15 @@ int	io_set(t_cmd *cmd)
 		dup2(cmd->in_fd, 0);
 		close(cmd->in_fd);
 	}
+	return (1);
+}
+
+int	out_set(t_cmd *cmd)
+{
 	if (cmd->outfile && cmd->out_op == OUT)
 	{
 		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (cmd->in_fd == -1)
+		if (cmd->out_fd == -1)
 		{
 			perror(cmd->outfile);
 			return (0);
@@ -99,6 +103,24 @@ int	io_set(t_cmd *cmd)
 	return (1);
 }
 
+int	io_set(t_cmd *cmd)
+{
+	if (!in_set(cmd))
+		return (0);
+	if (!out_set(cmd))
+		return (0);
+	return (1);
+}
+
+int	std_io(t_cmd *cmd)
+{
+	dup2(cmd->in_std, 0);
+	close(cmd->in_std);
+	dup2(cmd->out_std, 1);
+	close(cmd->out_std);
+	return (0);
+}
+
 int	pipeline(t_cmd *cmd, char **env)
 {
 	pid_t	pid;
@@ -110,7 +132,12 @@ int	pipeline(t_cmd *cmd, char **env)
 	{
 		open_pipe(cmd, cmd->next);
 		io_pipes(cmd);
-		io_set(cmd);
+		if (!io_set(cmd))
+		{
+			std_io(cmd);
+			cmd = cmd->next;
+			continue ;
+		}
 		if (is_builtin(cmd->cmd))
 		{
 			cmd->ret = exec_builtins(cmd, env);
