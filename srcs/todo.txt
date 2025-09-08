@@ -14,6 +14,7 @@ migrate to data struct
 checkear builtins
 	echo replace $var with no quotes
 	use stderror in builtins
+	use strcmp, not strncmp
 
 error messages (not in subject)
 	cmd not found
