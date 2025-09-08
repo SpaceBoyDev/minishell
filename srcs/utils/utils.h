@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:40:03 by dario             #+#    #+#             */
-/*   Updated: 2025/09/04 02:04:56 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/08 12:41:45 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		tokenize_input(char *str, t_data *data);
 // Shell Utils
 char	*prompt_rl(void);
 void	init_data_env(char **src, t_data *data);
+char	*ft_getenv(char *name, char **env);
 
 // Error Handling
 void	error_msg(const char *error_message, bool simple);
