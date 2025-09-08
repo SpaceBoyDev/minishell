@@ -6,7 +6,7 @@
 /*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:11 by dario             #+#    #+#             */
-/*   Updated: 2025/09/08 13:14:58 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:31:51 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 #include "../utils/utils.h"
 #include "../heredoc/heredoc.h"
 
+void	print_env_var(char *var)
+{
+	char	*env_var;
+
+	env_var = expand(var, 0);
+	printf("%s", env_var);
+	free(env_var);
+}
+
 int	ft_echo(char **args, char **env)
 {
 	int		i;
 	bool	nl;
-	char	*env_var;
 
 	(void)env;
 	nl = (bool)ft_strcmp(args[1], "-n");
@@ -29,11 +37,7 @@ int	ft_echo(char **args, char **env)
 	while (args[i])
 	{
 		if (args[i][0] == '$')
-		{
-			env_var = expand(args[i], 0);
-			printf("%s", env_var);
-			free(env_var);
-		}
+			print_env_var(args[i]);
 		else
 			printf("%s", args[i]);
 		++i;
