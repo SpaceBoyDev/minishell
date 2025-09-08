@@ -6,26 +6,15 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:13:04 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/04 02:36:26 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+#include "../heredoc/heredoc.h"
 #include "../signals/signals.h"
 
-char	*prompt_rl(void)
-{
-	char	*cwd;
-	char	*path;
-	char	*prompt;
-
-	cwd = getcwd(NULL, 0);
-	path = ft_strjoin(PINK, cwd);
-	prompt = ft_strjoin(path, "\033[5m> " RST);
-	free(path);
-	free(cwd);
-	return (prompt);
-}
+extern volatile sig_atomic_t	g_running_cmd;
 
 void	setup_signal_handler(void)
 {
@@ -35,6 +24,28 @@ void	setup_signal_handler(void)
 	sa.sa_flags = SA_RESTART;
 	sa.sa_handler = &handler;
 	sigaction(SIGINT, &sa, NULL);
+}
+
+void	run_interactive(t_data *data)
+{
+	char	*str;
+
+	while (1)
+	{
+		setup_signal_handler();
+		str = readline(PS1);
+		if (!str)
+		{
+			printf("Leaving minishell...\n");
+			break ;
+		}
+		else if (!str[0])
+			continue ;
+		add_history(str);
+		if (tokenize_input(str, data) == 1)
+			continue ;
+		execute_input(str, data);
+	}
 }
 
 int	run_non_interactive(char *file, t_data *data)
@@ -48,18 +59,49 @@ int	run_non_interactive(char *file, t_data *data)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!check_quotes(line))
-			error_exit("quotation error");
-		data->token = tokenize(line, data->last_status);
-		if (!data->token)
-			error_exit("tokenizing error");
-		data->cmd = pipeline_cmd(data->token);
-		if (!data->cmd)
-			error_exit("cmd build error");
-		create_processes(data->cmd, data->env);
-		free(line);
+		if (tokenize_input(line, data) == 1)
+			continue ;
+		execute_input(line, data);
+		//free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
+	return (0);
+}
+
+void	execute_input(char *str, t_data *data)
+{
+	g_running_cmd = 1;
+	data->last_status = pipeline(data->cmd, data->env);
+	g_running_cmd = 0;
+	free(str);
+	token_free(data->token);
+	cmd_free(data->cmd);
+}
+
+int	tokenize_input(char *str, t_data *data)
+{
+	if (!check_quotes(str))
+	{
+		free(str);
+		ft_putstr_fd("quotation error\n", 2);
+		return (1);
+	}
+	data->token = tokenize(str, data->last_status);
+	if (!data->token)
+	{
+		free(str);
+		ft_putstr_fd("tokenizing error\n", 2);
+		return (1);
+	}
+	data->cmd = pipeline_cmd(data->token);
+	if (!data->cmd)
+	{
+		free(str);
+		token_free(data->token);
+		ft_putstr_fd("cmd build error\n", 2);
+		return (1);
+	}
 	return (0);
 }

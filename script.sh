@@ -1,2 +1,3 @@
-#!/bin/sh
-ls -a
+#!/bin/s
+ls -a ./doc/
+ls -a ./srcs/

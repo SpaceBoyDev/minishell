@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:27 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 15:20:08 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/04 02:23:05 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void	print_tokens(t_token	*token)
 
 void	print_cmds(t_cmd	*cmd)
 {
+	t_cmd	*og_cmd;
+
+	og_cmd = cmd;
 	while (cmd)
 	{
 		print_cmd(cmd);
@@ -80,6 +83,7 @@ void	print_cmds(t_cmd	*cmd)
 		if (cmd)
 			printf("-----PIPE-----\n");
 	}
+	cmd = og_cmd;
 }
 
 // DEBUG FUNCTION we don't care
