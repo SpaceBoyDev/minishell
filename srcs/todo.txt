@@ -1,11 +1,19 @@
-builtins
+env!
+	implement ft_getenv()
+	use ft_getenv() instead of getenv()
+	use data->env instead of env
+		important to do it in ft_exec()!
+
+edit SHLVL var in env? (not in subject)
+	do it when loading env into data->env? or just using ft_getenv()?
+
+checkear builtins
 
 error messages (not in subject)
 	cmd not found
 	no permissions
+	file not found
 	etc
-
-edit SHLVL var in env? (not in subject)
 
 use "minishell> " as prompt?
 	just to avoid potential bugs related to removing current directory etc
