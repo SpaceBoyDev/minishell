@@ -31,6 +31,8 @@ delete current directory?
 run minishell inside minishell?
 replace $var in heredoc line?
 replace shell lvl env var?
+---
 
+check comments and TODO
 leaks
 norminette
