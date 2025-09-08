@@ -7,7 +7,13 @@ env!
 edit SHLVL var in env? (not in subject)
 	do it when loading env into data->env? or just using ft_getenv()?
 
+migrate to data struct
+
+./script.sh error message for no permissions?
+
 checkear builtins
+	echo replace $var with no quotes
+	use stderror in builtins
 
 error messages (not in subject)
 	cmd not found
