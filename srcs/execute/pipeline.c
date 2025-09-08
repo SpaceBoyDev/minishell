@@ -140,7 +140,6 @@ int	pipeline(t_cmd *cmd, char **env)
 		}
 		if (is_builtin(cmd->cmd))
 		{
-			printf("EJECUTANDO BUILTIN\n");
 			cmd->ret = exec_builtins(cmd, env);
 		}
 		else
