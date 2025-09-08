@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/03 11:32:43 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/08 12:47:49 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define CMD_NOT_FOUND 127
 
-char	**get_paths(void);
+char	**get_paths(char **env);
 void	ft_exec(t_cmd *cmd, char **env);
 void	run_process(t_cmd *cmd, int *pipefd, char **env);
 void	ft_exec(t_cmd *cmd, char **env);

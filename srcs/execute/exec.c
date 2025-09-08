@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/03 11:48:02 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/08 12:50:47 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 #include <unistd.h>
 #include <limits.h>
 #include "../heredoc/heredoc.h"
+#include "../utils/utils.h"
 
-char	**get_paths(void)
+char	**get_paths(char **env)
 {
 	char	*path_str;
 	char	**paths;
 
-	path_str = getenv("PATH");
+	path_str = ft_getenv("PATH", env);
 	if (!path_str)
 		return (NULL); // TODO: error message?
 	paths = ft_split(path_str, ':');
@@ -42,7 +43,7 @@ void	ft_exec(t_cmd *cmd, char **env)
 	char	*str;
 
 	execve(cmd->cmd, cmd->args, env);
-	paths = get_paths();
+	paths = get_paths(env);
 	if (!paths)
 		return ;
 	i = 0;

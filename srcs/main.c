@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/09/05 14:35:52 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/08 12:46:41 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,26 +95,6 @@ void	init_data_env(char **src, t_data *data)
 	env_count = -1;
 	while (src[++env_count])
 		data->env[env_count] = ft_strdup(src[env_count]);
-}
-
-// TODO: move this ft somewhere else
-char	*ft_getenv(char *name, char **env)
-{
-	int		i;
-	char	*needle;
-
-	needle = ft_strjoin(name, "=");
-	i = 0;
-	while (env[i])
-	{
-		if (!ft_strncmp(needle, env[i], ft_strlen(needle)))
-		{
-			free(needle);
-			return (&env[i][ft_strlen(name) + 1]);
-		}
-		i++;
-	}
-	return (NULL);
 }
 
 int	main(int argc, char **argv, char **env)
