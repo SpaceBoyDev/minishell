@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:40:03 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 21:53:13 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 22:52:24 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,5 @@ int		ft_strcmp(char *s1, char *s2);;
 // Error Handling
 void	error_msg(const char *error_message, bool simple);
 void	error_exit(const char *error_message);
-
-char	*ft_getenv(char *name, char **env);
 
 #endif
