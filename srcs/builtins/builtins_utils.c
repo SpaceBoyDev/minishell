@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 22:24:19 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 22:53:33 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_builtin(char *str)
 int	exec_builtins(t_data *data)
 {
 	if (ft_strcmp(data->cmd->name, "cd") == 0)
-		return (ft_cd(data->cmd->args[1]));
+		return (ft_cd(data->cmd->args[1], data->env));
 	else if (ft_strcmp(data->cmd->name, "echo") == 0)
 		return (ft_echo(data->cmd->args, data));
 	else if (ft_strcmp(data->cmd->name, "env") == 0)
