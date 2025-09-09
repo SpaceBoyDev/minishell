@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 16:32:38 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 22:42:04 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	run_non_interactive(char *file, t_data *data)
 		if (tokenize_input(line, data) == 1)
 			continue ;
 		execute_input(line, data);
-		//free(line);
 		line = get_next_line(fd);
 	}
 	free(line);

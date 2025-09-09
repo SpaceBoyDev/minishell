@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/03 11:27:52 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 22:01:57 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include "../utils/utils.h"
 
 // TODO: expand variables in lines?
 int	heredoc(char	*delimeter)
@@ -47,16 +48,4 @@ int	heredoc(char	*delimeter)
 	close(pipefd[1]);
 	waitpid(pid, NULL, 0);
 	return (pipefd[0]);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	if (!s1 || !s2)
-		return (0);
-	while (*s1 && *s2 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
