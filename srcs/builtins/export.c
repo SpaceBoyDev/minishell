@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 21:40:26 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 23:06:02 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static char	*replace_existing_var(char **env, char *new_var, int count)
 	if (ft_strncmp(old_var, new_var, ft_strchr(new_var, '=') - new_var) == 0
 		&& old_var[ft_strchr(new_var, '=') - new_var] == '=')
 	{
-		printf(BLUE"REEMPLAZANDO\n"RST);
 		free(env[count]);
 		env[count] = ft_strdup(new_var);
 		return (env[count]);
