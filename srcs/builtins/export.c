@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:05:50 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 21:40:26 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,18 @@ static char	**set_env_var(char *new_var, char **old_env)
 	return (new_env);
 }
 
-int	ft_export(t_cmd *cmd, char **env)
+int	ft_export(t_data *data)
 {
 	char	**old_env;
 	int		i;
 
 	i = 1;
-	if (!cmd->args[1])
-		print_export(env);
-	while (cmd->args[i])
+	if (!data->cmd->args[1])
+		print_export(data->env);
+	while (data->cmd->args[i])
 	{
-		old_env = env;
-		env = set_env_var(cmd->args[i], old_env);
+		old_env = data->env;
+		data->env = set_env_var(data->cmd->args[i], old_env);
 		++i;
 	}
 	return (0);

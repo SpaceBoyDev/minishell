@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 16:41:41 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 21:40:41 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	exec_builtins(t_data *data)
 	else if (ft_strcmp(data->cmd->name, "env") == 0)
 		return (ft_env(data->env));
 	else if (ft_strcmp(data->cmd->name, "export") == 0)
-		return (ft_export(data->cmd, data->env));
+		return (ft_export(data));
 	else if (ft_strcmp(data->cmd->name, "pwd") == 0)
 		return (ft_pwd());
 	else if (ft_strcmp(data->cmd->name, "exit") == 0)

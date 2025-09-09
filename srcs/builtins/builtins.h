@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 16:40:54 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 21:40:33 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_cd(char *path);
 int		ft_echo(char **args, t_data *data);
 int		ft_env(char **env);
 void	ft_exit(void);
-int		ft_export(t_cmd *cmd, char **env);
+int		ft_export(t_data *data);
 int		ft_pwd(void);
 int		ft_unset(t_cmd *cmd, char **env);
 
