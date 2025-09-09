@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 22:48:15 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 23:08:14 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	run_interactive(t_data *data)
 		str = readline(prompt_rl());
 		if (!str)
 		{
-			printf("Leaving minishell...\n");
+			printf(BLUE"Leaving minishell...\n"RST);
 			break ;
 		}
 		else if (!str[0])
