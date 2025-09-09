@@ -6,52 +6,34 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:23 by dario             #+#    #+#             */
-/*   Updated: 2025/07/28 20:59:34 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 22:43:34 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+#include "../utils/utils.h"
 
-char	**unset_var(char *vardlt, int count, char **env, int env_len)
+int	ft_unset(t_data *data)
 {
-	char	**new_env;
-	char	*old_var;
-	int		i;
+	int	i;
+	int	j;
 
-	old_var = env[count];
-	if (ft_strncmp(old_var, vardlt, ft_strchr(vardlt, '=') - vardlt) == 0
-		&& old_var[ft_strchr(vardlt, '=') - vardlt] == '=')
+	if (!data->cmd->args[1])
+		return (1);
+	i = 0;
+	j = 0;
+	while (data->env[i])
 	{
-		new_env = malloc((env_len) * sizeof(char *));
-		if (!new_env)
-			return (env);
-		i = -1;
-		while (env[++i])
+		if (ft_strncmp(data->env[i], data->cmd->args[1], \
+			ft_strlen(data->cmd->args[1])) == 0
+			&& data->env[i][ft_strlen(data->cmd->args[1])] == '=')
 		{
-			if (i != count)
-				new_env[i] = ft_strdup(env[i]);
+			free(data->env[i]);
+			i++;
+			continue ;
 		}
-		new_env[i + 1] = NULL;
-		return (new_env);
+		data->env[j++] = data->env[i++];
 	}
-	return (env);
-}
-
-int	ft_unset(t_cmd *cmd, char **env)
-{
-	char	**old_env;
-	int		i;
-	int		env_len;
-
-	i = 1;
-	env_len = 0;
-	while (env[env_len])
-		++env_len;
-	while (cmd->args[i])
-	{
-		old_env = env;
-		env = unset_var(cmd->args[i], i, old_env, env_len);
-		++i;
-	}
+	data->env[j] = NULL;
 	return (0);
 }

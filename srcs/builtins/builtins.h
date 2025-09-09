@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 21:40:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 21:47:13 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int		ft_env(char **env);
 void	ft_exit(void);
 int		ft_export(t_data *data);
 int		ft_pwd(void);
-int		ft_unset(t_cmd *cmd, char **env);
+int		ft_unset(t_data *data);
+
+void	print_env(char **env);
 
 char	**unset_var(char *vardlt, int count, char **env, int env_len);
 

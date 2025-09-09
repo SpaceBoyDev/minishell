@@ -6,13 +6,13 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 21:40:41 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 22:24:19 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "builtins.h"
-#include "../heredoc/heredoc.h"
+#include "../utils/utils.h"
 
 int	is_builtin(char *str)
 {
@@ -39,6 +39,8 @@ int	exec_builtins(t_data *data)
 		return (ft_export(data));
 	else if (ft_strcmp(data->cmd->name, "pwd") == 0)
 		return (ft_pwd());
+	else if (ft_strcmp(data->cmd->name, "unset") == 0)
+		return (ft_unset(data));
 	else if (ft_strcmp(data->cmd->name, "exit") == 0)
 	{
 		ft_exit();
