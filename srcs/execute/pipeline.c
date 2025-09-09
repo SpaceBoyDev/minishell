@@ -56,7 +56,6 @@ int	in_set(t_cmd *cmd)
 {
 	if (cmd->infile && cmd->in_op == IN)
 	{
-		close(0);
 		cmd->in_fd = open(cmd->infile, O_RDONLY);
 		if (cmd->in_fd == -1)
 		{
