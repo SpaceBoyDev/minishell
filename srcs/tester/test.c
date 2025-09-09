@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 12:57:59 by marcolop          #+#    #+#             */
-/*   Updated: 2025/07/11 12:57:59 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:16:59 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	test_var_expansion(void)
 	// printf("%s\n", expand("hola$", 0));
 	// printf("%s\n", expand("You are in $PWD", 0));
 	// printf("%s\n", expand("$SHELL and $SHELL and $HOME$SHELL", 0));
-	printf("%s\n", expand("$HOME $? $PWD", -127));
+	// printf("%s\n", expand("$HOME $? $PWD", -127));
 	printf("-----\n");
 }
 

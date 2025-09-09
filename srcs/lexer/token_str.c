@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:16:06 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 15:18:42 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:54:39 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*str_quotes_opt(char *str, int *i, int start)
 	return (val);
 }
 
-char	*build_val(char *str, int *i, int last_status)
+char	*build_val(char *str, int *i, t_data *data)
 {
 	char	*val;
 	int		start;
@@ -89,7 +89,7 @@ char	*build_val(char *str, int *i, int last_status)
 		if (tmp_char == '\"')
 		{
 			tmp = val;
-			val = expand(tmp, last_status);
+			val = expand(tmp, data);
 			free(tmp);
 		}
 	}
@@ -98,7 +98,7 @@ char	*build_val(char *str, int *i, int last_status)
 	return (val);
 }
 
-char	*token_str(char	*str, int *i, int last_status)
+char	*token_str(char	*str, int *i, t_data *data)
 {
 	char	*val;
 
@@ -106,6 +106,6 @@ char	*token_str(char	*str, int *i, int last_status)
 		(*i)++;
 	if (!str[*i])
 		return (NULL);
-	val = build_val(str, i, last_status);
+	val = build_val(str, i, data);
 	return (val);
 }

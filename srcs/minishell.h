@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:04 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:12:51 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 16:15:17 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,5 @@
 # define BG_WHITE	"\033[47m"
 
 # define PS1 "minishell> "
-
-typedef struct s_data
-{
-	t_token	*token;
-	t_cmd	*cmd;
-	char	**env;
-	int		last_status;
-}	t_data;
 
 #endif

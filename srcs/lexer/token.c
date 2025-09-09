@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 15:16:21 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:58:56 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
 
-t_token	*tokenize(char *input, int last_status)
+t_token	*tokenize(char *input, t_data *data)
 {
 	int		i;
 	char	*str;
@@ -27,11 +27,11 @@ t_token	*tokenize(char *input, int last_status)
 	if (str[0] == '\0')
 		return (NULL); // TODO: empty str
 	i = 0;
-	first = create_token(str, &i, last_status);
+	first = create_token(str, &i, data);
 	token = first;
 	while (str[i])
 	{
-		token->next = create_token(str, &i, last_status);
+		token->next = create_token(str, &i, data);
 		if (!token->next)
 		{
 			// TODO: free previous tokens
@@ -43,7 +43,7 @@ t_token	*tokenize(char *input, int last_status)
 	return (first);
 }
 
-t_token	*create_token(char	*str, int *i, int last_status)
+t_token	*create_token(char	*str, int *i, t_data *data)
 {
 	t_token	*token;
 
@@ -54,7 +54,7 @@ t_token	*create_token(char	*str, int *i, int last_status)
 	token->type = token_type(str, i);
 	if (token->type != PIPE)
 	{
-		token->str = token_str(str, i, last_status);
+		token->str = token_str(str, i, data);
 		if (token->str == NULL)
 			return (NULL);
 	}

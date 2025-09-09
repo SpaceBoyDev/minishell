@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/04 02:36:26 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:51:28 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	tokenize_input(char *str, t_data *data)
 		ft_putstr_fd("quotation error\n", 2);
 		return (1);
 	}
-	data->token = tokenize(str, data->last_status);
+	data->token = tokenize(str, data);
 	if (!data->token)
 	{
 		free(str);

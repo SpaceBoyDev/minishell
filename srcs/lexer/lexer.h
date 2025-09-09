@@ -6,14 +6,15 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/03 11:51:28 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:18:25 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-#include <sys/types.h>
+# include <sys/types.h>
+
 typedef enum e_op
 {
 	STR,
@@ -48,6 +49,14 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
+typedef struct s_data
+{
+	t_token	*token;
+	t_cmd	*cmd;
+	char	**env;
+	int		last_status;
+}	t_data;
+
 // utils.c
 int				check_quotes(char *str);
 void			print_token(t_token *token);
@@ -56,15 +65,15 @@ void			print_cmd(t_cmd	*cmd);
 void			print_cmds(t_cmd	*cmd);
 
 // token.c
-t_token			*tokenize(char *input, int last_status);
-t_token			*create_token(char *str, int *i, int last_status);
+t_token			*tokenize(char *input, t_data *data);
+t_token			*create_token(char *str, int *i, t_data *data);
 t_op			token_type(char *str, int *i);
 void			token_free(t_token *token);
 
 // var_expansion.c
-char			*expand(char *str, int last_status);
+char			*expand(char *str, t_data *data);
 char			*get_var_name(char *str);
-char			*get_env_val(char *var_name);
+char			*get_env_val(char *var_name, t_data *data);
 int				skip_var_name(char  *str, int i);
 
 // cmd.c
@@ -81,7 +90,8 @@ void			cmd_free(t_cmd *cmd);
 void			table_free(char **table);
 
 // token_str.c
-char			*token_str(char *str, int *i, int last_status);
+char			*token_str(char *str, int *i, t_data *data);
+char			*build_val(char *str, int *i, t_data *data);
 
 
 // nbr_to_str.c

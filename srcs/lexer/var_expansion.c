@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 17:51:01 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/08 13:00:26 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:58:44 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../utils/utils.h"
 #include <stdlib.h>
 
-char	*expand_aux(char *str, int *i, int last_status)
+char	*expand_aux(char *str, int *i, t_data *data)
 {
 	char	*sub;
 
@@ -23,20 +23,20 @@ char	*expand_aux(char *str, int *i, int last_status)
 		return (NULL);
 	else if (str[(*i)] == '?')
 	{
-		sub = nbr_to_str(last_status);
+		sub = nbr_to_str(data->last_status);
 		(*i)++;
 	}
 	else
 	{
 		// TODO: see below statements
 		// keep in mind the skip change since '?'
-		sub = get_env_val(get_var_name(&str[(*i)]));
+		sub = get_env_val(get_var_name(&str[(*i)]), data);
 		(*i) = skip_var_name(str, (*i));
 	}
 	return (sub);
 }
 
-char	*expand(char *str, int last_status)
+char	*expand(char *str, t_data *data)
 {
 	int		i;
 	int		s;
@@ -55,7 +55,7 @@ char	*expand(char *str, int last_status)
 		ret = ft_strjoin(tmp, sub);
 		free(tmp);
 		free(sub);
-		sub = expand_aux(str, &i, last_status);
+		sub = expand_aux(str, &i, data);
 		if (sub == NULL)
 			return (ret);
 		tmp = ret;
@@ -81,15 +81,13 @@ char	*get_var_name(char *str)
 	return (ft_substr(str, 0, i));
 }
 
-char	*get_env_val(char *var_name)
+char	*get_env_val(char *var_name, t_data *data)
 {
 	char	*env_val;
 
 	if (!var_name)
 		return (NULL);
-	// TODO: use ft_getenv()
-	// must change innter workings because it needs env
-	env_val = getenv(var_name);
+	env_val = ft_getenv(var_name, data->env);
 	free(var_name);
 	return (env_val);
 }
