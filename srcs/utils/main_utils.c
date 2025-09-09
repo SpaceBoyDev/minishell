@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 22:42:04 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/09 22:48:15 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	run_interactive(t_data *data)
 	while (1)
 	{
 		setup_signal_handler();
-		str = readline(PS1);
+		str = readline(prompt_rl());
 		if (!str)
 		{
 			printf("Leaving minishell...\n");
