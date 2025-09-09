@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/08 12:50:47 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:37:10 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_exec(t_cmd *cmd, char **env)
 	char	*tmp;
 	char	*str;
 
-	execve(cmd->cmd, cmd->args, env);
+	execve(cmd->name, cmd->args, env);
 	paths = get_paths(env);
 	if (!paths)
 		return ;
@@ -52,7 +52,7 @@ void	ft_exec(t_cmd *cmd, char **env)
 		tmp = ft_strjoin(paths[i], "/");
 		if (!tmp)
 			return ;
-		str = ft_strjoin(tmp, cmd->cmd);
+		str = ft_strjoin(tmp, cmd->name);
 		free(tmp);
 		if (!str)
 			return ;

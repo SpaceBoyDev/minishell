@@ -120,42 +120,42 @@ int	std_io(t_cmd *cmd)
 	return (0);
 }
 
-int	pipeline(t_cmd *cmd, char **env)
+int	pipeline(t_data *data)
 {
 	pid_t	pid;
 	t_cmd	*cmd_cpy;
 	int		status;
 
-	cmd_cpy = cmd;
-	while (cmd)
+	cmd_cpy = data->cmd;
+	while (data->cmd)
 	{
-		open_pipe(cmd, cmd->next);
-		io_pipes(cmd);
-		if (!io_set(cmd))
+		open_pipe(data->cmd, data->cmd->next);
+		io_pipes(data->cmd);
+		if (!io_set(data->cmd))
 		{
-			std_io(cmd);
-			cmd = cmd->next;
+			std_io(data->cmd);
+			data->cmd = data->cmd->next;
 			continue ;
 		}
-		if (is_builtin(cmd->cmd))
+		if (is_builtin(data->cmd->name))
 		{
-			cmd->ret = exec_builtins(cmd, env);
+			data->cmd->ret = exec_builtins(data);
 		}
 		else
 		{
 			pid = fork();
 			if (pid == 0)
 			{
-				ft_exec(cmd, env);
+				ft_exec(data->cmd, data->env);
 			}
-			cmd->pid = pid;
+			data->cmd->pid = pid;
 		}
-		restore_io(cmd);
-		cmd = cmd->next;
+		restore_io(data->cmd);
+		data->cmd = data->cmd->next;
 	}
 	while (cmd_cpy)
 	{
-		if (!is_builtin(cmd_cpy->cmd))
+		if (!is_builtin(cmd_cpy->name))
 		{
 			waitpid(cmd_cpy->pid, &status, 0);
 			status = WEXITSTATUS(status);

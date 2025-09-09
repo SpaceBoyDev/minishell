@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 15:51:28 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:32:38 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	run_non_interactive(char *file, t_data *data)
 void	execute_input(char *str, t_data *data)
 {
 	g_running_cmd = 1;
-	data->last_status = pipeline(data->cmd, data->env);
+	data->last_status = pipeline(data);
 	g_running_cmd = 0;
 	free(str);
 	token_free(data->token);

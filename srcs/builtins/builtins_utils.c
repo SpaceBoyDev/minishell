@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/08 12:45:34 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:41:41 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ int	is_builtin(char *str)
 	return (0);
 }
 
-int	exec_builtins(t_cmd *cmd, char **env)
+int	exec_builtins(t_data *data)
 {
-	if (ft_strcmp(cmd->cmd, "cd") == 0)
-		return (ft_cd(cmd->args[1]));
-	else if (ft_strcmp(cmd->cmd, "echo") == 0)
-		return (ft_echo(cmd->args, env));
-	else if (ft_strcmp(cmd->cmd, "env") == 0)
-		return (ft_env(env));
-	else if (ft_strcmp(cmd->cmd, "export") == 0)
-		return (ft_export(cmd, env));
-	else if (ft_strcmp(cmd->cmd, "pwd") == 0)
+	if (ft_strcmp(data->cmd->name, "cd") == 0)
+		return (ft_cd(data->cmd->args[1]));
+	else if (ft_strcmp(data->cmd->name, "echo") == 0)
+		return (ft_echo(data->cmd->args, data));
+	else if (ft_strcmp(data->cmd->name, "env") == 0)
+		return (ft_env(data->env));
+	else if (ft_strcmp(data->cmd->name, "export") == 0)
+		return (ft_export(data->cmd, data->env));
+	else if (ft_strcmp(data->cmd->name, "pwd") == 0)
 		return (ft_pwd());
-	else if (ft_strcmp(cmd->cmd, "exit") == 0)
+	else if (ft_strcmp(data->cmd->name, "exit") == 0)
 	{
 		ft_exit();
 		return (0);

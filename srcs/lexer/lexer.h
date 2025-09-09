@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/09 16:18:25 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:37:10 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_token
 
 typedef struct s_cmd
 {
-	char			*cmd;
+	char			*name;
 	char			**args;
 	char			*infile;
 	char			*outfile;

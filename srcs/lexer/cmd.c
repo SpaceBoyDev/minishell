@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 08:42:42 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/02 15:56:17 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:37:10 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cmd	*init_cmd(void)
 	cmd = (t_cmd *)malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	cmd->cmd = NULL;
+	cmd->name = NULL;
 	cmd->args = NULL;
 	cmd->infile = NULL;
 	cmd->outfile = NULL;
@@ -88,7 +88,7 @@ int	args_ret(t_token *token, t_cmd *cmd, char **args, int cnt)
 		token = token->next;
 	}
 	cmd->args = args;
-	cmd->cmd = args[0];
+	cmd->name = args[0];
 	return (1);
 }
 
