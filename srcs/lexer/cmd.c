@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 08:42:42 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 14:07:01 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/02 15:56:17 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_cmd	*init_cmd(void)
 	cmd->infile = NULL;
 	cmd->outfile = NULL;
 	cmd->next = NULL;
+	cmd->in_fd = -1;
+	cmd->out_fd = -1;
 	return (cmd);
 }
 

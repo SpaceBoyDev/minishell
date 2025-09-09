@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42madrid>       +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:30 by marcolop          #+#    #+#             */
-/*   Updated: 2025/07/02 13:52:30 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:27:56 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include "../minishell.h"
 
-void	heredoc(char	*delimeter);
-char	*heredoc_rl(char *delimeter);
+int		heredoc(char	*delimeter);
 int		ft_strcmp(char *s1, char *s2);
 
 #endif

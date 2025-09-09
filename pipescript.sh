@@ -1,2 +1,2 @@
 #!/bin/sh
-cat < Makefile | cat
+git status --ignored -s | grep '!!' | cut -c 4-

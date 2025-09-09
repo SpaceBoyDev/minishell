@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 17:51:01 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 15:47:09 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/08 13:00:26 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
+#include "../utils/utils.h"
 #include <stdlib.h>
 
 char	*expand_aux(char *str, int *i, int last_status)
@@ -86,6 +87,8 @@ char	*get_env_val(char *var_name)
 
 	if (!var_name)
 		return (NULL);
+	// TODO: use ft_getenv()
+	// must change innter workings because it needs env
 	env_val = getenv(var_name);
 	free(var_name);
 	return (env_val);

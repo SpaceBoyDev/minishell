@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:04:25 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/08 12:46:41 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,79 +23,6 @@
 #include <string.h>
 
 volatile sig_atomic_t	g_running_cmd = 0;
-
-void	execute_input(char *str, t_data *data)
-{
-	g_running_cmd = 1;
-	data->last_status = create_processes(data->cmd, data->env);
-	g_running_cmd = 0;
-	free(str);
-	token_free(data->token);
-	cmd_free(data->cmd);
-}
-
-int	tokenize_input(char *str, t_data *data)
-{
-	if (!check_quotes(str))
-	{
-		free(str);
-		ft_putstr_fd("quotation error\n", 2);
-		return (1);
-	}
-	data->token = tokenize(str, data->last_status);
-	if (!data->token)
-	{
-		free(str);
-		ft_putstr_fd("tokenizing error\n", 2);
-		return (1);
-	}
-	data->cmd = pipeline_cmd(data->token);
-	if (!data->cmd)
-	{
-		free(str);
-		token_free(data->token);
-		ft_putstr_fd("cmd build error\n", 2);
-		return (1);
-	}
-	return (0);
-}
-
-void	run_interactive(t_data *data)
-{
-	char	*str;
-
-	while (1)
-	{
-		setup_signal_handler();
-		str = readline(PS1);
-		if (!str)
-		{
-			printf("Leaving minishell...\n");
-			break ;
-		}
-		else if (!str[0])
-			continue ;
-		add_history(str);
-		if (tokenize_input(str, data) == 1)
-			continue ;
-		execute_input(str, data);
-	}
-}
-
-void	init_data_env(char **src, t_data *data)
-{
-	int	env_count;
-
-	env_count = 0;
-	while (src[env_count])
-		++env_count;
-	data->env = malloc((env_count + 1) * sizeof(char *));
-	if (!data->env)
-		return ;
-	env_count = -1;
-	while (src[++env_count])
-		data->env[env_count] = ft_strdup(src[env_count]);
-}
 
 int	main(int argc, char **argv, char **env)
 {
