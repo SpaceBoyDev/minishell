@@ -6,22 +6,47 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:00:21 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 21:53:35 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 01:51:10 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "../signals/signals.h"
 
-char	*prompt_rl(void)
+char	*create_path(char *home, char *display)
+{
+	char	*path;
+
+	path = ft_strjoin(BLUE, home);
+	path = ft_strjoin(path, RST);
+	if (home)
+		path = ft_strjoin(path, ":");
+	path = ft_strjoin(path, PINK);
+	path = ft_strjoin(path, display);
+	return (path);
+}
+
+char	*prompt_rl(t_data *data)
 {
 	char	*cwd;
+	char	*home;
+	char	*display;
 	char	*path;
 	char	*prompt;
 
 	cwd = getcwd(NULL, 0);
-	path = ft_strjoin(PINK, cwd);
+	home = ft_getenv("HOME", data->env);
+	if (home && ft_strncmp(cwd, home, ft_strlen(home)) == 0)
+	{
+		display = cwd + ft_strlen(home);
+		display = ft_strjoin("~", display);
+	}
+	else
+		display = ft_strjoin(cwd, NULL);
+	home = ft_getenv("LOGNAME", data->env);
+	path = create_path(home, display);
 	prompt = ft_strjoin(path, "\033[5m> " RST);
+	free(display);
 	free(path);
 	free(cwd);
 	return (prompt);
