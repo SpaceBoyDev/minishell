@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 19:13:29 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/10 19:55:38 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	run_interactive(t_data *data)
 		str = readline(prompt);
 		free(prompt);
 		if (!str)
+		{
+			free_env(data);
 			break ;
+		}
 		else if (!str[0])
 			continue ;
 		add_history(str);
@@ -73,10 +76,10 @@ int	run_non_interactive(char *file, t_data *data)
 
 void	execute_input(char *str, t_data *data)
 {
+	free(str);
 	g_running_cmd = 1;
 	data->last_status = pipeline(data);
 	g_running_cmd = 0;
-	free(str);
 	token_free(data->token);
 	cmd_free(data->cmd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 17:58:34 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/10 19:18:35 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_vars
 	int		i;
 	bool	next_var;
 }	t_vars;
+
+void	free_env(t_data *data);
 
 // Builtins Utils
 int		is_builtin(char *str);
