@@ -6,7 +6,7 @@
 #    By: marcos <marcos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/09/08 19:38:54 by marcos           ###   ########.fr        #
+#    Updated: 2025/09/09 18:45:32 by marcos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ HDERS		=	srcs/minishell.h
 SRC			=	main.c
 
 BUILTINS	=	builtins_utils.c cd.c echo.c env.c exit.c export.c pwd.c unset.c
-EXECUTE		=	exec.c pipeline.c run.c
+EXECUTE		=	exec.c pipeline.c run.c shlvl.c
 HEREDOC		=	heredoc.c
 LEXER		=	utils.c token.c cmd.c cmd_utils.c token_str.c var_expansion.c nbr_to_str.c
 SIGNALS		=	signal_handling.c

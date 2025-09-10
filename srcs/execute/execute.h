@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/09 16:32:32 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/09 18:45:01 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		create_processes(t_cmd *cmd, char **env);
 
 int open_pipe(t_cmd *left, t_cmd *right);
 int	pipeline(t_data *data);
+void	update_shlvl(t_data *data, int op);
 
 #endif
