@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:16:06 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 15:54:39 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/10 13:47:05 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,11 @@ char	*build_val(char *str, int *i, t_data *data)
 		}
 	}
 	else
-		val = str_no_quotes_opt(str, i, start);
+	{
+		tmp = str_no_quotes_opt(str, i, start);
+		val = expand(tmp, data);
+		free(tmp);
+	}
 	return (val);
 }
 
