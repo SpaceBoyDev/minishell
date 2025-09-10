@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:17 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 13:03:56 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 16:59:42 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	free_env(t_data *data)
 {
+	char	**env;
+	int		i;
+
 	if (data && data->env)
 	{
-		char **env = data->env;
-		int i = 0;
+		env = data->env;
+		i = 0;
 		while (env[i])
 		{
 			free(env[i]);

@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 15:21:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 16:57:36 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define BUILTINS_H
 
 # include "../minishell.h"
+
+typedef struct s_vars
+{
+	int		i;
+	bool	next_var;
+}	t_vars;
 
 // Builtins Utils
 int		is_builtin(char *str);
