@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 22:53:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 13:07:37 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	exec_builtins(t_data *data)
 		return (ft_unset(data));
 	else if (ft_strcmp(data->cmd->name, "exit") == 0)
 	{
-		ft_exit();
+		ft_exit(data);
 		return (0);
 	}
 	return (1);

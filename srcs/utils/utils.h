@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:40:03 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 00:53:19 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 13:07:27 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	execute_input(char *str, t_data *data);
 int		tokenize_input(char *str, t_data *data);
 
 // Shell Utils
-char	*prompt_rl(t_data *data);
+char	*prompt_rl(void);
 void	init_data_env(char **src, t_data *data);
 char	*ft_getenv(char *name, char **env);
 int		ft_strcmp(char *s1, char *s2);;

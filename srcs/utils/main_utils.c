@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 01:27:41 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 13:09:34 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void	run_interactive(t_data *data)
 	while (1)
 	{
 		setup_signal_handler();
-		prompt = prompt_rl(data);
+		prompt = prompt_rl();
 		str = readline(prompt);
+		free(prompt);
 		if (!str)
 		{
-			free(prompt);
 			printf(BLUE"Leaving minishell...\n"RST);
 			break ;
 		}
@@ -48,10 +48,10 @@ void	run_interactive(t_data *data)
 		if (tokenize_input(str, data) == 1)
 			continue ;
 		execute_input(str, data);
-		free(prompt);
 	}
 
 }
+//53
 
 int	run_non_interactive(char *file, t_data *data)
 {
