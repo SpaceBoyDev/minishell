@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:00:21 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 14:27:55 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/10 15:26:16 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_data_env(char **src, t_data *data)
 	env_count = -1;
 	while (src[++env_count])
 		data->env[env_count] = ft_strdup(src[env_count]);
-	update_shlvl(&data, +1);
+	update_shlvl(data, +1);
 }
 
 char	*ft_getenv(char *name, char **env)
