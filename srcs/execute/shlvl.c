@@ -25,6 +25,8 @@ void	update_shlvl(t_data *data, int op)
 	char	*numstr;
 
 	ref = get_env_ref("SHLVL=", data);
+	if (!ref)
+		return ;
 	val = ft_atoi(&((*ref)[ft_strlen("SHLVL=")]));
 	new = (char *)malloc((ft_strlen(*ref) + 2) * sizeof(char));
 	ft_strlcpy(new, "SHLVL=", ft_strlen(*ref) + 2);
