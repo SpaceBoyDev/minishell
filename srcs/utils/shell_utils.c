@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:00:21 by dario             #+#    #+#             */
-/*   Updated: 2025/09/08 12:41:39 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:27:55 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_data_env(char **src, t_data *data)
 	env_count = -1;
 	while (src[++env_count])
 		data->env[env_count] = ft_strdup(src[env_count]);
+	update_shlvl(&data, +1);
 }
 
 char	*ft_getenv(char *name, char **env)
