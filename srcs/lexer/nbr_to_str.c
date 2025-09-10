@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nbr_to_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:25:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/01 13:23:10 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 18:17:22 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*build_str(int len, int neg, int pow, int nbr)
 	int		i;
 
 	i = 0;
-	str = (char *)malloc((len + neg) * sizeof(char));
+	str = (char *)malloc((len + neg + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	if (neg)
