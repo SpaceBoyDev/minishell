@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/09 15:58:56 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/10 13:09:48 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_token	*tokenize(char *input, t_data *data)
 		return (NULL); // TODO: empty str
 	i = 0;
 	first = create_token(str, &i, data);
+	if (!first)
+		return (NULL);
 	token = first;
 	while (str[i])
 	{
