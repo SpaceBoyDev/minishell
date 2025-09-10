@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 16:32:38 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/10 18:00:34 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "../heredoc/heredoc.h"
 #include "../signals/signals.h"
+#include "../builtins/builtins.h"
 
 extern volatile sig_atomic_t	g_running_cmd;
 
@@ -29,14 +30,17 @@ void	setup_signal_handler(void)
 void	run_interactive(t_data *data)
 {
 	char	*str;
+	char	*prompt;
 
 	while (1)
 	{
 		setup_signal_handler();
-		str = readline(PS1);
+		prompt = prompt_rl();
+		str = readline(prompt);
+		free(prompt);
 		if (!str)
 		{
-			printf("Leaving minishell...\n");
+			ft_exit(data, false);
 			break ;
 		}
 		else if (!str[0])
@@ -46,6 +50,7 @@ void	run_interactive(t_data *data)
 			continue ;
 		execute_input(str, data);
 	}
+
 }
 
 int	run_non_interactive(char *file, t_data *data)
@@ -62,7 +67,6 @@ int	run_non_interactive(char *file, t_data *data)
 		if (tokenize_input(line, data) == 1)
 			continue ;
 		execute_input(line, data);
-		//free(line);
 		line = get_next_line(fd);
 	}
 	free(line);

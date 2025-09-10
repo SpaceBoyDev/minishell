@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 16:41:41 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/10 17:58:46 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "builtins.h"
-#include "../heredoc/heredoc.h"
+#include "../utils/utils.h"
 
 int	is_builtin(char *str)
 {
@@ -30,18 +30,20 @@ int	is_builtin(char *str)
 int	exec_builtins(t_data *data)
 {
 	if (ft_strcmp(data->cmd->name, "cd") == 0)
-		return (ft_cd(data->cmd->args[1]));
+		return (ft_cd(data->cmd->args[1], data->env));
 	else if (ft_strcmp(data->cmd->name, "echo") == 0)
 		return (ft_echo(data->cmd->args, data));
 	else if (ft_strcmp(data->cmd->name, "env") == 0)
 		return (ft_env(data->env));
 	else if (ft_strcmp(data->cmd->name, "export") == 0)
-		return (ft_export(data->cmd, data->env));
+		return (ft_export(data));
 	else if (ft_strcmp(data->cmd->name, "pwd") == 0)
 		return (ft_pwd());
+	else if (ft_strcmp(data->cmd->name, "unset") == 0)
+		return (ft_unset(data));
 	else if (ft_strcmp(data->cmd->name, "exit") == 0)
 	{
-		ft_exit();
+		ft_exit(data, false);
 		return (0);
 	}
 	return (1);
