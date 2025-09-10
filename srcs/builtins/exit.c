@@ -6,7 +6,7 @@
 /*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:17 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 18:00:42 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:24:14 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ void	free_env(t_data *data)
 
 void	ft_exit(t_data *data, bool free)
 {
+	(void)free;
 	free_env(data);
+	token_free(data->token);
 	rl_clear_history();
+	cmd_free(data->cmd);
 	if (free)
 	{
-		token_free(data->token);
-		cmd_free(data->cmd);
 	}
 	exit(0);
 }
