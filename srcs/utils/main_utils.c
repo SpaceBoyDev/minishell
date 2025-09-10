@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 18:00:34 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/10 19:13:29 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ void	run_interactive(t_data *data)
 		str = readline(prompt);
 		free(prompt);
 		if (!str)
-		{
-			ft_exit(data, false);
 			break ;
-		}
 		else if (!str[0])
 			continue ;
 		add_history(str);
