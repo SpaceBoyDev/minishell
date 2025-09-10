@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 13:07:22 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 15:21:33 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int		is_builtin(char *str);
 int		exec_builtins(t_data *data);
 
+// Builtins
 int		ft_cd(char *path, char **env);
 int		ft_echo(char **args, t_data *data);
 int		ft_env(char **env);
