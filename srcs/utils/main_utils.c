@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 13:09:34 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 18:00:34 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "../heredoc/heredoc.h"
 #include "../signals/signals.h"
+#include "../builtins/builtins.h"
 
 extern volatile sig_atomic_t	g_running_cmd;
 
@@ -39,7 +40,7 @@ void	run_interactive(t_data *data)
 		free(prompt);
 		if (!str)
 		{
-			printf(BLUE"Leaving minishell...\n"RST);
+			ft_exit(data, false);
 			break ;
 		}
 		else if (!str[0])
@@ -51,7 +52,6 @@ void	run_interactive(t_data *data)
 	}
 
 }
-//53
 
 int	run_non_interactive(char *file, t_data *data)
 {

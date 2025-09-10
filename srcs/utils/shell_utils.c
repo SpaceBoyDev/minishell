@@ -6,7 +6,7 @@
 /*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:00:21 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 17:29:52 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:42:20 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_data_env(char **src, t_data *data)
 	env_count = -1;
 	while (src[++env_count])
 		data->env[env_count] = ft_strdup(src[env_count]);
+	data->env[env_count] = NULL;
 	update_shlvl(data, +1);
 }
 

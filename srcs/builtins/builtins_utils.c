@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 13:07:37 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/10 17:58:46 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	exec_builtins(t_data *data)
 		return (ft_unset(data));
 	else if (ft_strcmp(data->cmd->name, "exit") == 0)
 	{
-		ft_exit(data);
+		ft_exit(data, false);
 		return (0);
 	}
 	return (1);
