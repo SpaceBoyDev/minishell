@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/03 11:32:43 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:34:07 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,15 @@ int	create_processes(t_cmd *cmd, char **env)
 	while (cmd)
 	{
 		if (cmd->next)
-			pipe(&pipefd[2]); // TODO: check return?
+			pipe(&pipefd[2]);
 		else
 		{
 			pipefd[2] = INT_MAX;
 			pipefd[3] = INT_MAX;
 		}
-		pid = fork(); // TODO: check return?
+		pid = fork();
 		if (pid == 0)
 		{
-			// TODO: signal??
-			// signal(SIGINT, SIG_DFL);
 			run_process(cmd, pipefd, env);
 		}
 		cmd->pid = pid;
@@ -59,7 +57,6 @@ int	create_processes(t_cmd *cmd, char **env)
 	}
 	while (first)
 	{
-		// wait(NULL);
 		waitpid(first->pid, &status, 0);
 		first = first->next;
 	}
@@ -67,7 +64,6 @@ int	create_processes(t_cmd *cmd, char **env)
 }
 
 
-// TODO: heredoc and append
 void	run_process(t_cmd *cmd, int *pipefd, char **env)
 {
 	if (pipefd[1] != INT_MAX)

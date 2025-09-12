@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:16:06 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 13:47:05 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:35:44 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*str_no_quotes_opt(char *str, int *i, int start)
 	}
 	val = ft_substr(str, start, len);
 	if (!val)
-		return (NULL); // TODO: check null ft who called
+		return (NULL);
 	while (str[*i] && str[*i] == ' ')
 		(*i)++;
 	return (val);

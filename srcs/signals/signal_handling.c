@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:33:49 by dario             #+#    #+#             */
-/*   Updated: 2025/09/01 13:14:11 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/12 14:37:25 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 extern volatile sig_atomic_t	g_running_cmd;
 
-// TODO: too many \n when nested minishells
 void	handler(int sig)
 {
 	(void)sig;

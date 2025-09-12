@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/10 13:09:48 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:36:32 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ t_token	*tokenize(char *input, t_data *data)
 	t_token	*first;
 
 	str = ft_strtrim(input, " ");
-	// free(input);
 	if (!str)
 		return (NULL);
 	if (str[0] == '\0')
-		return (NULL); // TODO: empty str
+		return (NULL);
 	i = 0;
 	first = create_token(str, &i, data);
 	if (!first)
@@ -35,10 +34,7 @@ t_token	*tokenize(char *input, t_data *data)
 	{
 		token->next = create_token(str, &i, data);
 		if (!token->next)
-		{
-			// TODO: free previous tokens
 			return (NULL);
-		}
 		token = token->next;
 	}
 	free(str);

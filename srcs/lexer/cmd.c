@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 08:42:42 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/10 19:42:44 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:35:01 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_cmd	*build_cmd(t_token	*token)
 		return (NULL);
 	if (!args_cmd(cmd, token))
 		return (NULL);
-	// TODO: check returns of these fts
 	in_cmd(cmd, token);
 	out_cmd(cmd, token);
 	return (cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/09 22:01:57 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/12 14:34:24 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <unistd.h>
 #include "../utils/utils.h"
 
-// TODO: expand variables in lines?
 int	heredoc(char	*delimeter)
 {
 	pid_t	pid;

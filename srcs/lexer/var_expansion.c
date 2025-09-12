@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 17:51:01 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/09 15:58:44 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:37:16 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ char	*expand_aux(char *str, int *i, t_data *data)
 	}
 	else
 	{
-		// TODO: see below statements
-		// keep in mind the skip change since '?'
 		sub = get_env_val(get_var_name(&str[(*i)]), data);
 		(*i) = skip_var_name(str, (*i));
 	}
