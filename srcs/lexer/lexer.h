@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 14:57:49 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 19:37:26 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ typedef struct s_data
 	char	**env;
 	int		last_status;
 }	t_data;
+
+typedef struct s_build_tkn
+{
+	char	*val;
+	int		start;
+	char	*tmp;
+	char	tmp_char;
+}	t_build_tkn;
 
 // utils.c
 int				check_quotes(char *str);

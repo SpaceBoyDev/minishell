@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:16:06 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 14:35:44 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 19:38:35 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,33 +73,30 @@ char	*str_quotes_opt(char *str, int *i, int start)
 
 char	*build_val(char *str, int *i, t_data *data)
 {
-	char	*val;
-	int		start;
-	char	*tmp;
-	char	tmp_char;
+	t_build_tkn	build_tkn;
 
-	start = *i;
-	val = NULL;
+	build_tkn.start = *i;
+	build_tkn.val = NULL;
 	if (str[*i] == '<' || str[*i] == '>' || str[*i] == '|')
 		return (NULL);
 	else if (str[*i] == '\'' || str[*i] == '\"')
 	{
-		tmp_char = str[*i];
-		val = str_quotes_opt(str, i, start);
-		if (tmp_char == '\"')
+		build_tkn.tmp_char = str[*i];
+		build_tkn.val = str_quotes_opt(str, i, build_tkn.start);
+		if (build_tkn.tmp_char == '\"')
 		{
-			tmp = val;
-			val = expand(tmp, data);
-			free(tmp);
+			build_tkn.tmp = build_tkn.val;
+			build_tkn.val = expand(build_tkn.tmp, data);
+			free(build_tkn.tmp);
 		}
 	}
 	else
 	{
-		tmp = str_no_quotes_opt(str, i, start);
-		val = expand(tmp, data);
-		free(tmp);
+		build_tkn.tmp = str_no_quotes_opt(str, i, build_tkn.start);
+		build_tkn.val = expand(build_tkn.tmp, data);
+		free(build_tkn.tmp);
 	}
-	return (val);
+	return (build_tkn.val);
 }
 
 char	*token_str(char	*str, int *i, t_data *data)
