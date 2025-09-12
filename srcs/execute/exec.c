@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/09 16:37:10 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 13:06:52 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void	ft_exec(t_cmd *cmd, char **env)
 		free(str);
 		i++;
 	}
+	ft_putstr_fd(cmd->name, 2);
+	ft_putstr_fd(": command not found\n", 2);
 	exit(CMD_NOT_FOUND);
 }
