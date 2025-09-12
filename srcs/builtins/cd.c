@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:08 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 23:02:20 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/12 13:52:14 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int	ft_cd(char *path, char **env)
 		home = ft_getenv("HOME", env);
 		if (!home)
 		{
-			printf("minishell: cd: HOME not set\n");
+			ft_putstr_fd("HOME not found\n", 2);
 			return (1);
 		}
 		if (chdir(home) != 0)
 		{
-			printf("minishell: cd: HOME: No such file or directory");
+			ft_putstr_fd("Could not change directory to HOME", 2);
 			return (1);
 		}
 		return (0);
 	}
 	if (chdir(path) != 0)
 	{
-		printf("minishell: cd: %s: No such file or directory\n", path);
+		perror(path);
 		return (1);
 	}
 	return (0);

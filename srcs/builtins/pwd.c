@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:20 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 23:07:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/12 13:57:32 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ int	ft_pwd(void)
 	current_dir = getcwd(NULL, 0);
 	if (!current_dir)
 	{
-		printf("pwd: error retrieving current directory: getcwd: "
-			"cannot access parent directories: No such file or directory\n");
 		return (1);
 	}
-	printf("%s\n", getcwd(NULL, 0));
+	printf("%s\n", current_dir);
 	return (0);
 }
