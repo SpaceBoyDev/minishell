@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 15:00:09 by marcos            #+#    #+#             */
-/*   Updated: 2025/09/12 15:00:10 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 19:57:28 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,153 +18,41 @@
 #include "../builtins/builtins.h"
 #include "../heredoc/heredoc.h"
 
-int	open_pipe(t_cmd *left, t_cmd *right)
+int	manage_pipe(t_data *data)
 {
-	int	pipefd[2];
+	pid_t	pid;
 
-	if (right == NULL)
+	open_pipe(data->cmd, data->cmd->next);
+	io_pipes(data->cmd);
+	if (!io_set(data->cmd))
 	{
-		return (0);
+		std_io(data->cmd);
+		data->cmd = data->cmd->next;
+		return (1);
 	}
-	pipe(pipefd);
-	left->out_fd = pipefd[1];
-	right->in_fd = pipefd[0];
-	return (0);
-}
-
-int	io_pipes(t_cmd *cmd)
-{
-	cmd->in_std = dup(0);
-	cmd->out_std = dup(1);
-	if (cmd->in_fd != -1)
+	if (is_builtin(data->cmd->name))
+		data->cmd->ret = exec_builtins(data);
+	else
 	{
-		dup2(cmd->in_fd, 0);
-		close(cmd->in_fd);
+		pid = fork();
+		if (pid == 0)
+			ft_exec(data->cmd, data->env);
+		data->cmd->pid = pid;
 	}
-	if (cmd->out_fd != -1)
-	{
-		dup2(cmd->out_fd, 1);
-		close(cmd->out_fd);
-	}
-	return (0);
-}
-
-int	restore_io(t_cmd *cmd)
-{
-	if (cmd->in_fd != -1)
-	{
-		dup2(cmd->in_std, 0);
-		close(cmd->in_std);
-	}
-	if (cmd->out_fd != -1)
-	{
-		dup2(cmd->out_std, 1);
-		close(cmd->out_std);
-	}
-	return (0);
-}
-
-int	in_set(t_cmd *cmd)
-{
-	if (cmd->infile && cmd->in_op == IN)
-	{
-		cmd->in_fd = open(cmd->infile, O_RDONLY);
-		if (cmd->in_fd == -1)
-		{
-			perror(cmd->infile);
-			return (0);
-		}
-		dup2(cmd->in_fd, 0);
-		close(cmd->in_fd);
-	}
-	else if (cmd->infile && cmd->in_op == HEREDOC)
-	{
-		dup2(cmd->in_std, 0);
-		cmd->in_fd = heredoc(cmd->infile);
-		dup2(cmd->in_fd, 0);
-		close(cmd->in_fd);
-	}
-	return (1);
-}
-
-int	out_set(t_cmd *cmd)
-{
-	if (cmd->outfile && cmd->out_op == OUT)
-	{
-		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (cmd->out_fd == -1)
-		{
-			perror(cmd->outfile);
-			return (0);
-		}
-		dup2(cmd->out_fd, 1);
-		close(cmd->out_fd);
-	}
-	else if (cmd->outfile && cmd->out_op == APPEND)
-	{
-		cmd->out_fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (cmd->out_fd == -1)
-		{
-			perror(cmd->outfile);
-			return (0);
-		}
-		dup2(cmd->out_fd, 1);
-		close(cmd->out_fd);
-	}
-	return (1);
-}
-
-int	io_set(t_cmd *cmd)
-{
-	if (!in_set(cmd))
-		return (0);
-	if (!out_set(cmd))
-		return (0);
-	return (1);
-}
-
-int	std_io(t_cmd *cmd)
-{
-	dup2(cmd->in_std, 0);
-	close(cmd->in_std);
-	dup2(cmd->out_std, 1);
-	close(cmd->out_std);
+	restore_io(data->cmd);
+	data->cmd = data->cmd->next;
 	return (0);
 }
 
 int	pipeline(t_data *data)
 {
-	pid_t	pid;
 	t_cmd	*cmd_cpy;
 	int		status;
 
 	cmd_cpy = data->cmd;
 	while (data->cmd)
-	{
-		open_pipe(data->cmd, data->cmd->next);
-		io_pipes(data->cmd);
-		if (!io_set(data->cmd))
-		{
-			std_io(data->cmd);
-			data->cmd = data->cmd->next;
+		if (manage_pipe(data) == 1)
 			continue ;
-		}
-		if (is_builtin(data->cmd->name))
-		{
-			data->cmd->ret = exec_builtins(data);
-		}
-		else
-		{
-			pid = fork();
-			if (pid == 0)
-			{
-				ft_exec(data->cmd, data->env);
-			}
-			data->cmd->pid = pid;
-		}
-		restore_io(data->cmd);
-		data->cmd = data->cmd->next;
-	}
 	while (cmd_cpy)
 	{
 		if (!is_builtin(cmd_cpy->name))
@@ -173,9 +61,7 @@ int	pipeline(t_data *data)
 			status = WEXITSTATUS(status);
 		}
 		else
-		{
 			status = cmd_cpy->ret;
-		}
 		cmd_cpy = cmd_cpy->next;
 	}
 	return (status);
