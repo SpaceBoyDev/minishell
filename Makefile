@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/09/11 19:56:00 by dario            ###   ########.fr        #
+#    Updated: 2025/09/12 19:30:19 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ MAKEFLAGS	+=	--no-print-directory
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror #-g3
 RM			=	rm -f
-
-VALFLAGS	=	--tool=helgrind --tool=drd
 
 # Libft
 LIBFT		=	./libft/
