@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 14:34:24 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 19:34:14 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@
 #include <unistd.h>
 #include "../utils/utils.h"
 
-int	heredoc(char	*delimeter)
+void	read_heredoc(pid_t pid, int *pipefd, char *delimeter)
 {
-	pid_t	pid;
 	char	*line;
-	int		pipefd[2];
 
-	pipe(pipefd);
-	pid = fork();
 	if (pid == 0)
 	{
 		close(pipefd[0]);
@@ -44,6 +40,16 @@ int	heredoc(char	*delimeter)
 		close(pipefd[1]);
 		exit(EXIT_SUCCESS);
 	}
+}
+
+int	heredoc(char	*delimeter)
+{
+	pid_t	pid;
+	int		pipefd[2];
+
+	pipe(pipefd);
+	pid = fork();
+	read_heredoc(pid, pipefd, delimeter);
 	close(pipefd[1]);
 	waitpid(pid, NULL, 0);
 	return (pipefd[0]);
