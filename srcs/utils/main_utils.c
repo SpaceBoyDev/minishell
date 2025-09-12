@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 14:23:19 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:55:06 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	run_interactive(t_data *data)
 			continue ;
 		execute_input(str, data);
 	}
-
 }
 
 int	run_non_interactive(char *file, t_data *data)

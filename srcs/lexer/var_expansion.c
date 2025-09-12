@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 17:51:01 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 14:37:16 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:55:59 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ char	*get_env_val(char *var_name, t_data *data)
 
 int	skip_var_name(char *str, int i)
 {
-
 	if (!(str[i] && (ft_isalpha(str[i]) || str[i] == '_')))
 		return (i);
 	i++;

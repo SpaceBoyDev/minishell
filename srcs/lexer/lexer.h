@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/09 16:37:10 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:57:49 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void			token_free(t_token *token);
 char			*expand(char *str, t_data *data);
 char			*get_var_name(char *str);
 char			*get_env_val(char *var_name, t_data *data);
-int				skip_var_name(char  *str, int i);
+int				skip_var_name(char *str, int i);
 
 // cmd.c
 t_cmd			*init_cmd(void);
@@ -92,7 +92,6 @@ void			table_free(char **table);
 // token_str.c
 char			*token_str(char *str, int *i, t_data *data);
 char			*build_val(char *str, int *i, t_data *data);
-
 
 // nbr_to_str.c
 char			*nbr_to_str(int n);

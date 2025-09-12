@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 14:01:16 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 19:59:19 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:56:33 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
 
-int		len_until_char(char *str, int i, char character)
+int	len_until_char(char *str, int i, char character)
 {
 	while (str[i] && str[i] != character)
 		i++;

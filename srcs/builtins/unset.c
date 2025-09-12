@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:23 by dario             #+#    #+#             */
-/*   Updated: 2025/09/09 22:43:34 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/12 14:54:32 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	ft_unset(t_data *data)
 	j = 0;
 	while (data->env[i])
 	{
-		if (ft_strncmp(data->env[i], data->cmd->args[1], \
-			ft_strlen(data->cmd->args[1])) == 0
+		if (ft_strcmp(data->env[i], data->cmd->args[1]) == 0
 			&& data->env[i][ft_strlen(data->cmd->args[1])] == '=')
 		{
 			free(data->env[i]);
