@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 19:34:14 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/17 20:05:20 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc.h"
+#include "../signals/signals.h"
 #include <limits.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -47,6 +48,7 @@ int	heredoc(char	*delimeter)
 	pid_t	pid;
 	int		pipefd[2];
 
+	// TODO: figure out how to behave with signals
 	pipe(pipefd);
 	pid = fork();
 	read_heredoc(pid, pipefd, delimeter);
