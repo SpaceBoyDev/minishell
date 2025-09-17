@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 15:00:09 by marcos            #+#    #+#             */
-/*   Updated: 2025/09/13 20:22:57 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/17 19:50:27 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	manage_pipe(t_data *data)
 		data->cmd = data->cmd->next;
 		return (1);
 	}
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (is_builtin(data->cmd->name))
 		data->cmd->ret = exec_builtins(data);
 	else
@@ -40,6 +41,8 @@ int	manage_pipe(t_data *data)
 			ft_exec(data->cmd, data->env);
 		data->cmd->pid = pid;
 	}
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	restore_io(data->cmd);
 	data->cmd = data->cmd->next;
 	return (0);
