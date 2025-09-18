@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:34:00 by dario             #+#    #+#             */
-/*   Updated: 2025/07/09 20:42:49 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/18 13:52:33 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "../utils/utils.h"
 # include "../minishell.h"
 
+# define HEREDOC_ERR 255
+
 void	handler(int sig);
+void	heredoc_handler(int sig);
 
 #endif

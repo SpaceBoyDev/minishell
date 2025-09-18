@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/18 12:27:42 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/18 13:54:23 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	heredoc(char	*delimeter)
 	int		pipefd[2];
 	int		status;
 
-	signal(SIGINT, SIG_DFL);
+	signal(SIGINT, heredoc_handler);
 	signal(SIGQUIT, SIG_IGN);
 	pipe(pipefd);
 	pid = fork();
@@ -58,7 +58,7 @@ int	heredoc(char	*delimeter)
 	signal(SIGQUIT, SIG_IGN);
 	close(pipefd[1]);
 	waitpid(pid, &status, 0);
-	if (WEXITSTATUS(status) == 0)
+	if (WEXITSTATUS(status) == HEREDOC_ERR)
 	{
 		write(1, "\n", 1);
 		return (-1);

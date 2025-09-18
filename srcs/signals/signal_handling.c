@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:33:49 by dario             #+#    #+#             */
-/*   Updated: 2025/09/17 19:48:32 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/18 13:53:26 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,10 @@ void	handler(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+}
+
+void	heredoc_handler(int sig)
+{
+	(void)sig;
+	exit(HEREDOC_ERR);
 }
