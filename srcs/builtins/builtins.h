@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 19:18:35 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:22:11 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		exec_builtins(t_data *data);
 int		ft_cd(char *path, char **env);
 int		ft_echo(char **args, t_data *data);
 int		ft_env(char **env);
-void	ft_exit(t_data *data, bool free);
+void	ft_exit(t_data *data);
 int		ft_export(t_data *data);
 int		ft_pwd(void);
 int		ft_unset(t_data *data);
