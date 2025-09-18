@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 19:52:41 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 19:53:51 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/18 12:26:24 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ int	in_set(t_cmd *cmd)
 	else if (cmd->infile && cmd->in_op == HEREDOC)
 	{
 		dup2(cmd->in_std, 0);
+		// TODO: handle io so it does its job in the terminal
+		// change it to terminal
+		// change it back to whatever it was
 		cmd->in_fd = heredoc(cmd->infile);
+		if (cmd->in_fd == -1)
+		{
+			return (0);
+		}
 		dup2(cmd->in_fd, 0);
 		close(cmd->in_fd);
 	}

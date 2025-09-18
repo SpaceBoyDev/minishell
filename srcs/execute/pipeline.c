@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 15:00:09 by marcos            #+#    #+#             */
-/*   Updated: 2025/09/17 19:50:27 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/18 11:22:42 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	pipeline(t_data *data)
 	cmd_cpy = data->cmd;
 	while (data->cmd)
 		if (manage_pipe(data) == 1)
-			continue ;
+			return (1);
 	while (cmd_cpy)
 	{
 		if (!is_builtin(cmd_cpy->name))

@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/17 20:05:20 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:27:42 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,21 @@ int	heredoc(char	*delimeter)
 {
 	pid_t	pid;
 	int		pipefd[2];
+	int		status;
 
-	// TODO: figure out how to behave with signals
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_IGN);
 	pipe(pipefd);
 	pid = fork();
 	read_heredoc(pid, pipefd, delimeter);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	close(pipefd[1]);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &status, 0);
+	if (WEXITSTATUS(status) == 0)
+	{
+		write(1, "\n", 1);
+		return (-1);
+	}
 	return (pipefd[0]);
 }
