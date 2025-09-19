@@ -59,12 +59,19 @@ t_token	*create_token(char	*str, int *i, t_data *data)
 	return (token);
 }
 
+void	skip(char *str, int *i)
+{
+	while (str[*i] && str[*i] == ' ')
+		(*i)++;
+}
+
 // sets type of token
 // moves i to the char after operator if not STR
 t_op	token_type(char *str, int *i)
 {
 	t_op	type;
 
+	skip(str, i);
 	if (str[*i] == '<' && str[*i + 1] && str[*i + 1] == '<')
 		type = HEREDOC;
 	else if (str[*i] == '<' && str[*i + 1] && str[*i + 1] != '<')
