@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 15:00:09 by marcos            #+#    #+#             */
-/*   Updated: 2025/09/18 11:22:42 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/19 19:50:51 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	manage_pipe(t_data *data)
 	}
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	if (is_builtin(data->cmd->name))
+	if (!data->cmd->name)
+		;
+	else if (is_builtin(data->cmd->name))
 		data->cmd->ret = exec_builtins(data);
 	else
 	{
