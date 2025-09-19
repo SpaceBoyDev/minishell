@@ -16,6 +16,8 @@
 
 int	in_set(t_cmd *cmd)
 {
+	int	ofd;
+
 	if (cmd->infile && cmd->in_op == IN)
 	{
 		cmd->in_fd = open(cmd->infile, O_RDONLY);
@@ -29,16 +31,17 @@ int	in_set(t_cmd *cmd)
 	}
 	else if (cmd->infile && cmd->in_op == HEREDOC)
 	{
+		ofd = dup(1);
 		dup2(cmd->in_std, 0);
-		// TODO: handle io so it does its job in the terminal
-		// change it to terminal
-		// change it back to whatever it was
+		dup2(cmd->out_std, 1);
 		cmd->in_fd = heredoc(cmd->infile);
 		if (cmd->in_fd == -1)
 		{
 			return (0);
 		}
 		dup2(cmd->in_fd, 0);
+		dup2(ofd, 1);
+		close(ofd);
 		close(cmd->in_fd);
 	}
 	return (1);
