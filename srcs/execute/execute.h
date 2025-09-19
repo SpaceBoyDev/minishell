@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 19:52:36 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/19 11:30:33 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 
 char	**get_paths(char **env);
 void	ft_exec(t_cmd *cmd, char **env);
-void	run_process(t_cmd *cmd, int *pipefd, char **env);
-void	ft_exec(t_cmd *cmd, char **env);
-int		create_processes(t_cmd *cmd, char **env);
 
 int		open_pipe(t_cmd *left, t_cmd *right);
 int		pipeline(t_data *data);
@@ -37,5 +34,6 @@ int		std_io(t_cmd *cmd);
 int		in_set(t_cmd *cmd);
 int		out_set(t_cmd *cmd);
 int		io_set(t_cmd *cmd);
+int heredoc_set(t_cmd *cmd);
 
 #endif
