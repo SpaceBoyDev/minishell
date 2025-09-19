@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 17:41:58 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/19 20:41:21 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ void	print_export(char **env)
 	}
 }
 
-void	print_env(char **env)
+int		table_len(char **table)
 {
-	int	i;
+	int	len;
 
-	i = -1;
-	while (env[++i])
-		printf("%s\n", env[i]);
+	len = 0;
+	while (table[len])
+		++len;
+	return (len);
 }
 
 static char	*replace_existing_var(char **env, char **args,
@@ -97,6 +98,7 @@ int	ft_export(t_data *data)
 {
 	char	**old_env;
 	int		i;
+	int		old_len;
 
 	i = 1;
 	if (!data->cmd->args[1])
@@ -104,7 +106,10 @@ int	ft_export(t_data *data)
 	while (data->cmd->args[i])
 	{
 		old_env = data->env;
+		old_len = table_len(old_env);
 		data->env = set_env_var(data->cmd->args, old_env, i);
+		if (old_len != table_len(data->env))
+			table_free(old_env);
 		++i;
 	}
 	return (0);
