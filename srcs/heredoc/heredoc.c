@@ -45,6 +45,7 @@ void	read_heredoc(pid_t pid, int *pipefd, char *delimeter)
 
 // TODO: when running heredoc without cmd, after heredoc minishell
 // struggles to exit with ^D and exit()
+// TODO: make it work with a pipeline like: << a | << b
 int	heredoc(char	*delimeter)
 {
 	pid_t	pid;
