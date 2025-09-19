@@ -6,7 +6,7 @@
 /*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/09/19 20:41:21 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/20 01:48:07 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_export(char **env)
 	}
 }
 
-int		table_len(char **table)
+int	table_len(char **table)
 {
 	int	len;
 
