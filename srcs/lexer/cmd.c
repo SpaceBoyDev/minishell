@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 08:42:42 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 14:35:01 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/19 12:14:31 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ int	args_cmd(t_cmd *cmd, t_token *token)
 			cnt++;
 		tmp = tmp->next;
 	}
-	if (cnt == 0)
-		return (0);
 	args = (char **)malloc((cnt + 1) * sizeof(char *));
 	if (!args)
 		return (0);

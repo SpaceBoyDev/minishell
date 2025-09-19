@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 17:58:46 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:03:14 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 int	is_builtin(char *str)
 {
+	if (!str)
+		return (0);
 	if (ft_strcmp(str, "echo") == 0
 		|| ft_strcmp(str, "cd") == 0
 		|| ft_strcmp(str, "pwd") == 0

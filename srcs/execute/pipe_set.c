@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 19:52:41 by dario             #+#    #+#             */
-/*   Updated: 2025/09/19 11:31:22 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/19 11:41:25 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	in_set(t_cmd *cmd)
 	return (1);
 }
 
-int heredoc_set(t_cmd *cmd)
+int	heredoc_set(t_cmd *cmd)
 {
 	int	ofd;
 

@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/18 13:54:23 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:19:38 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	read_heredoc(pid_t pid, int *pipefd, char *delimeter)
 	}
 }
 
+// TODO: when running heredoc without cmd, after heredoc minishell
+// struggles to exit with ^D and exit()
 int	heredoc(char	*delimeter)
 {
 	pid_t	pid;

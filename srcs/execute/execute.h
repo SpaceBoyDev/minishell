@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/19 11:30:33 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/19 11:40:50 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int		std_io(t_cmd *cmd);
 int		in_set(t_cmd *cmd);
 int		out_set(t_cmd *cmd);
 int		io_set(t_cmd *cmd);
-int heredoc_set(t_cmd *cmd);
+int		heredoc_set(t_cmd *cmd);
 
 #endif

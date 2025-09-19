@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:00:21 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 17:42:20 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:02:20 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_getenv(char *name, char **env)
 int	ft_strcmp(char *s1, char *s2)
 {
 	if (!s1 || !s2)
-		return (0);
+		return (1);
 	while (*s1 && *s2 && *s1 == *s2)
 	{
 		s1++;

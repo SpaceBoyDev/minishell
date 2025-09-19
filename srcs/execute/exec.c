@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 14:33:19 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/19 12:13:01 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_exec(t_cmd *cmd, char **env)
 	char	*tmp;
 	char	*str;
 
+	if (!cmd->name)
+		return ;
 	execve(cmd->name, cmd->args, env);
 	paths = get_paths(env);
 	i = 0;
