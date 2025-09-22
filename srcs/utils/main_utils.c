@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 14:55:06 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/22 22:39:27 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ int	run_non_interactive(char *file, t_data *data)
 
 void	execute_input(char *str, t_data *data)
 {
+	t_cmd	*cmd_cpy;
+
+	cmd_cpy = data->cmd;
 	free(str);
 	g_running_cmd = 1;
 	data->last_status = pipeline(data);
 	g_running_cmd = 0;
 	token_free(data->token);
-	cmd_free(data->cmd);
+	cmd_free(cmd_cpy);
 }
 
 int	tokenize_input(char *str, t_data *data)

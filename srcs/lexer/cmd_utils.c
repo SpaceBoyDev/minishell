@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 14:01:16 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 14:56:33 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/22 22:34:05 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	table_free(char **table)
 	while (table[i])
 	{
 		free(table[i]);
+		table[i] = NULL;
 		i++;
 	}
 	free(table);
@@ -80,12 +81,19 @@ void	cmd_free(t_cmd *cmd)
 	while (cmd)
 	{
 		if (cmd->infile)
+		{
 			free(cmd->infile);
+			cmd->infile = NULL;
+		}
 		if (cmd->outfile)
+		{
 			free(cmd->outfile);
+			cmd->outfile = NULL;
+		}
 		table_free(cmd->args);
 		tmp = cmd;
 		cmd = cmd->next;
 		free(tmp);
 	}
+	cmd = NULL;
 }
