@@ -15,19 +15,6 @@
 #include "../signals/signals.h"
 #include "../builtins/builtins.h"
 
-extern volatile sig_atomic_t	g_running_cmd;
-
-void	setup_signal_handler(void)
-{
-	struct sigaction	sa;
-
-	ft_memset(&sa, 0, sizeof(sa));
-	sa.sa_flags = SA_RESTART;
-	sa.sa_handler = &handler;
-	sigaction(SIGINT, &sa, NULL);
-	signal(SIGQUIT, SIG_IGN);
-}
-
 void	run_interactive(t_data *data)
 {
 	char	*str;
@@ -35,7 +22,8 @@ void	run_interactive(t_data *data)
 
 	while (1)
 	{
-		setup_signal_handler();
+		signal(SIGINT, handler);
+		signal(SIGQUIT, SIG_IGN);
 		prompt = prompt_rl();
 		str = readline(prompt);
 		free(prompt);
@@ -80,9 +68,7 @@ void	execute_input(char *str, t_data *data)
 
 	cmd_cpy = data->cmd;
 	free(str);
-	g_running_cmd = 1;
 	data->last_status = pipeline(data);
-	g_running_cmd = 0;
 	token_free(data->token);
 	cmd_free(cmd_cpy);
 }

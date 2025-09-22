@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:33 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/12 19:34:14 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/19 12:19:38 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc.h"
+#include "../signals/signals.h"
 #include <limits.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -42,15 +43,28 @@ void	read_heredoc(pid_t pid, int *pipefd, char *delimeter)
 	}
 }
 
+// TODO: when running heredoc without cmd, after heredoc minishell
+// struggles to exit with ^D and exit()
+// TODO: make it work with a pipeline like: << a | << b
 int	heredoc(char	*delimeter)
 {
 	pid_t	pid;
 	int		pipefd[2];
+	int		status;
 
+	signal(SIGINT, heredoc_handler);
+	signal(SIGQUIT, SIG_IGN);
 	pipe(pipefd);
 	pid = fork();
 	read_heredoc(pid, pipefd, delimeter);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	close(pipefd[1]);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &status, 0);
+	if (WEXITSTATUS(status) == HEREDOC_ERR)
+	{
+		write(1, "\n", 1);
+		return (-1);
+	}
 	return (pipefd[0]);
 }

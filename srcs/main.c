@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/09/10 14:27:10 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:48:40 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-volatile sig_atomic_t	g_running_cmd = 0;
 
 int	main(int argc, char **argv, char **env)
 {

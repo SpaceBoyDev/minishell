@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 19:52:41 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 19:53:51 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/19 11:41:25 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 int	in_set(t_cmd *cmd)
 {
+	int	ret;
+
 	if (cmd->infile && cmd->in_op == IN)
 	{
 		cmd->in_fd = open(cmd->infile, O_RDONLY);
@@ -29,11 +31,27 @@ int	in_set(t_cmd *cmd)
 	}
 	else if (cmd->infile && cmd->in_op == HEREDOC)
 	{
-		dup2(cmd->in_std, 0);
-		cmd->in_fd = heredoc(cmd->infile);
-		dup2(cmd->in_fd, 0);
-		close(cmd->in_fd);
+		ret = heredoc_set(cmd);
+		if (!ret)
+			return (0);
 	}
+	return (1);
+}
+
+int	heredoc_set(t_cmd *cmd)
+{
+	int	ofd;
+
+	ofd = dup(1);
+	dup2(cmd->in_std, 0);
+	dup2(cmd->out_std, 1);
+	cmd->in_fd = heredoc(cmd->infile);
+	if (cmd->in_fd == -1)
+		return (0);
+	dup2(cmd->in_fd, 0);
+	dup2(ofd, 1);
+	close(ofd);
+	close(cmd->in_fd);
 	return (1);
 }
 
