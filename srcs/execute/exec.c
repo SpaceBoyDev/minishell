@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/19 12:13:01 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:37:49 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_exec(t_cmd *cmd, char **env)
 		return ;
 	execve(cmd->name, cmd->args, env);
 	paths = get_paths(env);
-	i = 0;
-	while (paths && paths[i])
+	i = -1;
+	while (paths && paths[++i])
 	{
 		tmp = ft_strjoin(paths[i], "/");
 		if (!tmp)
@@ -58,7 +58,6 @@ void	ft_exec(t_cmd *cmd, char **env)
 			return ;
 		execve(str, cmd->args, env);
 		free(str);
-		i++;
 	}
 	ft_putstr_fd(cmd->name, 2);
 	ft_putstr_fd(": command not found\n", 2);

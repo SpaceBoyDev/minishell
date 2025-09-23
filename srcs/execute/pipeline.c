@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 15:00:09 by marcos            #+#    #+#             */
-/*   Updated: 2025/09/19 19:50:51 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:44:23 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@
 #include <stdio.h>
 #include "../builtins/builtins.h"
 #include "../heredoc/heredoc.h"
+
+void	select_exec(t_data *data, pid_t *pid)
+{
+	if (!data->cmd->name)
+		;
+	else if (is_builtin(data->cmd->name))
+		data->cmd->ret = exec_builtins(data);
+	else
+	{
+		*pid = fork();
+		if (*pid == 0)
+			ft_exec(data->cmd, data->env);
+		data->cmd->pid = *pid;
+	}
+}
 
 int	manage_pipe(t_data *data)
 {
@@ -32,17 +47,7 @@ int	manage_pipe(t_data *data)
 	}
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	if (!data->cmd->name)
-		;
-	else if (is_builtin(data->cmd->name))
-		data->cmd->ret = exec_builtins(data);
-	else
-	{
-		pid = fork();
-		if (pid == 0)
-			ft_exec(data->cmd, data->env);
-		data->cmd->pid = pid;
-	}
+	select_exec(data, &pid);
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	restore_io(data->cmd);
