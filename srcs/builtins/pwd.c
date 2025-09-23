@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:20 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 13:57:32 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/23 16:43:54 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	ft_pwd(void)
 		return (1);
 	}
 	printf("%s\n", current_dir);
+	free(current_dir);
 	return (0);
 }
