@@ -3,16 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/19 12:03:14 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/23 17:34:12 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "builtins.h"
 #include "../utils/utils.h"
+
+void	free_env(t_data *data)
+{
+	char	**env;
+	int		i;
+
+	if (data && data->env)
+	{
+		env = data->env;
+		i = 0;
+		while (env[i])
+		{
+			free(env[i]);
+			i++;
+		}
+		free(env);
+		data->env = NULL;
+	}
+}
 
 int	is_builtin(char *str)
 {

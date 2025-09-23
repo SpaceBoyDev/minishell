@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:25:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/10 18:17:22 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/23 19:02:53 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*nbr_to_str(int n)
 	int		neg;
 	int		len;
 
-	(void)neg;
 	nbr = n;
 	pow = 1;
 	neg = 0;

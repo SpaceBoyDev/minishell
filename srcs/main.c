@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:30:10 by dario             #+#    #+#             */
-/*   Updated: 2025/09/17 19:48:40 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/23 19:05:44 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,8 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
+	data.last_status = 0;
 	init_data_env(env, &data);
-	if (argc != 1)
-	{
-		data.token = NULL;
-		data.cmd = NULL;
-		return (run_non_interactive(argv[1], &data));
-	}
 	run_interactive(&data);
 	rl_clear_history();
 	return (0);

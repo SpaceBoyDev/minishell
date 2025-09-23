@@ -3,32 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:17 by dario             #+#    #+#             */
-/*   Updated: 2025/09/18 20:22:33 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/23 17:36:57 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	free_env(t_data *data)
+int	arg_len(t_data *data)
 {
-	char	**env;
-	int		i;
+	int	ret;
 
-	if (data && data->env)
-	{
-		env = data->env;
-		i = 0;
-		while (env[i])
-		{
-			free(env[i]);
-			i++;
-		}
-		free(env);
-		data->env = NULL;
-	}
+	ret = 0;
+	if (data && data->cmd->args)
+		while (data->cmd->args[ret])
+			ret++;
+	return (ret);
 }
 
 static bool	is_numeric(const char *str)
@@ -73,10 +65,8 @@ void	ft_exit(t_data *data)
 	int	arg_count;
 	int	exit_status;
 
-	arg_count = 0;
-	if (data && data->cmd->args)
-		while (data->cmd->args[arg_count])
-			arg_count++;
+	arg_count = arg_len(data);
+	exit_status = 0;
 	if (arg_count > 2)
 	{
 		exit_status = ft_exit_more_args(data);
