@@ -6,7 +6,7 @@
 /*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 19:30:31 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/23 19:32:16 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:50:19 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char	*expand_aux(char *str, int *i, t_data *data)
 	else
 	{
 		sub = get_env_val(get_var_name(&str[(*i)]), data);
-		sub = ft_strdup(sub);
+		if (sub)
+			sub = ft_strdup(sub);
 		(*i) = skip_var_name(str, (*i));
 	}
 	return (sub);
