@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:54:02 by dario             #+#    #+#             */
-/*   Updated: 2025/09/22 22:39:27 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/24 15:36:56 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	run_interactive(t_data *data)
 			break ;
 		}
 		else if (!str[0])
+		{
+			free(str);
 			continue ;
+		}
 		add_history(str);
 		if (tokenize_input(str, data) == 1)
 			continue ;
