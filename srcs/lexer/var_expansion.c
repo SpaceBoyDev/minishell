@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 19:30:31 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/24 17:50:19 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:03:43 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,28 @@ char	*expand_aux(char *str, int *i, t_data *data)
 
 char	*expand(char *str, t_data *data)
 {
-	int		i;
-	int		s;
-	char	*ret;
-	char	*sub;
-	char	*tmp;
+	t_expand_var	var;
 
-	ret = NULL;
-	i = 0;
-	while (str[i])
+	var.ret = NULL;
+	var.i = 0;
+	while (str[var.i])
 	{
-		s = i;
-		i = len_until_char(str, i, '$');
-		sub = ft_substr(str, s, i - s);
-		tmp = ret;
-		ret = ft_strjoin(tmp, sub);
-		free(tmp);
-		free(sub);
-		sub = expand_aux(str, &i, data);
-		if (sub == NULL)
-			return (ret);
-		tmp = ret;
-		ret = ft_strjoin(tmp, sub);
-		free(sub);
-		free(tmp);
+		var.s = var.i;
+		var.i = len_until_char(str, var.i, '$');
+		var.sub = ft_substr(str, var.s, var.i - var.s);
+		var.tmp = var.ret;
+		var.ret = ft_strjoin(var.tmp, var.sub);
+		free(var.tmp);
+		free(var.sub);
+		var.sub = expand_aux(str, &var.i, data);
+		if (var.sub == NULL)
+			return (var.ret);
+		var.tmp = var.ret;
+		var.ret = ft_strjoin(var.tmp, var.sub);
+		free(var.sub);
+		free(var.tmp);
 	}
-	return (ret);
+	return (var.ret);
 }
 
 char	*get_var_name(char *str)

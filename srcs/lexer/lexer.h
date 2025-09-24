@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/23 18:50:07 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:02:18 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ typedef struct s_build_tkn
 	char	*tmp;
 	char	tmp_char;
 }	t_build_tkn;
+
+typedef struct s_expand_var
+{
+	int		i;
+	int		s;
+	char	*ret;
+	char	*sub;
+	char	*tmp;
+}	t_expand_var;
 
 // utils.c
 int				check_quotes(char *str);
