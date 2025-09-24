@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/23 16:37:49 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/24 18:46:15 by darmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_exec(t_cmd *cmd, char **env)
 		execve(str, cmd->args, env);
 		free(str);
 	}
+	table_free(paths);
 	ft_putstr_fd(cmd->name, 2);
 	ft_putstr_fd(": command not found\n", 2);
 	exit(CMD_NOT_FOUND);
