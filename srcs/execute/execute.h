@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/25 11:17:18 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 12:00:27 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int		restore_io(t_cmd *cmd);
 int		std_io(t_cmd *cmd);
 
 // pipe_set.c
-int		in_set(t_cmd *cmd);
+int		in_set(t_cmd *cmd, t_data *data);
 int		out_set(t_cmd *cmd);
-int		io_set(t_cmd *cmd);
-int		heredoc_set(t_cmd *cmd);
+int		io_set(t_cmd *cmd, t_data *data);
+int		heredoc_set(t_cmd *cmd, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 15:00:09 by marcos            #+#    #+#             */
-/*   Updated: 2025/09/25 11:20:22 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 12:05:37 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	manage_pipe(t_data *data)
 
 	open_pipe(data->cmd, data->cmd->next);
 	io_pipes(data->cmd);
-	if (!io_set(data->cmd))
+	if (!io_set(data->cmd, data))
 	{
 		std_io(data->cmd);
 		data->cmd = data->cmd->next;
@@ -66,7 +66,7 @@ int	pipeline(t_data *data)
 			return (1);
 	while (cmd_cpy)
 	{
-		if (!is_builtin(cmd_cpy->name))
+		if (!is_builtin(cmd_cpy->name) && cmd_cpy->name)
 		{
 			waitpid(cmd_cpy->pid, &status, 0);
 			status = WEXITSTATUS(status);
