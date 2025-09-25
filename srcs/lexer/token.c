@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/25 17:33:21 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/25 20:04:19 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_token	*tokenize(char *input, t_data *data)
 	{
 		token->next = create_token(str, &i, data);
 		if (!token->next)
-			return (NULL);
+			return (free_failed_token(first, str));
 		token = token->next;
 	}
 	free(str);

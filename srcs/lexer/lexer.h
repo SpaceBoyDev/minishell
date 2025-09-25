@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:46:48 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/25 16:38:21 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 20:04:04 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ char			*nbr_to_str(int n);
 
 int				is_empty_str(char *str);
 char			*empty_str_helper(char *str, char *ret);
+void			*free_failed_token(t_token *token, char *str);
 
 #endif
