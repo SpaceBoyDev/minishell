@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/25 11:34:58 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 20:33:22 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	terminate_child(t_data *data, char **paths)
 {
 	ft_putstr_fd(data->cmd->name, 2);
 	ft_putstr_fd(": command not found\n", 2);
-	table_free(paths);
+	if (paths)
+		table_free(paths);
 	token_free(data->token);
 	cmd_free(data->cmd);
 	free_env(data);
