@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 19:30:31 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/24 19:03:43 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:39:23 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ char	*expand(char *str, t_data *data)
 
 	var.ret = NULL;
 	var.i = 0;
+	var.ret = empty_str_helper(str, var.ret);
+	if (var.ret)
+		return (var.ret);
 	while (str[var.i])
 	{
 		var.s = var.i;

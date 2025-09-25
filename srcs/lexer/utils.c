@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:27 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/23 18:50:58 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:38:02 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ int	is_empty_str(char *str)
 		return (1);
 	}
 	return (0);
+}
+
+char	*empty_str_helper(char *str, char *ret)
+{
+	if (str && str[0] == '\0')
+	{
+		ret = (char *)malloc(sizeof(char));
+		ret[0] = '\0';
+		return (ret);
+	}
+	return (NULL);
 }
 
 // void	print_token(t_token	*token)
