@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:00:21 by dario             #+#    #+#             */
-/*   Updated: 2025/09/25 11:26:16 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 11:35:40 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_data_env(char **src, t_data *data)
 	while (src[++env_count])
 		data->env[env_count] = ft_strdup(src[env_count]);
 	data->env[env_count] = NULL;
-	// update_shlvl(data, +1);
+	update_shlvl(data, +1);
 }
 
 char	*ft_getenv(char *name, char **env)

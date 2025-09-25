@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:38:45 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/25 11:21:58 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 11:34:58 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ char	**get_paths(char **env)
 	return (paths);
 }
 
+void	terminate_child(t_data *data, char **paths)
+{
+	ft_putstr_fd(data->cmd->name, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	table_free(paths);
+	token_free(data->token);
+	cmd_free(data->cmd);
+	free_env(data);
+	exit(CMD_NOT_FOUND);
+}
+
 void	ft_exec(t_data *data)
 {
 	char	**paths;
@@ -60,11 +71,5 @@ void	ft_exec(t_data *data)
 		execve(str, data->cmd->args, data->env);
 		free(str);
 	}
-	ft_putstr_fd(data->cmd->name, 2);
-	ft_putstr_fd(": command not found\n", 2);
-	table_free(paths);
-	token_free(data->token);
-	cmd_free(data->cmd);
-	free_env(data);
-	exit(CMD_NOT_FOUND);
+	terminate_child(data, paths);
 }
