@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:40:03 by dario             #+#    #+#             */
-/*   Updated: 2025/09/12 14:55:23 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 17:33:21 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*prompt_rl(void);
 void	init_data_env(char **src, t_data *data);
 char	*ft_getenv(char *name, char **env);
 int		ft_strcmp(char *s1, char *s2);
+void	*free_return_null(void *var);
 
 // Error Handling
 void	error_msg(const char *error_message, bool simple);

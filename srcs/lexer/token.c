@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:15:22 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/23 18:50:00 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:33:21 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "lexer.h"
+#include "../utils/utils.h"
 
 t_token	*tokenize(char *input, t_data *data)
 {
@@ -28,7 +29,7 @@ t_token	*tokenize(char *input, t_data *data)
 	i = 0;
 	first = create_token(str, &i, data);
 	if (!first)
-		return (NULL);
+		return (free_return_null(str));
 	token = first;
 	while (str[i])
 	{
@@ -54,7 +55,10 @@ t_token	*create_token(char	*str, int *i, t_data *data)
 	{
 		token->str = token_str(str, i, data);
 		if (token->str == NULL)
+		{
+			free(token);
 			return (NULL);
+		}
 	}
 	return (token);
 }

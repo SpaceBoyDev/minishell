@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   shell_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 02:00:21 by dario             #+#    #+#             */
-/*   Updated: 2025/09/25 11:35:40 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/25 17:33:21 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "../signals/signals.h"
+
+void	*free_return_null(void *var)
+{
+	free(var);
+	return (NULL);
+}
 
 char	*prompt_rl(void)
 {

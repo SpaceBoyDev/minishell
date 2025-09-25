@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:17 by dario             #+#    #+#             */
-/*   Updated: 2025/09/23 17:36:57 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:15:53 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ void	ft_exit(t_data *data)
 				exit_status += 256;
 		}
 	}
+	free_data(data);
 	exit(exit_status);
 }
