@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 15:00:09 by marcos            #+#    #+#             */
-/*   Updated: 2025/09/23 16:44:23 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/25 11:20:22 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	select_exec(t_data *data, pid_t *pid)
 	{
 		*pid = fork();
 		if (*pid == 0)
-			ft_exec(data->cmd, data->env);
+			ft_exec(data);
 		data->cmd->pid = *pid;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 14:28:18 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/19 11:40:50 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:17:18 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define CMD_NOT_FOUND 127
 
 char	**get_paths(char **env);
-void	ft_exec(t_cmd *cmd, char **env);
+void	ft_exec(t_data *data);
 
 int		open_pipe(t_cmd *left, t_cmd *right);
 int		pipeline(t_data *data);
