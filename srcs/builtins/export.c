@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/09/20 01:48:07 by dario            ###   ########.fr       */
+/*   Updated: 2025/09/25 20:35:20 by marcolop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static char	**set_env_var(char **args, char **old_env, int i)
 	char	**new_env;
 	int		env_count;
 	t_vars	aux;
+	char	*tmp;
 
 	aux.i = i;
 	env_count = -1;
@@ -87,7 +88,11 @@ static char	**set_env_var(char **args, char **old_env, int i)
 	while (old_env[++env_count])
 		new_env[env_count] = ft_strdup(old_env[env_count]);
 	if (aux.next_var)
-		new_env[env_count] = ft_strdup(ft_strjoin(args[i], args[i + 1]));
+	{
+		tmp = ft_strjoin(args[i], args[i + 1]);
+		new_env[env_count] = ft_strdup(tmp);
+		free(tmp);
+	}
 	else
 		new_env[env_count] = ft_strdup(args[i]);
 	new_env[env_count + 1] = NULL;
