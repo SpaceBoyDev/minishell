@@ -6,7 +6,7 @@
 #    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/09/26 03:31:37 by dario            ###   ########.fr        #
+#    Updated: 2025/09/26 04:55:46 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,9 @@ $(LIBFT_LIB):
 %.o: %.c
 	@printf "$(MAGENTA)Compiling $< ✅$(RST)\033[0K\r"; $(CC) $(CFLAGS) -c $< -o $@
 
+test:
+	gcc test.c -o test
+
 clean:
 	@echo "$(BG_BLUE)Cleaning...$(BG_RST)"
 	@$(RM) $(OBJS)
@@ -141,4 +144,4 @@ norme:
 		fi \
 	done
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re check

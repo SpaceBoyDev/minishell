@@ -1,0 +1,107 @@
+make -n
+
+/bin/ls
+/bin/ls -l
+/bin/echo
+
+# Comando vacío
+<ENTER>
+# Solo espacios o tabuladores
+     
+        
+
+/bin/ls -l /tmp
+/bin/echo hola mundo
+/bin/cat comandos
+
+echo hola
+echo -n hola
+echo "hola mundo"
+echo ""
+echo -n
+
+exit
+exit 42
+exit 0
+exit 1
+
+/bin/ls
+echo $?
+/bin/ls archivo_que_no_existe
+echo $?
+expr $? + $?
+
+cat
+grep "algo"
+
+echo "cat lol.c | cat > lol.c"
+echo "hola mundo"
+echo "argumento con espacios"
+
+echo '$USER'
+echo ''
+echo 'argumento con espacios'
+echo 'cat | cat > lol.c'
+
+env
+
+export VAR=42
+export VAR=43
+env
+
+export VAR=42
+unset VAR
+env
+
+cd /
+/bin/ls
+cd ..
+/bin/ls
+cd .
+/bin/ls
+cd /tmp
+/bin/ls
+
+pwd
+cd /
+pwd
+cd /tmp
+pwd
+
+ls
+cd ..
+ls
+cd ../..
+ls
+
+ls
+wc
+awk
+unset PATH
+ls
+export PATH=/bin
+ls
+export PATH=/tmp:/bin
+ls
+
+echo hola > file.txt
+cat < file.txt
+echo hola >> file.txt
+cat < file.txt > out.txt
+cat < file.txt >> out.txt
+cat << EOF
+hola
+EOF
+
+cat file.txt | grep hola | more
+ls archivoquenoexiste | grep hola | more
+cat file.txt | grep hola > out.txt
+cat | cat | ls
+
+wjkgjrgwg4g43go34o
+echo argumento1 argumento2 argumento3 argumento4 argumento5 argumento6 argumento7 argumento8 argumento9 argumento10
+
+echo $USER
+echo "$USER"
+export USER=testuser
+echo "$USER"

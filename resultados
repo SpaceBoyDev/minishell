@@ -1,0 +1,24 @@
+Comando: ls
+Output:
+cowabunga
+[1;35m/home/dario/Desktop/42/m3/minishell[5m> [0mls
+comandos
+doc
+eval_sheet.pdf
+file.txt
+leaks.sh
+libft
+lol.c
+Makefile
+minishell
+minishell_tester
+out.txt
+pipescript.sh
+readline.supp
+resultados
+script.sh
+srcs
+test
+test.c
+test_infile_big
+[1;35m/home/dario/Desktop/42/m3/minishell[5m> [0m----------------------
