@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:27 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/25 20:03:35 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/26 11:15:32 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ void	*free_failed_token(t_token *token, char *str)
 {
 	token_free(token);
 	free(str);
+	return (NULL);
+}
+
+void	*free_failed_cmd(t_cmd *first)
+{
+	cmd_free(first);
 	return (NULL);
 }
 

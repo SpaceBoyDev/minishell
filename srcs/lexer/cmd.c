@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 08:42:42 by marcolop          #+#    #+#             */
-/*   Updated: 2025/09/26 11:05:35 by marcos           ###   ########.fr       */
+/*   Updated: 2025/09/26 11:16:13 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ t_cmd	*pipeline_cmd(t_token *token)
 		{
 			token = token->next;
 			if (!token)
-			{
-				cmd_free(first);
-				return (NULL);
-			}
+				return (free_failed_cmd(first));
 		}
 		else
 			return (first);
