@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marcos <marcos@student.42.fr>              +#+  +:+       +#+         #
+#    By: dario <dario@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 18:40:53 by dario             #+#    #+#              #
-#    Updated: 2025/09/24 15:43:12 by marcos           ###   ########.fr        #
+#    Updated: 2025/09/26 03:31:37 by dario            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	minishell
 MAKEFLAGS	+=	--no-print-directory
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -f
 
 # Libft

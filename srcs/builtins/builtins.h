@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 01:39:00 by dario             #+#    #+#             */
-/*   Updated: 2025/09/23 17:34:22 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/26 03:42:27 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_vars
 {
 	int		i;
 	bool	next_var;
+	int		env_count;
 }	t_vars;
 
 void	free_env(t_data *data);
@@ -27,6 +28,7 @@ void	free_env(t_data *data);
 void	free_env(t_data *data);
 int		is_builtin(char *str);
 int		exec_builtins(t_data *data);
+void	create_new_env(t_vars *aux, char **args, char **new_env, int i);
 
 // Builtins
 int		ft_cd(char *path, char **env);

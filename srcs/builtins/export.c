@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcolop <marcolop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:27:19 by dario             #+#    #+#             */
-/*   Updated: 2025/09/25 20:35:20 by marcolop         ###   ########.fr       */
+/*   Updated: 2025/09/26 03:43:02 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static char	*replace_existing_var(char **env, char **args,
 				int count, t_vars *vars)
 {
 	char	*old_var;
+	char	*tmp;
 	int		i;
 
 	i = vars->i;
@@ -57,7 +58,11 @@ static char	*replace_existing_var(char **env, char **args,
 	{
 		free(env[count]);
 		if (vars->next_var)
-			env[count] = ft_strdup(ft_strjoin(args[i], args[i + 1]));
+		{
+			tmp = ft_strjoin(args[i], args[i + 1]);
+			env[count] = ft_strdup(tmp);
+			free(tmp);
+		}
 		else
 			env[count] = ft_strdup(args[i]);
 		return (env[count]);
@@ -68,34 +73,25 @@ static char	*replace_existing_var(char **env, char **args,
 static char	**set_env_var(char **args, char **old_env, int i)
 {
 	char	**new_env;
-	int		env_count;
 	t_vars	aux;
-	char	*tmp;
 
 	aux.i = i;
-	env_count = -1;
+	aux.env_count = -1;
 	if (!ft_strchr(args[i], '='))
 		return (old_env);
 	aux.next_var = (args[i][ft_strchr(args[i], '=') - args[i] + 1] == '\0'
 			&& args[i + 1] && !ft_strchr(args[i + 1], '='));
-	while (old_env[++env_count])
-		if (replace_existing_var(old_env, args, env_count, &aux))
+	while (old_env[++aux.env_count])
+		if (replace_existing_var(old_env, args, aux.env_count, &aux))
 			return (old_env);
-	new_env = malloc((env_count + 2) * sizeof(char *));
+	new_env = malloc((aux.env_count + 2) * sizeof(char *));
 	if (!new_env)
 		return (old_env);
-	env_count = -1;
-	while (old_env[++env_count])
-		new_env[env_count] = ft_strdup(old_env[env_count]);
-	if (aux.next_var)
-	{
-		tmp = ft_strjoin(args[i], args[i + 1]);
-		new_env[env_count] = ft_strdup(tmp);
-		free(tmp);
-	}
-	else
-		new_env[env_count] = ft_strdup(args[i]);
-	new_env[env_count + 1] = NULL;
+	aux.env_count = -1;
+	while (old_env[++aux.env_count])
+		new_env[aux.env_count] = ft_strdup(old_env[aux.env_count]);
+	create_new_env(&aux, args, new_env, i);
+	new_env[aux.env_count + 1] = NULL;
 	return (new_env);
 }
 

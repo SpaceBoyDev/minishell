@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darmarti <darmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dario <dario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 02:28:27 by dario             #+#    #+#             */
-/*   Updated: 2025/09/23 17:34:12 by darmarti         ###   ########.fr       */
+/*   Updated: 2025/09/26 03:43:26 by dario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,18 @@ int	exec_builtins(t_data *data)
 		return (0);
 	}
 	return (1);
+}
+
+void	create_new_env(t_vars *aux, char **args, char **new_env, int i)
+{
+	char	*tmp;
+
+	if (aux->next_var)
+	{
+		tmp = ft_strjoin(args[i], args[i + 1]);
+		new_env[aux->env_count] = ft_strdup(tmp);
+		free(tmp);
+	}
+	else
+		new_env[aux->env_count] = ft_strdup(args[i]);
 }
